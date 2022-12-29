@@ -4,6 +4,8 @@ services:
     build: .
     command: node dist/index.js
     env_file: ./.env
+    ports:
+      - '3334:3003'
     depends_on:
       - mongo
   mongo:
@@ -14,7 +16,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASS}
     command: --quiet
     ports:
-      - '3334:27017'
+      - '3335:27017'
     volumes:
       - ./indulasch_volume:/data/db
 volumes:
