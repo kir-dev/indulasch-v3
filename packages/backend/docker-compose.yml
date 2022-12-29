@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  backend:
+    build: ./packages/backend
+    command: node dist/index.js
+    env_file: ./packages/backend/.env
+    depends_on:
+      - mongo
+  mongo:
+    image: 'mongo'
+    environment:
+      - MONGO_INITDB_DATABASE=indulasch
+      - MONGO_INITDB_ROOT_USERNAME=${DB_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASS}
+    command: --quiet
+    ports:
+      - '3334:27017'
+    volumes:
+      - ./indulasch_volume:/data/db
+volumes:
+  indulasch_volume:
