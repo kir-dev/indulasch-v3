@@ -7,6 +7,7 @@ async function bootstrap() {
   await app.listen(AppModule.port);
   return AppModule.port;
 }
+
 bootstrap().then((port) => {
   console.info('App listening on ' + port);
 });

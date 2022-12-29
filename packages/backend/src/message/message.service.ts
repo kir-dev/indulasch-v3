@@ -6,14 +6,9 @@ import { CreateMessageDto, MessagePatchDto } from '../types/dto.types';
 
 @Injectable()
 export class MessageService {
-  constructor(
-    @InjectModel('Message') private readonly messageModel: Model<Message>,
-  ) {}
+  constructor(@InjectModel('Message') private readonly messageModel: Model<Message>) {}
 
-  async createMessage(
-    kioskId: string,
-    message: CreateMessageDto,
-  ): Promise<MessageDocument | undefined> {
+  async createMessage(kioskId: string, message: CreateMessageDto): Promise<MessageDocument | undefined> {
     return this.messageModel.create({ kioskId, ...message });
   }
 
@@ -21,10 +16,7 @@ export class MessageService {
     return this.messageModel.deleteOne({ _id: messageId });
   }
 
-  async patchMessage(
-    messageId: string,
-    patch: MessagePatchDto,
-  ): Promise<MessageDocument | undefined> {
+  async patchMessage(messageId: string, patch: MessagePatchDto): Promise<MessageDocument | undefined> {
     const message = await this.messageModel.findOne({ _id: messageId });
     if (!message) throw new NotFoundException();
     if (typeof patch.text !== 'undefined') {
@@ -43,9 +35,7 @@ export class MessageService {
     return message;
   }
 
-  async getMessageList(
-    kioskId: string,
-  ): Promise<MessageDocument[] | undefined> {
+  async getMessageList(kioskId: string): Promise<MessageDocument[] | undefined> {
     return this.messageModel.find({ kioskId });
   }
 }

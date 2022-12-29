@@ -1,10 +1,15 @@
 import * as process from 'process';
 
 export default () => ({
+  mongodbUri: process.env.MONGODB_URI,
+  expiration: process.env.JWT_EXPIRATION || '1h',
   port: parseInt(process.env.PORT, 10) || 3000,
-  database: {
-    host: process.env.DATABASE_HOST,
-    port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
-  },
   secret: process.env.SECRET || 'undefined_secret',
 });
+
+export enum ConfigKeys {
+  EXPIRATION = 'expiration',
+  MONGODB_URI = 'mongodbUri',
+  PORT = 'port',
+  SECRET = 'secret',
+}

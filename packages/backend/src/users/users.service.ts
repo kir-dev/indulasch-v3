@@ -11,7 +11,7 @@ import { Kiosk } from '../schemas/kiosk.schema';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-    @InjectModel(Kiosk.name) private readonly kioskModel: Model<Kiosk>,
+    @InjectModel(Kiosk.name) private readonly kioskModel: Model<Kiosk>
   ) {}
 
   async createUser(username: string, password: string): Promise<UserDocument> {
@@ -48,10 +48,7 @@ export class UsersService {
       .exec();
   }
 
-  async patchUser(
-    userId: string,
-    patch: UserPatchDto,
-  ): Promise<UserDocument | undefined> {
+  async patchUser(userId: string, patch: UserPatchDto): Promise<UserDocument | undefined> {
     const user = await this.userModel.findOne({ _id: userId });
     if (typeof patch.username !== 'undefined') {
       user.username = patch.username;
@@ -70,11 +67,7 @@ export class UsersService {
     return user;
   }
 
-  async setKioskRole(
-    userId: string,
-    kioskId: Types.ObjectId,
-    role: KioskRoles,
-  ) {
+  async setKioskRole(userId: string, kioskId: Types.ObjectId, role: KioskRoles) {
     const user = await this.userModel.findOne({ _id: userId });
     if (!user) throw 'No user';
     const kioskRoleIndex = user.roles.findIndex((k) => k.kioskId === kioskId);
@@ -83,10 +76,7 @@ export class UsersService {
     } else {
       user.roles.push({ kioskId, role });
     }
-    await this.userModel.updateOne(
-      { _id: userId },
-      { $set: { roles: user.roles } },
-    );
+    await this.userModel.updateOne({ _id: userId }, { $set: { roles: user.roles } });
     return user;
   }
 
@@ -94,10 +84,7 @@ export class UsersService {
     const user = await this.userModel.findOne({ _id: userId });
     if (!user) throw 'No user';
     user.roles = user.roles.filter((role) => role.kioskId !== kioskId);
-    await this.userModel.updateOne(
-      { _id: userId },
-      { $set: { roles: user.roles } },
-    );
+    await this.userModel.updateOne({ _id: userId }, { $set: { roles: user.roles } });
     return user;
   }
 }

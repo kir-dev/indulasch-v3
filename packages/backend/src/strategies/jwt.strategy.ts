@@ -4,17 +4,15 @@ import { AuthGuard, PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { JwtDto } from '../types/auth.types';
 import { UsersService } from '../users/users.service';
+import { ConfigKeys } from '../utils/configuration';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    private configService: ConfigService,
-    private userService: UsersService,
-  ) {
+  constructor(private configService: ConfigService, private userService: UsersService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: 'hellobello',
+      secretOrKey: configService.get<string>(ConfigKeys.SECRET),
     });
   }
 

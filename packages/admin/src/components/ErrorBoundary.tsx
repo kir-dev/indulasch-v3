@@ -15,7 +15,7 @@ export class ErrorBoundary extends React.Component<PropsWithChildren> {
   }
 
   onAction = () => {
-    location.reload();
+    window.location.reload();
   };
 
   render() {

@@ -6,15 +6,9 @@ import { CredentialsDto } from '../types/auth.types';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
-  async validateUser(
-    username: string,
-    password: string,
-  ): Promise<UserDocument | undefined> {
+  async validateUser(username: string, password: string): Promise<UserDocument | undefined> {
     return await this.usersService.getUser({ username, password });
   }
 

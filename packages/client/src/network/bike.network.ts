@@ -24,8 +24,8 @@ export function useBikeQuery() {
 function getClosestPlace(places: BikePlace[], lat: number, lon: number) {
   let bestPlace = places[0];
   let bestDistance = Infinity;
-  for (let place of places) {
-    let d = calculateDistance(lat, lon, place.lat, place.lng);
+  for (const place of places) {
+    const d = calculateDistance(lat, lon, place.lat, place.lng);
     if (d < bestDistance) {
       bestPlace = place;
       bestDistance = d;

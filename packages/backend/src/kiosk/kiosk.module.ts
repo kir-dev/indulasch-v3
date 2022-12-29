@@ -7,11 +7,7 @@ import { UsersModule } from '../users/users.module';
 import { MessageModule } from '../message/message.module';
 
 @Module({
-  imports: [
-    UsersModule,
-    MessageModule,
-    MongooseModule.forFeature([{ name: Kiosk.name, schema: KioskSchema }]),
-  ],
+  imports: [UsersModule, MessageModule, MongooseModule.forFeature([{ name: Kiosk.name, schema: KioskSchema }])],
   providers: [KioskService],
   controllers: [KioskController],
   exports: [KioskService],

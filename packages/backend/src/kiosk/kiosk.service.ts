@@ -7,9 +7,7 @@ import { KioskPatchDto } from '../types/dto.types';
 
 @Injectable()
 export class KioskService {
-  constructor(
-    @InjectModel(Kiosk.name) private readonly kioskModel: Model<Kiosk>,
-  ) {}
+  constructor(@InjectModel(Kiosk.name) private readonly kioskModel: Model<Kiosk>) {}
 
   async getKioskById(kioskId: string) {
     if (!Types.ObjectId.isValid(kioskId)) throw new NotFoundException();
@@ -46,7 +44,7 @@ export class KioskService {
         $set: {
           config: kiosk.config,
         },
-      },
+      }
     );
   }
 

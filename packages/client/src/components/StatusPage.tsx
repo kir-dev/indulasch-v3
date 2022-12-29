@@ -9,6 +9,7 @@ interface ErrorMessageProps {
   message: string;
   onAction?: () => void;
 }
+
 export function ErrorPage({ message, onAction }: ErrorMessageProps) {
   return (
     <PageBackground>

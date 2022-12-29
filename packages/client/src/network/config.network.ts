@@ -5,18 +5,18 @@ import { useEffect, useState } from 'react';
 import { useInterval } from '../utils/useInterval';
 
 export function useConfigQuery(id: string) {
-  const url = new URL(API_URL + '/' + id);
   const [config, setConfig] = useState<Config>();
   const [fail, setFail] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const request = () => {
+    const url = new URL(API_URL + '/' + id);
     axios
       .get<ConfigDto>(url.toString())
       .then((response) => {
         setConfig(response.data.config);
         setFail(false);
         setNotFound(false);
-        if (response.data.refreshNeeded) location.reload();
+        if (response.data.refreshNeeded) window.location.reload();
       })
       .catch((err) => {
         if (isAxiosError(err)) {

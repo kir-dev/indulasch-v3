@@ -9,14 +9,21 @@ import { UsersModule } from './users/users.module';
 import { KioskModule } from './kiosk/kiosk.module';
 import { MessageModule } from './message/message.module';
 import { ClientModule } from './client/client.module';
-import configuration from './utils/configuration';
+import configuration, { ConfigKeys } from './utils/configuration';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/indulasch'),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
+        uri: config.get<string>(ConfigKeys.MONGODB_URI),
+      }),
+    }),
     AuthModule,
     UsersModule,
     ConfigModule.forRoot({
+      envFilePath: ['.env', '.env.development'],
       load: [configuration],
       isGlobal: true,
     }),
@@ -29,7 +36,8 @@ import configuration from './utils/configuration';
 })
 export class AppModule {
   static port: string;
+
   constructor(private configService: ConfigService) {
-    AppModule.port = configService.get<string>('port');
+    AppModule.port = configService.get<string>(ConfigKeys.PORT);
   }
 }

@@ -8,6 +8,7 @@ interface KioskGridItemProps {
   id: string;
   role: KioskRoles;
 }
+
 export function KioskListItem({ name, id, role }: KioskGridItemProps) {
   const { setSelectedKiosk } = useKioskContext();
   const color = useColorModeValue('gray.300', 'gray.600');

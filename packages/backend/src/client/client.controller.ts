@@ -4,10 +4,7 @@ import { MessageService } from '../message/message.service';
 
 @Controller('client')
 export class ClientController {
-  constructor(
-    private readonly kioskService: KioskService,
-    private readonly messageService: MessageService,
-  ) {}
+  constructor(private readonly kioskService: KioskService, private readonly messageService: MessageService) {}
 
   @Get(':id')
   async getKioskConfig(@Param('id') id: string) {

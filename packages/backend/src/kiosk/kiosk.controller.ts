@@ -1,14 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { KioskRoles } from '../types/kiosk.types';
 import { RoleBasedAuthGuard } from '../auth/role.guard';
 import { KioskService } from './kiosk.service';
@@ -29,7 +19,7 @@ export class KioskController {
   constructor(
     private readonly kioskService: KioskService,
     private readonly userService: UsersService,
-    private readonly messageService: MessageService,
+    private readonly messageService: MessageService
   ) {}
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.VISITOR))
@@ -42,20 +32,13 @@ export class KioskController {
   @Post()
   async createKiosk(@Body() createDto: CreateKioskDto, @Request() req) {
     const kiosk = await this.kioskService.createKiosk(createDto.name);
-    await this.userService.setKioskRole(
-      req.user._id.toString(),
-      kiosk._id,
-      KioskRoles.OWNER,
-    );
+    await this.userService.setKioskRole(req.user._id.toString(), kiosk._id, KioskRoles.OWNER);
     return kiosk;
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
   @Patch(':id')
-  async patchKiosk(
-    @Body() patchDto: KioskPatchDto,
-    @Param('id') kioskId: string,
-  ) {
+  async patchKiosk(@Body() patchDto: KioskPatchDto, @Param('id') kioskId: string) {
     return await this.kioskService.patchKiosk(kioskId, patchDto);
   }
 
@@ -74,40 +57,24 @@ export class KioskController {
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
   @Post(':id/role')
   async setRole(@Body() setDto: SetRoleDto, @Param('id') kioskId: string) {
-    return await this.userService.setKioskRole(
-      setDto.userId,
-      new Types.ObjectId(kioskId),
-      setDto.role,
-    );
+    return await this.userService.setKioskRole(setDto.userId, new Types.ObjectId(kioskId), setDto.role);
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
   @Delete(':id/role')
-  async removeRole(
-    @Body() setDto: RemoveRoleDto,
-    @Param('id') kioskId: string,
-  ) {
-    return await this.userService.removeKioskRole(
-      setDto.userId,
-      new Types.ObjectId(kioskId),
-    );
+  async removeRole(@Body() setDto: RemoveRoleDto, @Param('id') kioskId: string) {
+    return await this.userService.removeKioskRole(setDto.userId, new Types.ObjectId(kioskId));
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.MARKETING))
   @Post(':id/message')
-  async createMessage(
-    @Body() createDto: CreateMessageDto,
-    @Param('id') kioskId: string,
-  ) {
+  async createMessage(@Body() createDto: CreateMessageDto, @Param('id') kioskId: string) {
     return await this.messageService.createMessage(kioskId, createDto);
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.MARKETING))
   @Delete(':id/message/:messageId')
-  async deleteMessage(
-    @Param('id') kioskId: string,
-    @Param('messageId') messageId: string,
-  ) {
+  async deleteMessage(@Param('id') kioskId: string, @Param('messageId') messageId: string) {
     return await this.messageService.deleteMessage(messageId);
   }
 
@@ -116,7 +83,7 @@ export class KioskController {
   async patchMessage(
     @Body() patchDto: MessagePatchDto,
     @Param('id') kioskId: string,
-    @Param('messageId') messageId: string,
+    @Param('messageId') messageId: string
   ) {
     return await this.messageService.patchMessage(messageId, patchDto);
   }

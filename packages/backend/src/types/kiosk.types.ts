@@ -19,12 +19,7 @@ export type Style = {
   colors: ColorsWithScheme;
 };
 
-export type ColorNames =
-  | 'brand'
-  | 'background'
-  | 'tile'
-  | 'fontPrimary'
-  | 'fontSecondary';
+export type ColorNames = 'brand' | 'background' | 'tile' | 'fontPrimary' | 'fontSecondary';
 
 export type ColorsWithScheme = {
   [name in ColorNames]: ColorModeColor;
@@ -39,14 +34,7 @@ export type ColorModeColor = {
   dark: string;
 };
 
-export type WidgetName =
-  | 'weather'
-  | 'schpincer'
-  | 'custom'
-  | 'image'
-  | 'qr'
-  | 'departures'
-  | 'bike';
+export type WidgetName = 'weather' | 'schpincer' | 'custom' | 'image' | 'qr' | 'departures' | 'bike';
 
 export type WidgetConfigBase = {
   name: WidgetName;

@@ -8,6 +8,7 @@ import { StyleForm } from '../types/types';
 interface ColorPickerFieldProps {
   name: keyof ColorsWithScheme;
 }
+
 export function ColorPickerField({ name }: ColorPickerFieldProps) {
   const { control } = useFormContext<StyleForm>();
   return (
@@ -23,12 +24,13 @@ interface ColorPickerProps {
   value: ColorModeColor;
   onChange: (value: ColorModeColor) => void;
 }
+
 function ColorPicker({ value, onChange }: ColorPickerProps) {
   const [lightColor, setLightColor] = useState(value.light);
   const [darkColor, setDarkColor] = useState(value.dark);
   useEffect(() => {
     onChange({ dark: darkColor, light: lightColor });
-  }, [darkColor, lightColor]);
+  }, [darkColor, lightColor, onChange]);
   return (
     <HStack>
       <VStack>

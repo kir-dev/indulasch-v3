@@ -8,5 +8,5 @@ export function useWidgetConfig<T extends WidgetConfigBase>(name: WidgetName) {
   } = useConfig();
   return useMemo(() => {
     return widgets.find((w) => w.name === name) as T;
-  }, [widgets]);
+  }, [name, widgets]);
 }

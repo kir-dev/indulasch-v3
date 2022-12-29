@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Patch,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Request, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AdminGuard } from '../auth/admin.guard';
 import { UserPatchDto } from '../types/dto.types';
@@ -26,10 +18,7 @@ export class UsersController {
 
   @UseGuards(AdminGuard)
   @Patch(':id')
-  async toggleAdmin(
-    @Param('id') id: string,
-    @Body() userPatchDto: UserPatchDto,
-  ) {
+  async toggleAdmin(@Param('id') id: string, @Body() userPatchDto: UserPatchDto) {
     return this.userService.patchUser(id, userPatchDto);
   }
 
