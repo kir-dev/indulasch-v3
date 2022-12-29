@@ -16,9 +16,12 @@ import configuration, { ConfigKeys } from './utils/configuration';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
-        uri: config.get<string>(ConfigKeys.MONGODB_URI),
-      }),
+      useFactory: async (config: ConfigService) => {
+        console.log(config.get<string>(ConfigKeys.MONGODB_URI));
+        return {
+          uri: config.get<string>(ConfigKeys.MONGODB_URI),
+        };
+      },
     }),
     AuthModule,
     UsersModule,

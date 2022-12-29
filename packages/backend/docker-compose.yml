@@ -1,11 +1,10 @@
-version: "3.3"
 services:
-  backend:
+  indulasch:
     build: .
-    command: node dist/index.js
+    command: node dist/main.js
     env_file: ./.env
     ports:
-      - '3334:3003'
+      - '3334:3001'
     depends_on:
       - mongo
   mongo:
