@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="lineElement lineImg" version="1.1" id="Réteg_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 212.6 212.6" style="enable-background:new 0 0 212.6 212.6;" xml:space="preserve">
+<style type="text/css">
+	.rail-st0{fill:#0D0802;}
+	.rail-st1{fill:#FFFFFF;}
+</style>
+<g id="Layer_2">
+	<g id="grafika">
+		<path class="rail-st0" d="M106.3,0C47.6,0,0,47.6,0,106.3s47.6,106.3,106.3,106.3S212.6,165,212.6,106.3S165,0,106.3,0
+			C106.3,0,106.3,0,106.3,0z"/>
+		<polygon class="rail-st1" points="150.7,159.4 150.7,53.2 135,53.2 135,86.8 77.6,86.8 77.6,53.2 61.9,53.2 61.9,101.6 135,101.6 
+			135,159.4 		"/>
+		<polygon class="rail-st1" points="61.9,111 61.9,159.4 77.6,159.4 77.6,125.8 126.4,125.8 126.4,111 		"/>
+	</g>
+</g>
+</svg>

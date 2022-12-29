@@ -1,0 +1,4 @@
+{
+  "private": true,
+  "workspaces": ["packages/backend", "packages/admin", "packages/client"]
+}
