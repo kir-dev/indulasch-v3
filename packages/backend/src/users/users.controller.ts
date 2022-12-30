@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Param, Patch, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AdminGuard } from '../auth/admin.guard';
-import { UserPatchDto } from '../types/dto.types';
 import { RoleBasedAuthGuard } from '../auth/role.guard';
 import { sanitize } from '../utils/sanitize';
 import { User } from './users.model';
@@ -16,15 +15,9 @@ export class UsersController {
     return this.userService.getUsers();
   }
 
-  @UseGuards(AdminGuard)
-  @Patch(':id')
-  async toggleAdmin(@Param('id') id: string, @Body() userPatchDto: UserPatchDto) {
-    return this.userService.patchUser(id, userPatchDto);
-  }
-
   @UseGuards(RoleBasedAuthGuard())
   @Get('me')
   async getMyUser(@Request() req) {
-    return sanitize<User>(req.user, ['username', 'isAdmin', 'roles']);
+    return sanitize<User>(req.user, ['displayName', 'mail', 'isAdmin', 'roles']);
   }
 }

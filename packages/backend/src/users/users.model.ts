@@ -8,9 +8,11 @@ export type UserDocument = HydratedDocument<User>;
 @Schema()
 export class User {
   @Prop()
-  username: string;
+  authSchId: string;
   @Prop()
-  password: string;
+  displayName: string;
+  @Prop()
+  mail: string;
   @Prop()
   isAdmin: boolean;
   @Prop()

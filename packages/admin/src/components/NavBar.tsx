@@ -14,8 +14,8 @@ export function NavBar() {
     <Flex justifyContent='flex-start' alignItems='flex-start' flexDirection='column' gridRowGap={3} overflow='auto'>
       <MenuSection>Felhasználó</MenuSection>
       <Menu>
-        <MenuDropdownButton leftIcon={<TbUser />} as={Button} rightIcon={<TbChevronDown />} variant='ghost'>
-          {user?.username || 'Ismeretlen'}
+        <MenuDropdownButton isTruncated leftIcon={<TbUser />} as={Button} rightIcon={<TbChevronDown />} variant='ghost'>
+          {user?.displayName || 'Ismeretlen'}
         </MenuDropdownButton>
         <MenuList>
           <MenuItem onClick={logout}>Kijelentkezés</MenuItem>

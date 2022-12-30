@@ -1,6 +1,7 @@
-export type CredentialsDto = {
-  username: string;
-  password: string;
+export type OauthProfile = {
+  internal_id: string;
+  displayName: string;
+  mail: string;
 };
 
 export type JwtDto = {

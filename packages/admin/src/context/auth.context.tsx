@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ApiPaths, UIPaths } from '../config/paths.config';
 import { User } from '../types/types';
 import { LoadingPlaceholder } from '../components/LoadingPlaceholder';
@@ -27,12 +27,13 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }: PropsWithChildren) {
+  const [searchParams] = useSearchParams();
   const [user, setUser] = useState<User>();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
+  const accessToken = searchParams.get('access_token');
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -51,6 +52,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
         .finally(() => {
           setLoading(false);
         });
+    } else if (accessToken) {
+      login(accessToken);
     } else {
       setIsAuthenticated(false);
       setToken(undefined);

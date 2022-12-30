@@ -32,7 +32,7 @@ export class KioskController {
   @Post()
   async createKiosk(@Body() createDto: CreateKioskDto, @Request() req) {
     const kiosk = await this.kioskService.createKiosk(createDto.name);
-    await this.userService.setKioskRole(req.user._id.toString(), kiosk._id, KioskRoles.OWNER);
+    await this.userService.setKioskRole(req.user.mail, kiosk._id, KioskRoles.OWNER);
     return kiosk;
   }
 
@@ -57,13 +57,13 @@ export class KioskController {
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
   @Post(':id/role')
   async setRole(@Body() setDto: SetRoleDto, @Param('id') kioskId: string) {
-    return await this.userService.setKioskRole(setDto.userId, new Types.ObjectId(kioskId), setDto.role);
+    return await this.userService.setKioskRole(setDto.email, new Types.ObjectId(kioskId), setDto.role);
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
   @Delete(':id/role')
   async removeRole(@Body() setDto: RemoveRoleDto, @Param('id') kioskId: string) {
-    return await this.userService.removeKioskRole(setDto.userId, new Types.ObjectId(kioskId));
+    return await this.userService.removeKioskRole(setDto.email, new Types.ObjectId(kioskId));
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.MARKETING))

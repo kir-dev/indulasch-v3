@@ -1,20 +1,25 @@
-import { Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Request, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from '../strategies/local.strategy';
+import { OauthGuard } from '../strategies/oauth.strategy';
+import { ConfigService } from '@nestjs/config';
+import { ConfigKeys } from '../utils/configuration';
 
 @Controller('admin/auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService, private readonly configService: ConfigService) {}
 
-  @UseGuards(LocalAuthGuard)
-  @Post('login')
-  async login(@Request() req) {
-    return this.authService.login(req.user);
+  @UseGuards(OauthGuard)
+  @Get('login')
+  async loginSso() {
+    // guard redirects
   }
 
-  @Post('register')
-  async register(@Request() req) {
-    const user = await this.authService.register(req.body);
-    return this.authService.login(user);
+  @UseGuards(OauthGuard)
+  @Get('callback')
+  async callback(@Request() req, @Res() res) {
+    const { access_token } = await this.authService.login(req.user);
+    const redirectUrl = new URL(this.configService.get(ConfigKeys.ADMIN_SITE_CALLBACK));
+    redirectUrl.searchParams.append('access_token', access_token);
+    res.redirect(301, redirectUrl.toString());
   }
 }

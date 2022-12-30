@@ -28,7 +28,8 @@ export type StyleForm = {
 } & ColorsWithScheme;
 
 export type User = {
-  username: string;
+  displayName: string;
+  mail: string;
   isAdmin: boolean;
   roles: UserRole[];
 };

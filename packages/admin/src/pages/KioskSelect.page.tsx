@@ -9,7 +9,7 @@ import { UIPaths } from '../config/paths.config';
 export function KioskSelectPage() {
   const { user } = useAuthContext();
   return (
-    <Page title={`Üdvözöllek, ${user?.username} 👋`}>
+    <Page title={`Üdvözöllek, ${user?.displayName} 👋`}>
       <CardBody>
         <Heading mb={5} size='md'>
           A te kioszkjaid:

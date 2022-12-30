@@ -11,12 +11,12 @@ export type CreateKioskDto = {
 };
 
 export type SetRoleDto = {
-  userId: string;
+  email: string;
   role: KioskRoles;
 };
 
 export type RemoveRoleDto = {
-  userId: string;
+  email: string;
 };
 
 export type CreateMessageDto = {
