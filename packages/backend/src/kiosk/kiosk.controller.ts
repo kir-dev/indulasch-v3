@@ -3,14 +3,7 @@ import { KioskRoles } from '../types/kiosk.types';
 import { RoleBasedAuthGuard } from '../auth/role.guard';
 import { KioskService } from './kiosk.service';
 import { UsersService } from '../users/users.service';
-import {
-  CreateKioskDto,
-  CreateMessageDto,
-  KioskPatchDto,
-  MessagePatchDto,
-  RemoveRoleDto,
-  SetRoleDto,
-} from '../types/dto.types';
+import { CreateKioskDto, CreateMessageDto, KioskPatchDto, MessagePatchDto, SetRoleDto } from '../types/dto.types';
 import { MessageService } from '../message/message.service';
 import { Types } from 'mongoose';
 
@@ -55,15 +48,21 @@ export class KioskController {
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
-  @Post(':id/role')
-  async setRole(@Body() setDto: SetRoleDto, @Param('id') kioskId: string) {
-    return await this.userService.setKioskRole(setDto.email, new Types.ObjectId(kioskId), setDto.role);
+  @Get(':id/role')
+  async getUsers(@Param('id') kioskId: string) {
+    return await this.userService.getUsersForKiosk(new Types.ObjectId(kioskId));
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
-  @Delete(':id/role')
-  async removeRole(@Body() setDto: RemoveRoleDto, @Param('id') kioskId: string) {
-    return await this.userService.removeKioskRole(setDto.email, new Types.ObjectId(kioskId));
+  @Post(':id/role')
+  async setRole(@Body() setDto: SetRoleDto, @Param('id') kioskId: string) {
+    return await this.userService.setKioskRole(setDto.mail, new Types.ObjectId(kioskId), setDto.role);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
+  @Delete(':id/role/:userId')
+  async removeRole(@Param('id') kioskId: string, @Param('userId') userId: string) {
+    return await this.userService.removeKioskRole(new Types.ObjectId(userId), new Types.ObjectId(kioskId));
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.MARKETING))

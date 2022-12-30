@@ -51,10 +51,19 @@ export class UsersService {
       .exec();
   }
 
+  async getUsersForKiosk(kioskId: Types.ObjectId) {
+    const users = await this.userModel.find({ 'roles.kioskId': kioskId });
+    return users.map((usr) => ({
+      _id: usr._id,
+      mail: usr.mail,
+      role: usr.roles.find((role) => role.kioskId.toString() === kioskId.toString())?.role,
+    }));
+  }
+
   async setKioskRole(mail: string, kioskId: Types.ObjectId, role: KioskRoles) {
     const user = await this.userModel.findOne({ mail: mail });
     if (!user) throw new NotFoundException();
-    const kioskRoleIndex = user.roles.findIndex((k) => k.kioskId === kioskId);
+    const kioskRoleIndex = user.roles.findIndex((k) => k.kioskId.toString() === kioskId.toString());
     if (kioskRoleIndex !== -1) {
       user.roles[kioskRoleIndex].role = role;
     } else {
@@ -64,10 +73,10 @@ export class UsersService {
     return user;
   }
 
-  async removeKioskRole(mail: string, kioskId: Types.ObjectId) {
-    const user = await this.userModel.findOne({ mail: mail });
+  async removeKioskRole(userId: Types.ObjectId, kioskId: Types.ObjectId) {
+    const user = await this.userModel.findById(userId);
     if (!user) throw new NotFoundException();
-    user.roles = user.roles.filter((role) => role.kioskId !== kioskId);
+    user.roles = user.roles.filter((role) => role.kioskId.toString() !== kioskId.toString());
     await this.userModel.updateOne({ _id: user._id }, { $set: { roles: user.roles } });
     return user;
   }

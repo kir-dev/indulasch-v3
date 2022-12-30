@@ -11,7 +11,7 @@ export type CreateKioskDto = {
 };
 
 export type SetRoleDto = {
-  email: string;
+  mail: string;
   role: KioskRoles;
 };
 

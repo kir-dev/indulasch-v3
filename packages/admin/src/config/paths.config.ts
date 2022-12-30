@@ -8,6 +8,7 @@ export enum UIPaths {
   STYLE = '/style',
   WIDGETS = '/widgets',
   DASHBOARD = '/dashboard',
+  USERS = '/users',
 }
 
 export enum ApiPaths {
