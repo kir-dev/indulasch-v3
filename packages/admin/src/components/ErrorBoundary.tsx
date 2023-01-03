@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { ErrorPage } from '../pages/Error.page';
+import { MainLayout } from '../layout/MainLayout';
 
 export class ErrorBoundary extends React.Component<PropsWithChildren> {
   state = {
@@ -20,7 +21,11 @@ export class ErrorBoundary extends React.Component<PropsWithChildren> {
 
   render() {
     if (this.state.error) {
-      return <ErrorPage onAction={this.onAction} message={this.state.error} />;
+      return (
+        <MainLayout>
+          <ErrorPage onAction={this.onAction} message={this.state.error} />
+        </MainLayout>
+      );
     }
     return this.props.children;
   }

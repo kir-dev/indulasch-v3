@@ -3,11 +3,15 @@ import { TitleBar } from '../components/TitleBar';
 import { Container, Grid } from '@chakra-ui/react';
 import { Footer } from '../components/Footer';
 
-export function MainLayout({ children }: PropsWithChildren) {
+interface MainLayoutProps extends PropsWithChildren {
+  drawerEnabled?: boolean;
+}
+
+export function MainLayout({ children, drawerEnabled }: MainLayoutProps) {
   return (
     <Container maxW='container.xl'>
       <Grid gridTemplateRows='auto 1fr auto' h='100vh'>
-        <TitleBar />
+        <TitleBar drawerEnabled={drawerEnabled} />
         {children}
         <Footer />
       </Grid>

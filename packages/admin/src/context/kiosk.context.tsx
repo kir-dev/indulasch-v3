@@ -6,6 +6,7 @@ import { ApiPaths, UIPaths } from '../config/paths.config';
 import { KioskSelectorNavigator } from '../navigators/KioskSelector.navigator';
 import { KioskNavigator } from '../navigators/Kiosk.navigator';
 import { useAuthContext } from './auth.context';
+import { MainLayout } from '../layout/MainLayout';
 
 type KioskContextType = {
   kiosk: Kiosk | undefined;
@@ -67,7 +68,7 @@ export function KioskProvider() {
         update,
       }}
     >
-      {kiosk ? <KioskNavigator /> : <KioskSelectorNavigator />}
+      <MainLayout drawerEnabled>{kiosk ? <KioskNavigator /> : <KioskSelectorNavigator />}</MainLayout>
     </KioskContext.Provider>
   );
 }
