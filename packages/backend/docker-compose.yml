@@ -1,5 +1,5 @@
 services:
-  indulasch:
+  backend:
     build: .
     command: node dist/main.js
     env_file: ./.env
@@ -17,6 +17,6 @@ services:
     ports:
       - '3335:27017'
     volumes:
-      - ./indulasch_volume:/data/db
+      - ./database_volume:/data/db
 volumes:
-  indulasch_volume:
+  database_volume:
