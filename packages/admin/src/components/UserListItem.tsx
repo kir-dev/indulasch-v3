@@ -7,13 +7,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Text,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import { TbTrash } from 'react-icons/tb';
-import { KioskRoles } from '../types/types';
-import { RoleBadge } from './RoleBadge';
+import { KioskRoleNames, KioskRoles } from '../types/types';
 import { KioskUser } from '../types/users.type';
 import { useAuthContext } from '../context/auth.context';
 
@@ -32,7 +32,13 @@ export function UserListItem({ user, onDeleteUser, onEditRole }: UserListItemPro
       <HStack overflow='hidden'>
         <Text isTruncated>{user.mail}</Text>
       </HStack>
-      <RoleBadge role={user.role} />
+      <Select w='fit-content' defaultValue={user.role} onChange={(evt) => onEditRole(parseInt(evt.target.value))}>
+        {Object.entries(KioskRoleNames).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
+      </Select>
       <HStack>
         <ButtonGroup>
           {myUser?.mail !== user.mail && (

@@ -7,13 +7,12 @@ export function useNetwork<Response, T>(request: (body: T) => Promise<AxiosRespo
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState<Response>();
-  const makeRequest = (body: T, onSuccess?: () => void, onError?: () => void) => {
+  const makeRequest = (body: T, onSuccess?: () => void, onError?: (err: Error) => void) => {
     setIsLoading(true);
     setIsError(false);
     request(body)
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
         if (onSuccess) onSuccess();
       })
       .catch((err: Error) => {
@@ -22,8 +21,7 @@ export function useNetwork<Response, T>(request: (body: T) => Promise<AxiosRespo
             logout();
           }
         }
-        setIsError(true);
-        if (onError) onError();
+        if (onError) onError(err);
       })
       .finally(() => setIsLoading(false));
   };

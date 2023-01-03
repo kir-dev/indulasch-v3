@@ -32,7 +32,7 @@ export function MetaPage() {
   const { kiosk, update, selectedKioskId } = useKioskContext();
   const { isLoading, isError, makeRequest } = useSaveKiosk(selectedKioskId || '');
   const meta = kiosk?.config.meta;
-  const defaultValues = { name: meta?.name, latitude: meta?.coordinates.lon, longitude: meta?.coordinates.lon };
+  const defaultValues = { name: meta?.name, latitude: meta?.coordinates.lat, longitude: meta?.coordinates.lon };
   const {
     register,
     handleSubmit,

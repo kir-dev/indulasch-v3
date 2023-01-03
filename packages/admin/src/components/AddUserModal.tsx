@@ -21,7 +21,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useKioskContext } from '../context/kiosk.context';
 import { KioskUserForm } from '../types/users.type';
 import { KioskRoleNames } from '../types/types';
-import { useAddUser } from '../network/useAddUser.network';
+import { useChangeRole } from '../network/useChangeRole.network';
+import { isAxiosError } from 'axios';
 
 const validationSchema = Yup.object().shape({
   mail: Yup.string().email('E-mail cím kell ide, nem más').required('Mindenkit nem akarsz meghívni.'),
@@ -35,15 +36,20 @@ interface AddUserModalProps {
 
 export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
   const { selectedKioskId } = useKioskContext();
-  const { isLoading, makeRequest, isError } = useAddUser(selectedKioskId || '');
+  const { isLoading, makeRequest, isError } = useChangeRole(selectedKioskId || '');
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<KioskUserForm>({ resolver: yupResolver(validationSchema) });
 
   const onSubmit = (values: KioskUserForm) => {
-    makeRequest(values, onClose);
+    makeRequest(values, onClose, (err) => {
+      if (isAxiosError(err) && err.response?.status === 404) {
+        setError('mail', { message: 'Nincs ilyen felhasználó.' });
+      }
+    });
   };
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>

@@ -17,7 +17,6 @@ import configuration, { ConfigKeys } from './utils/configuration';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (config: ConfigService) => {
-        console.log(config.get<string>(ConfigKeys.MONGODB_URI));
         return {
           uri: config.get<string>(ConfigKeys.MONGODB_URI),
         };
