@@ -17,6 +17,7 @@ import {
   Text,
   useDisclosure,
   VStack,
+  Wrap,
 } from '@chakra-ui/react';
 import { useKioskContext } from '../context/kiosk.context';
 import { KioskRoles } from '../types/types';
@@ -59,14 +60,14 @@ export function KioskDashboardPage() {
       <CardBody>
         <VStack spacing={5} alignItems='flex-start' textAlign='left'>
           {clientUrl && (
-            <ButtonGroup>
+            <Wrap>
               <Button leftIcon={<TbBrowserPlus />} onClick={() => window.open(clientUrl)}>
                 Kliens megnyitása
               </Button>
               <Button variant='ghost' leftIcon={<TbCopy />} onClick={() => navigator.clipboard.writeText(clientUrl)}>
                 Kliens címének másolása
               </Button>
-            </ButtonGroup>
+            </Wrap>
           )}
           <PageSection>
             <Heading size={'md'}>Kioszk azonosítója</Heading>
