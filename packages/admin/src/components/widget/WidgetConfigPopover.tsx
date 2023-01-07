@@ -22,6 +22,7 @@ import {
 } from '../../types/kiosk.types';
 import { TbCirclePlus, TbSettings } from 'react-icons/tb';
 import { useForm } from 'react-hook-form';
+import { l } from '../../utils/language';
 
 interface AddWidgetPopoverProps {
   widget?: WidgetWithoutGrid;
@@ -58,7 +59,7 @@ export function WidgetConfigPopover({ onSave, widget, widgets }: AddWidgetPopove
           </Button>
         ) : (
           <Button variant='ghost' leftIcon={<TbCirclePlus />}>
-            Hozzáadás
+            {l('button.add')}
           </Button>
         )}
       </PopoverTrigger>
@@ -77,10 +78,12 @@ export function WidgetConfigPopover({ onSave, widget, widgets }: AddWidgetPopove
             {configFields.map((field) => (
               <FormControl key={field.name}>
                 <FormLabel>{field.label}</FormLabel>
-                <Input {...register(field.name as keyof WidgetWithoutGrid, { required: 'Ne hagyd üresen!' })} />
+                <Input
+                  {...register(field.name as keyof WidgetWithoutGrid, { required: l('form.validation.required') })}
+                />
               </FormControl>
             ))}
-            <Button type='submit'>Mentés</Button>
+            <Button type='submit'>{l('button.save')}</Button>
           </Flex>
         </form>
       </PopoverContent>

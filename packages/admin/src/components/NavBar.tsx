@@ -5,6 +5,7 @@ import { Button, Menu, MenuButton as MenuDropdownButton, MenuItem, MenuList, Tex
 import { MenuButton } from './MenuButton';
 import { PropsWithChildren } from 'react';
 import { TbAppWindow, TbChevronDown, TbUser } from 'react-icons/tb';
+import { l } from '../utils/language';
 
 export function NavBar() {
   const { kiosk, setSelectedKiosk, unselect } = useKioskContext();
@@ -12,21 +13,21 @@ export function NavBar() {
   const menuItems = useMenuItems();
   return (
     <>
-      <MenuSection>Felhasználó</MenuSection>
+      <MenuSection>{l('navbar.section.user')}</MenuSection>
       <Menu>
         <MenuDropdownButton isTruncated leftIcon={<TbUser />} as={Button} rightIcon={<TbChevronDown />} variant='ghost'>
-          {user?.displayName || 'Ismeretlen'}
+          {user?.displayName || l('navbar.unknown')}
         </MenuDropdownButton>
         <MenuList>
-          <MenuItem onClick={logout}>Kijelentkezés</MenuItem>
+          <MenuItem onClick={logout}>{l('navbar.logout')}</MenuItem>
         </MenuList>
       </Menu>
       <Menu>
         <MenuDropdownButton leftIcon={<TbAppWindow />} as={Button} rightIcon={<TbChevronDown />} variant='ghost'>
-          {kiosk?.config.meta.name || 'Ismeretlen'}
+          {kiosk?.config.meta.name || l('navbar.unknown')}
         </MenuDropdownButton>
         <MenuList>
-          <MenuItem onClick={unselect}>Kioszk választó</MenuItem>
+          <MenuItem onClick={unselect}>{l('navbar.kioskSelector')}</MenuItem>
           {user?.roles.map((r) => (
             <MenuItem key={r.kioskId._id} onClick={() => setSelectedKiosk(r.kioskId._id)}>
               {r?.kioskId.config.meta.name}
@@ -34,7 +35,7 @@ export function NavBar() {
           ))}
         </MenuList>
       </Menu>
-      <MenuSection>Kiosk beállítások</MenuSection>
+      <MenuSection>{l('navbar.section.kiosk')}</MenuSection>
       {menuItems?.map((mi) => (
         <MenuButton leftIcon={mi.icon} key={mi.path} to={mi.path}>
           {mi.name}

@@ -10,7 +10,7 @@ interface PageProps extends ContainerProps {
 
 export function Page({ title, isLoading, children, ...props }: PageProps) {
   return (
-    <CustomCard {...props} w='100%' overflow='auto' maxH='100%' h='fit-content'>
+    <CustomCard w='100%' overflow='auto' maxH='100%' h='fit-content' {...props}>
       <Helmet title={title} />
       <CardHeader>
         <HStack>

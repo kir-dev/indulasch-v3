@@ -4,18 +4,17 @@ import { NavButton } from '../components/NavButton';
 import { ApiPaths } from '../config/paths.config';
 import { API_BASE_URL } from '../config/environment.config';
 import { MainLayout } from '../layout/MainLayout';
+import { l } from '../utils/language';
 
 export function SsoLoginPage() {
   return (
     <MainLayout>
-      <Page title='Bejelentkezés' maxW='md'>
+      <Page title={l('title.login')} maxW='md'>
         <CardBody>
           <VStack spacing={10}>
-            <Text>
-              Jelentkezz be AuthSch fiókoddal! A profilod automatikusan létrejön az első bejelentkezés alkalmával.
-            </Text>
+            <Text>{l('page.login.text')}</Text>
             <NavButton to={API_BASE_URL + ApiPaths.LOGIN} external>
-              Bejelentkezés AuthSch-val
+              {l('page.login.button')}
             </NavButton>
           </VStack>
         </CardBody>

@@ -23,12 +23,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useKioskContext } from '../context/kiosk.context';
 import { useCreateMessage } from '../network/useCreateMessage.network';
 import { useSaveMessage } from '../network/useSaveMessage.network';
+import { l } from '../utils/language';
 
 const validationSchema = Yup.object().shape({
-  text: Yup.string().required('Valamit azért ki kellene írni.'),
-  kind: Yup.string().required('Enélkül kicsit személytelen.'),
-  from: Yup.date().required('Enélkül nem fog megjelenni...').typeError('Dátumot kellene írni.'),
-  until: Yup.date().required('Semmi se örök...').typeError('Dátumot kellene írni.'),
+  text: Yup.string().required(l('form.validation.required')),
+  kind: Yup.string().required(l('form.validation.required')),
+  from: Yup.date().required(l('form.validation.required')).typeError(l('form.validation.date')),
+  until: Yup.date().required(l('form.validation.required')).typeError(l('form.validation.date')),
 });
 
 interface EditMessageModalProps {
@@ -64,33 +65,33 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{message ? 'Üzenet szerkesztése' : 'Új üzenet'}</ModalHeader>
+        <ModalHeader>{message ? l('editMessage.header.edit') : l('editMessage.header.new')}</ModalHeader>
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
               <FormControl>
-                <FormLabel>Üzenet</FormLabel>
+                <FormLabel>{l('editMessage.label.text')}</FormLabel>
                 <Input {...register('text')} />
                 {!!errors.text && <FormErrorMessage>{errors.text.message}</FormErrorMessage>}
               </FormControl>
               <FormControl>
-                <FormLabel>Típus</FormLabel>
+                <FormLabel>{l('editMessage.label.type')}</FormLabel>
                 <Select {...register('kind')}>
-                  <option value={MessageKinds.INFO}>Infó</option>
-                  <option value={MessageKinds.SUCCESS}>Siker</option>
-                  <option value={MessageKinds.WARNING}>Figyelmeztetés</option>
-                  <option value={MessageKinds.FUN}>Móka</option>
+                  <option value={MessageKinds.INFO}>{l('editMessage.type.info')}</option>
+                  <option value={MessageKinds.SUCCESS}>{l('editMessage.type.success')}</option>
+                  <option value={MessageKinds.WARNING}>{l('editMessage.type.warning')}</option>
+                  <option value={MessageKinds.FUN}>{l('editMessage.type.fun')}</option>
                 </Select>
                 {!!errors.kind && <FormErrorMessage>{errors.kind.message}</FormErrorMessage>}
               </FormControl>
               <FormControl>
-                <FormLabel>Megjelenítve ettől</FormLabel>
+                <FormLabel>{l('editMessage.label.from')}</FormLabel>
                 <Input {...register('from')} type='datetime-local' />
                 {!!errors.from && <FormErrorMessage>{errors.from.message}</FormErrorMessage>}
               </FormControl>
               <FormControl>
-                <FormLabel>Megjelenítve eddig</FormLabel>
+                <FormLabel>{l('editMessage.label.until')}</FormLabel>
                 <Input {...register('until')} type='datetime-local' />
                 {!!errors.until && <FormErrorMessage>{errors.until.message}</FormErrorMessage>}
               </FormControl>
@@ -99,10 +100,10 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
           <ModalFooter>
             <ButtonGroup>
               <Button isLoading={isCreateLoading || isSaveLoading} type='submit'>
-                Mentés
+                {l('button.save')}
               </Button>
               <Button variant='ghost' onClick={onClose}>
-                Mégse
+                {l('button.cancel')}
               </Button>
             </ButtonGroup>
           </ModalFooter>

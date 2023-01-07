@@ -7,6 +7,7 @@ import { EditMessageModal } from '../components/EditMessageModal';
 import { MessageListItem } from '../components/MessageListItem';
 import { Message } from '../types/message.types';
 import { useDeleteMessage } from '../network/useDeleteMessage.network';
+import { l } from '../utils/language';
 
 export function MessagesPage() {
   const { selectedKioskId } = useKioskContext();
@@ -23,7 +24,7 @@ export function MessagesPage() {
     });
   };
   return (
-    <Page title='Üzenetek' isLoading={isLoading || isDeleteLoading}>
+    <Page title={l('title.messages')} isLoading={isLoading || isDeleteLoading}>
       <CardBody>
         <VStack w='100%'>
           {data?.map((msg) => (
@@ -42,7 +43,7 @@ export function MessagesPage() {
         </VStack>
       </CardBody>
       <CardFooter>
-        <Button onClick={onOpen}>Új üzenet</Button>
+        <Button onClick={onOpen}>{l('page.messages.newMessage')}</Button>
       </CardFooter>
       <EditMessageModal
         isOpen={isOpen}

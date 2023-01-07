@@ -16,6 +16,7 @@ import { TbTrash } from 'react-icons/tb';
 import { KioskRoleNames, KioskRoles } from '../types/types';
 import { KioskUser } from '../types/users.type';
 import { useAuthContext } from '../context/auth.context';
+import { l } from '../utils/language';
 
 interface UserListItemProps {
   user: KioskUser;
@@ -51,7 +52,7 @@ export function UserListItem({ user, onDeleteUser, onEditRole }: UserListItemPro
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Biztosan törlöd?</ModalHeader>
+          <ModalHeader>{l('header.confirmDelete')}</ModalHeader>
           <ModalFooter>
             <ButtonGroup>
               <Button
@@ -62,10 +63,10 @@ export function UserListItem({ user, onDeleteUser, onEditRole }: UserListItemPro
                 colorScheme='red'
                 variant='ghost'
               >
-                Törlés
+                {l('button.delete')}
               </Button>
               <Button onClick={onClose} colorScheme='red'>
-                Mégse
+                {l('button.cancel')}
               </Button>
             </ButtonGroup>
           </ModalFooter>

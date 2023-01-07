@@ -8,6 +8,7 @@ import { UserListItem } from '../components/UserListItem';
 import { AddUserModal } from '../components/AddUserModal';
 import { KioskRoles } from '../types/types';
 import { useChangeRole } from '../network/useChangeRole.network';
+import { l } from '../utils/language';
 
 export function UsersPage() {
   const toast = useToast();
@@ -29,16 +30,16 @@ export function UsersPage() {
     changeRole(
       { mail, role },
       () => {
-        toast({ title: 'Jogosultság módosítva', status: 'success' });
+        toast({ title: l('page.users.roleModified'), status: 'success' });
         makeRequest(undefined);
       },
       () => {
-        toast({ title: 'Módosítás sikertelen', status: 'error' });
+        toast({ title: l('page.users.roleModificationError'), status: 'error' });
       }
     );
   };
   return (
-    <Page title='Kioszk kezelői' isLoading={isLoading || isDeleteLoading || isChangeLoading}>
+    <Page title={l('title.users')} isLoading={isLoading || isDeleteLoading || isChangeLoading}>
       <CardBody>
         <VStack w='100%'>
           {data?.map((usr) => (
@@ -54,7 +55,7 @@ export function UsersPage() {
         </VStack>
       </CardBody>
       <CardFooter>
-        <Button onClick={onOpen}>Új tag</Button>
+        <Button onClick={onOpen}>{l('page.users.newUser')}</Button>
         <AddUserModal
           isOpen={isOpen}
           onClose={() => {

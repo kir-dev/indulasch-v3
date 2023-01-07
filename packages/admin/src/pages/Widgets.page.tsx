@@ -14,15 +14,15 @@ export function WidgetsPage() {
     makeRequest({ widgets }, update);
   };
   return (
-    <Page title='Csempék' isLoading={isLoading}>
+    <Page title={l('title.widgets')} isLoading={isLoading}>
       <CardBody>
         <WidgetGrid widgets={widgets || []} onChange={setWidgets} />
-        {isError && <FormErrorMessage>{l('error.saveSettings')}</FormErrorMessage>}
+        {isError && <FormErrorMessage>{l('error.save')}</FormErrorMessage>}
       </CardBody>
       <CardFooter>
         <ButtonGroup justifyContent='space-between' w='100%'>
           <Button isLoading={isLoading} onClick={onSave}>
-            Mentés
+            {l('button.save')}
           </Button>
           {/*<Button onClick={() => setWidgets(kiosk?.config.widgets)} variant='link'>*/}
           {/*  Módosítások elvetése*/}

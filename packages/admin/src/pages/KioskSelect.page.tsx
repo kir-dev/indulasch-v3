@@ -5,14 +5,15 @@ import { KioskListItem } from '../components/KioskListItem';
 import { NavButton } from '../components/NavButton';
 import { FaPlusCircle } from 'react-icons/fa';
 import { UIPaths } from '../config/paths.config';
+import { l } from '../utils/language';
 
 export function KioskSelectPage() {
   const { user } = useAuthContext();
   return (
-    <Page title={`Üdvözöllek, ${user?.displayName} 👋`}>
+    <Page title={`${l('page.kioskSelect.welcome')}, ${user?.displayName} 👋`}>
       <CardBody>
         <Heading mb={5} size='md'>
-          A te kioszkjaid:
+          {l('page.kioskSelect.yourKiosk')}
         </Heading>
         <Flex gap={3} w='fit-content'>
           {user?.roles.map((role) => (
@@ -27,7 +28,7 @@ export function KioskSelectPage() {
       </CardBody>
       <CardFooter>
         <NavButton leftIcon={<FaPlusCircle />} to={UIPaths.NEW_KIOSK}>
-          Új Kiosk
+          {l('page.kioskSelect.newKiosk')}
         </NavButton>
       </CardFooter>
     </Page>
