@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Message, MessageKinds } from '../types/message.types';
 import { TbAlertTriangle, TbCheckbox, TbEdit, TbInfoCircle, TbSmartHome, TbTrash } from 'react-icons/tb';
+import { l } from '../utils/language';
 
 interface MessageListItemProps {
   message: Message;
@@ -48,14 +49,14 @@ export function MessageListItem({ message, onEditMessage, onDeleteMessage }: Mes
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Biztosan törlöd?</ModalHeader>
+          <ModalHeader>{l('header.confirmDelete')}</ModalHeader>
           <ModalFooter>
             <ButtonGroup>
               <Button onClick={onDeleteMessage} colorScheme='red' variant='ghost'>
-                Törlés
+                {l('button.delete')}
               </Button>
               <Button onClick={onClose} colorScheme='red'>
-                Mégse
+                {l('button.cancel')}
               </Button>
             </ButtonGroup>
           </ModalFooter>

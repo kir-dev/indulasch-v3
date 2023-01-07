@@ -4,6 +4,7 @@ import { HStack, Text, VStack } from '@chakra-ui/react';
 import { BlockPicker } from 'react-color';
 import { Controller, useFormContext } from 'react-hook-form';
 import { StyleForm } from '../types/types';
+import { l } from '../utils/language';
 
 interface ColorPickerFieldProps {
   name: keyof ColorsWithScheme;
@@ -38,7 +39,7 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
   return (
     <HStack>
       <VStack>
-        <Text>Világos</Text>
+        <Text>{l('theme.light')}</Text>
         <BlockPicker
           triangle='hide'
           color={lightColor}
@@ -48,7 +49,7 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
         />
       </VStack>
       <VStack>
-        <Text>Sötét</Text>
+        <Text>{l('theme.dark')}</Text>
         <BlockPicker
           triangle='hide'
           color={darkColor}

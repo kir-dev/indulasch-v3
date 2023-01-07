@@ -18,6 +18,7 @@ import { WidgetConfigFields, WidgetDisplay, WidgetWithoutGrid } from '../../type
 import { useForm } from 'react-hook-form';
 import { useKioskContext } from '../../context/kiosk.context';
 import { useSaveWidget } from '../../network/useSaveWidget';
+import { l } from '../../utils/language';
 
 interface WidgetListItemProps {
   widget: WidgetWithoutGrid;
@@ -39,11 +40,11 @@ export function WidgetListItem({ widget }: WidgetListItemProps) {
     makeRequest(
       raw,
       () => {
-        toast({ status: 'success', title: 'Sikeres mentés!' });
+        toast({ status: 'success', title: l('success.save') });
         update();
       },
       () => {
-        toast({ status: 'error', title: 'Mentés sikertelen!' });
+        toast({ status: 'error', title: l('error.save') });
       }
     );
   };
@@ -74,10 +75,12 @@ export function WidgetListItem({ widget }: WidgetListItemProps) {
               {configFields.map((field) => (
                 <FormControl key={field.name}>
                   <FormLabel>{field.label}</FormLabel>
-                  <Input {...register(field.name as keyof WidgetWithoutGrid, { required: 'Ne hagyd üresen!' })} />
+                  <Input
+                    {...register(field.name as keyof WidgetWithoutGrid, { required: l('form.validation.required') })}
+                  />
                 </FormControl>
               ))}
-              <Button type='submit'>Mentés</Button>
+              <Button type='submit'>{l('button.save')}</Button>
             </Flex>
           </form>
         </ModalContent>

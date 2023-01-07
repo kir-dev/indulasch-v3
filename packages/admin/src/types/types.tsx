@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { UIPaths } from '../config/paths.config';
 import { ColorModeColor, ColorsWithScheme } from './kiosk.types';
+import { l } from '../utils/language';
 
 export type LoginCredentials = {
   username: string;
@@ -44,10 +45,10 @@ export enum KioskRoles {
 }
 
 export const KioskRoleNames: Record<KioskRoles, string> = {
-  [KioskRoles.VISITOR]: 'Látogató',
-  [KioskRoles.MARKETING]: 'Marketing',
-  [KioskRoles.EDITOR]: 'Szerkesztő',
-  [KioskRoles.OWNER]: 'Tulajdonos',
+  [KioskRoles.VISITOR]: l('roles.visitor'),
+  [KioskRoles.MARKETING]: l('roles.marketing'),
+  [KioskRoles.EDITOR]: l('roles.editor'),
+  [KioskRoles.OWNER]: l('roles.owner'),
 };
 
 export type MenuItem = {

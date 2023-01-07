@@ -31,6 +31,7 @@ import { useEffect, useMemo } from 'react';
 import { PageSection } from '../components/PageSection';
 import { RefreshButton } from '../components/RefreshButton';
 import { RoleBadge } from '../components/RoleBadge';
+import { l } from '../utils/language';
 
 export function KioskDashboardPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -50,81 +51,81 @@ export function KioskDashboardPage() {
   useEffect(update, []);
 
   return (
-    <Page title={kiosk?.config.meta.name || 'Ismeretlen'}>
+    <Page title={kiosk?.config.meta.name || l('title.unknown')}>
       <CardBody>
         {kiosk?.lastClientQuery && checkThreshold(kiosk.lastClientQuery) && (
           <Alert status='error' mb={5}>
             <AlertIcon />
-            Úgy tűnik a kliens kapcsolata megszakadt a szerverrel. Elképzelhető, hogy a módosítások nem fognak
-            látszódni.
+            {l('page.dashboard.alert')}
           </Alert>
         )}
         <VStack spacing={5} alignItems='flex-start' textAlign='left'>
           {clientUrl && (
             <Wrap>
               <Button leftIcon={<TbBrowserPlus />} onClick={() => window.open(clientUrl)}>
-                Kliens megnyitása
+                {l('page.dashboard.openClient')}
               </Button>
               <Button variant='ghost' leftIcon={<TbCopy />} onClick={() => navigator.clipboard.writeText(clientUrl)}>
-                Kliens címének másolása
+                {l('page.dashboard.copyClientUrl')}
               </Button>
             </Wrap>
           )}
           <PageSection>
-            <Heading size={'md'}>Kioszk azonosítója</Heading>
+            <Heading size={'md'}>{l('page.dashboard.clientId')}</Heading>
             <Text>{selectedKioskId}</Text>
           </PageSection>
           <PageSection>
             <HStack>
-              <Heading size={'md'}>Kliens állapota</Heading>
+              <Heading size={'md'}>{l('page.dashboard.clientStatus')}</Heading>
               <RefreshButton onClick={update} />
             </HStack>
             {kiosk?.lastClientQuery && (
               <>
-                <Text>A kliens utoljára ekkor frissítette a konfigurációját:</Text>
+                <Text>{l('page.dashboard.lastUpdate')}</Text>
                 <Text>{new Date(kiosk.lastClientQuery).toLocaleString('hu-HU')}</Text>
               </>
             )}
             <KioskStatusBadge date={kiosk?.lastClientQuery} />
           </PageSection>
           <PageSection>
-            <Heading size={'md'}>Rangod ennél a kioszknál</Heading>
+            <Heading size={'md'}>{l('page.dashboard.role')}</Heading>
             <RoleBadge role={role?.role || KioskRoles.VISITOR} />
           </PageSection>
           <PageSection>
-            <Heading size={'md'}>Koordináták</Heading>
-            <Text>Szélességi fok: {kiosk?.config.meta.coordinates.lat}</Text>
-            <Text>Hosszúsági fok: {kiosk?.config.meta.coordinates.lon}</Text>
+            <Heading size={'md'}>{l('page.dashboard.coordinates')}</Heading>
+            <Text>
+              {l('page.dashboard.latitude')}: {kiosk?.config.meta.coordinates.lat}
+            </Text>
+            <Text>
+              {l('page.dashboard.longitude')}: {kiosk?.config.meta.coordinates.lon}
+            </Text>
           </PageSection>
           <PageSection>
-            <Heading size={'md'}>Engedélyezett widgetek</Heading>
+            <Heading size={'md'}>{l('page.dashboard.enabledWidgets')}</Heading>
             {kiosk?.config.widgets.map((w) => (
               <Text key={w.name}>{WidgetDisplay[w.name].name}</Text>
             ))}
           </PageSection>
           {role && role.role >= 2 && (
             <PageSection>
-              <Heading size='md'>Kliens újraindítása</Heading>
+              <Heading size='md'>{l('page.dashboard.reloadClient')}</Heading>
               <ButtonGroup>
                 <Button isDisabled={kiosk?.refreshNeeded} leftIcon={<TbRefreshDot />} onClick={onOpen}>
-                  {kiosk?.refreshNeeded ? 'Frissítés kérelmezve' : 'Újraindítás'}
+                  {kiosk?.refreshNeeded ? l('page.dashboard.reloadRequested') : l('page.dashboard.reloadButton')}
                 </Button>
                 {kiosk?.refreshNeeded && <RefreshButton onClick={update} />}
               </ButtonGroup>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Kliens újraindítása</ModalHeader>
-                  <ModalBody>
-                    Újraindítás során a böngészőablak frissül és a legfrissebb kliens szoftver lesz használva. Kérlek
-                    nyisd meg előtte a kliens lokálisan és győződj meg a beállítások helyességéről! Folytatod?
-                  </ModalBody>
+                  <ModalHeader>{l('page.dashboard.reloadConfirmHeader')}</ModalHeader>
+                  <ModalBody>{l('page.dashboard.reloadConfirmText')}</ModalBody>
                   <ModalFooter>
                     <ButtonGroup>
                       <Button onClick={reloadClient} isLoading={isLoading} variant='ghost'>
-                        Újraindít!
+                        {l('page.dashboard.reloadConfirmButton')}
                       </Button>
-                      <Button onClick={onClose}>Mégse</Button>
+                      <Button onClick={onClose}>{l('button.cancel')}</Button>
                     </ButtonGroup>
                   </ModalFooter>
                 </ModalContent>

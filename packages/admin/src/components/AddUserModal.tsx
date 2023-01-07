@@ -23,6 +23,7 @@ import { KioskUserForm } from '../types/users.type';
 import { KioskRoleNames } from '../types/types';
 import { useChangeRole } from '../network/useChangeRole.network';
 import { isAxiosError } from 'axios';
+import { l } from '../utils/language';
 
 const validationSchema = Yup.object().shape({
   mail: Yup.string().email('E-mail cím kell ide, nem más').required('Mindenkit nem akarsz meghívni.'),
@@ -47,7 +48,7 @@ export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
   const onSubmit = (values: KioskUserForm) => {
     makeRequest(values, onClose, (err) => {
       if (isAxiosError(err) && err.response?.status === 404) {
-        setError('mail', { message: 'Nincs ilyen felhasználó.' });
+        setError('mail', { message: l('addUserModal.error.notFound') });
       }
     });
   };
@@ -55,18 +56,18 @@ export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Kezelő hozzáadása</ModalHeader>
+        <ModalHeader>{l('addUserModal.header')}</ModalHeader>
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
               <FormControl isInvalid={!!errors.mail}>
-                <FormLabel>Felhasználó e-mail címe</FormLabel>
+                <FormLabel>{l('addUserModal.label.email')}</FormLabel>
                 <Input {...register('mail')} />
                 {!!errors.mail && <FormErrorMessage>{errors.mail.message}</FormErrorMessage>}
               </FormControl>
               <FormControl isInvalid={!!errors.role}>
-                <FormLabel>Jogosultság</FormLabel>
+                <FormLabel>{l('addUserModal.label.role')}</FormLabel>
                 <Select {...register('role')}>
                   {Object.entries(KioskRoleNames).map(([key, value]) => (
                     <option key={key} value={key}>
@@ -76,16 +77,16 @@ export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                 </Select>
                 {!!errors.role && <FormErrorMessage>{errors.role.message}</FormErrorMessage>}
               </FormControl>
-              {isError && <FormErrorMessage>Ellenőrizd az e-mail címet!</FormErrorMessage>}
+              {isError && <FormErrorMessage>{l('form.validation.email')}</FormErrorMessage>}
             </VStack>
           </ModalBody>
           <ModalFooter>
             <ButtonGroup>
               <Button isLoading={isLoading} type='submit'>
-                Mentés
+                {l('button.save')}
               </Button>
               <Button variant='ghost' onClick={onClose}>
-                Mégse
+                {l('button.cancel')}
               </Button>
             </ButtonGroup>
           </ModalFooter>

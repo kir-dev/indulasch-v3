@@ -10,19 +10,18 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { ApiPaths, UIPaths } from '../config/paths.config';
+import { UIPaths } from '../config/paths.config';
 import { useForm } from 'react-hook-form';
 import { CreateKioskForm } from '../types/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
-import axios from 'axios';
 import { l } from '../utils/language';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/auth.context';
+import { useCreateKiosk } from '../network/useCreateKiosk';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Nem lenne szép üresen hagyni.'),
+  name: Yup.string().required(l('form.validation.required')),
 });
 
 export function NewKioskPage() {
@@ -32,37 +31,30 @@ export function NewKioskPage() {
     formState: { errors },
   } = useForm<CreateKioskForm>({ resolver: yupResolver(validationSchema) });
   const { fetchUser } = useAuthContext();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string>();
+  const { makeRequest, isLoading, isError } = useCreateKiosk();
   const navigate = useNavigate();
-  const onSubmit = ({ name }: CreateKioskForm) => {
-    axios
-      .post(ApiPaths.KIOSK, { name })
-      .then(async () => {
-        await fetchUser();
-        navigate(UIPaths.ROOT);
-      })
-      .catch(() => {
-        setError(l('error.createKiosk'));
-        setLoading(false);
-      });
+  const onSubmit = (values: CreateKioskForm) => {
+    makeRequest(values, async () => {
+      await fetchUser();
+      navigate(UIPaths.ROOT);
+    });
   };
   return (
-    <Page title='Új kioszk'>
+    <Page title={l('title.newKiosk')}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody>
           <VStack>
             <FormControl isInvalid={!!errors.name?.message}>
-              <FormLabel>Kioszk neve</FormLabel>
+              <FormLabel>{l('page.newKiosk.name')}</FormLabel>
               <Input {...register('name', { required: true })} />
               {errors.name?.message && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
             </FormControl>
-            {!!error && <Text color='red'>{error}</Text>}
+            {isError && <Text color='red'>{l('error.create')}</Text>}
           </VStack>
         </CardBody>
         <CardFooter>
-          <Button isLoading={loading} type='submit'>
-            Létrehozom
+          <Button isLoading={isLoading} type='submit'>
+            {l('button.create')}
           </Button>
         </CardFooter>
       </form>
