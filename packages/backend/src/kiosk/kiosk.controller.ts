@@ -3,9 +3,17 @@ import { KioskRoles } from '../types/kiosk.types';
 import { RoleBasedAuthGuard } from '../auth/role.guard';
 import { KioskService } from './kiosk.service';
 import { UsersService } from '../users/users.service';
-import { CreateKioskDto, CreateMessageDto, KioskPatchDto, MessagePatchDto, SetRoleDto } from '../types/dto.types';
+import {
+  CreateKioskDto,
+  CreateMessageDto,
+  KioskPatchDto,
+  MessagePatchDto,
+  SetRoleDto,
+  WidgetPatchDto,
+} from '../types/dto.types';
 import { MessageService } from '../message/message.service';
 import { Types } from 'mongoose';
+import { sanitizeWithExclude } from '../utils/sanitize';
 
 @Controller('admin/kiosk')
 export class KioskController {
@@ -33,6 +41,12 @@ export class KioskController {
   @Patch(':id')
   async patchKiosk(@Body() patchDto: KioskPatchDto, @Param('id') kioskId: string) {
     return await this.kioskService.patchKiosk(kioskId, patchDto);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.MARKETING))
+  @Patch(':id/widget')
+  async patchWidget(@Body() patchDto: WidgetPatchDto, @Param('id') kioskId: string) {
+    return await this.kioskService.patchWidget(kioskId, sanitizeWithExclude(patchDto, ['grid']));
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))

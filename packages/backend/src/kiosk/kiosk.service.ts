@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Kiosk } from '../schemas/kiosk.schema';
 import { getDefaultConfig } from '../utils/defaults';
-import { KioskPatchDto } from '../types/dto.types';
+import { KioskPatchDto, WidgetPatchDto } from '../types/dto.types';
 
 @Injectable()
 export class KioskService {
@@ -38,6 +38,25 @@ export class KioskService {
     if (typeof style !== 'undefined') {
       kiosk.config.style = style;
     }
+    return this.kioskModel.updateOne(
+      { _id: kioskId },
+      {
+        $set: {
+          config: kiosk.config,
+        },
+      }
+    );
+  }
+
+  async patchWidget(kioskId: string, widget: WidgetPatchDto) {
+    const kiosk = await this.kioskModel.findById(kioskId);
+    const widgetToModifyIndex = kiosk.config.widgets.findIndex((w) => w.name === widget.name);
+    if (widgetToModifyIndex === -1) throw new NotFoundException();
+    Object.entries(widget).forEach(([key, value]) => {
+      if (key in kiosk.config.widgets[widgetToModifyIndex]) {
+        kiosk.config.widgets[widgetToModifyIndex][key] = value;
+      }
+    });
     return this.kioskModel.updateOne(
       { _id: kioskId },
       {

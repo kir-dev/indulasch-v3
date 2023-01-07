@@ -2,11 +2,12 @@ import { KioskRoles, MenuItem } from '../types/types';
 import { MessagesPage } from '../pages/Messages.page';
 import { UIPaths } from './paths.config';
 import { MetaPage } from '../pages/Meta.page';
-import { TbApps, TbCircleHalf2, TbListDetails, TbMessage, TbSettings, TbUsers } from 'react-icons/tb';
+import { TbAdjustments, TbApps, TbCircleHalf2, TbListDetails, TbMessage, TbSettings, TbUsers } from 'react-icons/tb';
 import { KioskDashboardPage } from '../pages/KioskDashboard.page';
 import { StylePage } from '../pages/Style.page';
 import { WidgetsPage } from '../pages/Widgets.page';
 import { UsersPage } from '../pages/Users.page';
+import { WidgetEditPage } from '../pages/WidgetEditPage';
 
 export const MenuItems: MenuItem[] = [
   {
@@ -36,6 +37,13 @@ export const MenuItems: MenuItem[] = [
     page: WidgetsPage,
     icon: TbApps({}),
     minRole: KioskRoles.EDITOR,
+  },
+  {
+    name: 'Csempe beállítások',
+    path: UIPaths.WIDGET_EDIT,
+    page: WidgetEditPage,
+    icon: TbAdjustments({}),
+    minRole: KioskRoles.MARKETING,
   },
   {
     name: 'Üzenetek',

@@ -7,6 +7,7 @@ export enum UIPaths {
   META = '/meta',
   STYLE = '/style',
   WIDGETS = '/widgets',
+  WIDGET_EDIT = '/edit-widgets',
   DASHBOARD = '/dashboard',
   USERS = '/users',
 }
