@@ -24,9 +24,9 @@ export function WidgetsPage() {
           <Button isLoading={isLoading} onClick={onSave}>
             Mentés
           </Button>
-          <Button onClick={() => setWidgets(kiosk?.config.widgets)} variant='link'>
-            Módosítások elvetése
-          </Button>
+          {/*<Button onClick={() => setWidgets(kiosk?.config.widgets)} variant='link'>*/}
+          {/*  Módosítások elvetése*/}
+          {/*</Button>*/}
         </ButtonGroup>
       </CardFooter>
     </Page>

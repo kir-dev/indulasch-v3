@@ -10,7 +10,7 @@ interface MainLayoutProps extends PropsWithChildren {
 export function MainLayout({ children, drawerEnabled }: MainLayoutProps) {
   return (
     <Container maxW='container.xl'>
-      <Grid gridTemplateRows='auto 1fr auto' h='100vh'>
+      <Grid gridTemplateRows='auto 1fr auto' gridTemplateColumns='100%' h='100vh'>
         <TitleBar drawerEnabled={drawerEnabled} />
         {children}
         <Footer />

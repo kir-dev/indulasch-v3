@@ -31,6 +31,10 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
   useEffect(() => {
     onChange({ dark: darkColor, light: lightColor });
   }, [darkColor, lightColor, onChange]);
+  useEffect(() => {
+    setDarkColor(value.dark);
+    setLightColor(value.light);
+  }, [value]);
   return (
     <HStack>
       <VStack>
