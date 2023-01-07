@@ -51,13 +51,14 @@ export function KioskDashboardPage() {
 
   return (
     <Page title={kiosk?.config.meta.name || 'Ismeretlen'}>
-      {kiosk?.lastClientQuery && checkThreshold(kiosk.lastClientQuery) && (
-        <Alert status='error'>
-          <AlertIcon />
-          Úgy tűnik a kliens kapcsolata megszakadt a szerverrel. Elképzelhető, hogy a módosítások nem fognak látszódni.
-        </Alert>
-      )}
       <CardBody>
+        {kiosk?.lastClientQuery && checkThreshold(kiosk.lastClientQuery) && (
+          <Alert status='error' mb={5}>
+            <AlertIcon />
+            Úgy tűnik a kliens kapcsolata megszakadt a szerverrel. Elképzelhető, hogy a módosítások nem fognak
+            látszódni.
+          </Alert>
+        )}
         <VStack spacing={5} alignItems='flex-start' textAlign='left'>
           {clientUrl && (
             <Wrap>
