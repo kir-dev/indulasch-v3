@@ -21,7 +21,11 @@ export function DrawerMenu() {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerBody>
+          <DrawerBody
+            onClick={(e) => {
+              if ((e.target as Element).closest('button')) onClose();
+            }}
+          >
             <NavBar />
           </DrawerBody>
         </DrawerContent>

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { UIPaths } from '../config/paths.config';
-import { ColorModeColor, ColorsWithScheme } from './kiosk.types';
+import { ColorModeColor, ColorsWithScheme, Coordinates } from './kiosk.types';
 import { l } from '../utils/language';
 
 export type LoginCredentials = {
@@ -20,8 +20,7 @@ export type RegistrationForm = {
 
 export type MetaForm = {
   name: string;
-  latitude: string;
-  longitude: string;
+  coordinates: Coordinates;
 };
 
 export type StyleForm = {

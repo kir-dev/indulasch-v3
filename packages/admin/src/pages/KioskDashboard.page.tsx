@@ -110,7 +110,12 @@ export function KioskDashboardPage() {
             <PageSection>
               <Heading size='md'>{l('page.dashboard.reloadClient')}</Heading>
               <ButtonGroup>
-                <Button isDisabled={kiosk?.refreshNeeded} leftIcon={<TbRefreshDot />} onClick={onOpen}>
+                <Button
+                  variant='outline'
+                  isDisabled={kiosk?.refreshNeeded}
+                  leftIcon={<TbRefreshDot />}
+                  onClick={onOpen}
+                >
                   {kiosk?.refreshNeeded ? l('page.dashboard.reloadRequested') : l('page.dashboard.reloadButton')}
                 </Button>
                 {kiosk?.refreshNeeded && <RefreshButton onClick={update} />}

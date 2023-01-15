@@ -90,8 +90,8 @@ const languageData = {
   'page.kioskSelect.newKiosk': 'Új kioszk',
   'page.messages.newMessage': 'Új üzenet',
   'page.meta.label.name': 'Kioszk neve',
-  'page.meta.label.latitude': 'Szélességi fok',
-  'page.meta.label.longitude': 'Hosszúsági fok',
+  'page.meta.label.coordinate': 'Kioszk pozíciója',
+  'page.meta.label.coordinateHelpText': 'A tű mozgatásával jelölheted ki a pontos pozíciót!',
   'page.newKiosk.name': 'Kioszk neve',
   'page.login.text':
     'Jelentkezz be AuthSch fiókoddal! A profilod automatikusan létrejön az első bejelentkezés alkalmával.',
