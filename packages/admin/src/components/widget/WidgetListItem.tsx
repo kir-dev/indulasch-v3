@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Flex,
   FormControl,
   FormLabel,
@@ -13,6 +14,7 @@ import {
   useColorModeValue,
   useDisclosure,
   useToast,
+  WrapItem,
 } from '@chakra-ui/react';
 import { WidgetConfigFields, WidgetDisplay, WidgetWithoutGrid } from '../../types/kiosk.types';
 import { useForm } from 'react-hook-form';
@@ -50,7 +52,7 @@ export function WidgetListItem({ widget }: WidgetListItemProps) {
   };
   const isEditable = Object.keys(widget).length > 2;
   return (
-    <>
+    <WrapItem>
       <Stat
         onClick={() => {
           if (isEditable) onOpen();
@@ -63,8 +65,10 @@ export function WidgetListItem({ widget }: WidgetListItemProps) {
         opacity={isEditable ? 1 : 0.5}
         p={10}
       >
-        {widgetDisplay.icon}
-        <StatNumber>{widgetDisplay.name}</StatNumber>
+        <Center flexDirection='column'>
+          {widgetDisplay.icon}
+          <StatNumber>{widgetDisplay.name}</StatNumber>
+        </Center>
       </Stat>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -85,6 +89,6 @@ export function WidgetListItem({ widget }: WidgetListItemProps) {
           </form>
         </ModalContent>
       </Modal>
-    </>
+    </WrapItem>
   );
 }

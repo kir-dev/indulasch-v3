@@ -109,7 +109,12 @@ export function WidgetGrid({ widgets, onChange }: WidgetGridProps) {
   );
 
   return (
-    <Grid templateColumns='repeat(3, 1fr)' templateRows='repeat(3, 15rem)' gridGap={3}>
+    <Grid
+      overflow='auto'
+      templateColumns={['repeat(3, 15rem)', null, 'repeat(3, 1fr)']}
+      templateRows='repeat(3, 15rem)'
+      gridGap={3}
+    >
       {widgets.map((w, index) => (
         <WidgetTile
           widgets={widgets}
