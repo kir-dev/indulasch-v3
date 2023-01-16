@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { DepartureQueryDto } from '../types/client.types';
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { ApiResponse, Departure, FutarAPI } from '../types/departure.types';
 import { decode } from 'html-entities';
 import { ConfigService } from '@nestjs/config';
@@ -28,7 +28,12 @@ export class ClientService {
   }
   async getDepartures(query: DepartureQueryDto) {
     const url = this.getUrl(query).toString();
-    const response = await axios.get<FutarAPI>(url);
+    let response: AxiosResponse<FutarAPI>;
+    try {
+      response = await axios.get<FutarAPI>(url);
+    } catch (e) {
+      throw new AxiosError();
+    }
 
     const apiResponse: ApiResponse = { departures: [] };
 
