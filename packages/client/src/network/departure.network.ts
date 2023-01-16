@@ -4,6 +4,7 @@ import { useConfig } from '../layout/ConfigContext';
 import { DeparturesConfig } from '../types/widget.type';
 import { QueryKeys } from '../types/misc.type';
 import { DepartureDto } from '../types/widget/departures.type';
+import { API_URL } from '../config/environment.config';
 
 export function useDepartureQuery(config: DeparturesConfig) {
   const {
@@ -12,7 +13,7 @@ export function useDepartureQuery(config: DeparturesConfig) {
     },
   } = useConfig();
 
-  const url = new URL('https://indula.sch.bme.hu/api');
+  const url = new URL(API_URL + '/departures');
 
   return useQuery<DepartureDto, Error>(QueryKeys.DEPARTURE, async () => {
     const { data } = await axios.post<DepartureDto>(url.toString(), {
