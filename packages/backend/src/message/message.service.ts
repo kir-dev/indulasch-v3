@@ -38,4 +38,8 @@ export class MessageService {
   async getMessageList(kioskId: string): Promise<MessageDocument[] | undefined> {
     return this.messageModel.find({ kioskId });
   }
+
+  async getCurrentMessageList(kioskId: string): Promise<MessageDocument[] | undefined> {
+    return this.messageModel.find({ kioskId, from: { $lt: new Date() }, until: { $gt: new Date() } });
+  }
 }
