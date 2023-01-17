@@ -6,6 +6,7 @@ export type Coordinates = {
 export enum QueryKeys {
   WEATHER = 'weather',
   DEPARTURE = 'departure',
+  MESSAGES = 'messages',
   BIKE = 'bike',
   SCHPINCER = 'schpincer',
   CONFIG = 'config',
