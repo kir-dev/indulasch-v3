@@ -24,7 +24,7 @@ export function Messages() {
 }
 
 export function MessageComponent({ message, onFinish }: { message: Message; onFinish: () => void }) {
-  const { tile, brand } = useColorsOfScheme();
+  const { tile, brand, fontPrimary } = useColorsOfScheme();
   const duration = (message.text.length * 10 + 1000) / 200;
   useTimeout(onFinish, duration * 1000);
   let icon = <InfoIcon />;
@@ -40,7 +40,7 @@ export function MessageComponent({ message, onFinish }: { message: Message; onFi
       break;
   }
   return (
-    <MessagesWrapper backgroundColor={tile}>
+    <MessagesWrapper backgroundColor={tile} color={fontPrimary}>
       {icon}
       <ScrollingTextContainer duration={duration}>
         <h1>{message?.text}</h1>
@@ -49,10 +49,11 @@ export function MessageComponent({ message, onFinish }: { message: Message; onFi
   );
 }
 
-const MessagesWrapper = styled.div<{ backgroundColor: string }>`
+const MessagesWrapper = styled.div<{ backgroundColor: string; color: string }>`
   box-sizing: border-box;
   border-radius: ${GlobalSize.borderRadius};
   background-color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ color }) => color};
   padding: 10px;
   display: grid;
   grid-template-columns: auto 1fr;
