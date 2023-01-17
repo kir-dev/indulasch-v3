@@ -12,7 +12,9 @@ export function Clock() {
   const colors = useColorsOfScheme();
   return (
     <ClockWrapper fontPrimary={colors.fontPrimary}>
-      <span style={{ color: colors.fontSecondary }}>{time.toLocaleDateString('hu-Hu')}</span>{' '}
+      <span style={{ color: colors.fontSecondary }}>
+        {time.toLocaleDateString('hu-Hu', { month: '2-digit', day: '2-digit' })}
+      </span>{' '}
       {time.toLocaleTimeString()}
     </ClockWrapper>
   );
@@ -20,6 +22,7 @@ export function Clock() {
 
 const ClockWrapper = styled.p<{ fontPrimary: string }>`
   font-size: ${FontSize.xxl};
+  white-space: nowrap;
   margin: 0;
   color: ${({ fontPrimary }) => fontPrimary};
 `;

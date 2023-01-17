@@ -15,7 +15,7 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { Message, MessageForm, MessageKinds } from '../types/message.types';
+import { DefaultMessage, Message, MessageForm, MessageKinds } from '../types/message.types';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import * as Yup from 'yup';
@@ -50,11 +50,12 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<Message>({ defaultValues: message, resolver: yupResolver(validationSchema) });
+  } = useForm<MessageForm>({ defaultValues: message, resolver: yupResolver(validationSchema) });
   useEffect(() => {
+    reset(DefaultMessage);
     reset(message);
   }, [message]);
-  const onSubmit = (values: MessageForm) => {
+  const onSubmit = (values: Message | MessageForm) => {
     if (message) {
       saveMessage(values, onClose);
     } else {

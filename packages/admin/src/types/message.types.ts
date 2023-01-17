@@ -16,3 +16,10 @@ export type Message = {
   _id: string;
   kioskId: string;
 } & MessageForm;
+
+export const DefaultMessage: MessageForm = {
+  text: '',
+  kind: MessageKinds.INFO,
+  from: new Date().toISOString(),
+  until: new Date().toISOString(),
+};
