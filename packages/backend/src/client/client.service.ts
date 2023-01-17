@@ -18,7 +18,7 @@ export class ClientService {
     this.apiUrl.searchParams.append('key', configService.get<string>(ConfigKeys.FUTAR_API_KEY));
   }
   getUrl({ lat, lon, radius }: DepartureQueryDto) {
-    const url = this.apiUrl;
+    const url = new URL(this.apiUrl);
     url.searchParams.append('radius', radius.toString());
     url.searchParams.append('lon', lon);
     url.searchParams.append('lat', lat);
