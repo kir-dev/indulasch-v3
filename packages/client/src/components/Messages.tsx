@@ -1,7 +1,7 @@
 import { useMessages } from '../network/messages.network';
 import { useCallback, useMemo, useState } from 'react';
 import { useTimeout } from '../utils/useTimeout';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 import { GlobalSize } from '../utils/theme';
 import { Message, MessageKinds } from '../types/message.type';
@@ -40,20 +40,24 @@ export function MessageComponent({ message, onFinish }: { message: Message; onFi
       break;
   }
   return (
-    <MessagesWrapper backgroundColor={tile} color={fontPrimary}>
+    <MessagesWrapper backgroundColor={tile}>
       {icon}
-      <ScrollingTextContainer duration={duration}>
+      <ScrollingTextContainer duration={duration} color={fontPrimary}>
         <h1>{message?.text}</h1>
       </ScrollingTextContainer>
     </MessagesWrapper>
   );
 }
 
-const MessagesWrapper = styled.div<{ backgroundColor: string; color: string }>`
+const IconBaseStyle = css`
+  height: 60px;
+  width: 60px;
+`;
+
+const MessagesWrapper = styled.div<{ backgroundColor: string }>`
   box-sizing: border-box;
   border-radius: ${GlobalSize.borderRadius};
   background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ color }) => color};
   padding: 10px;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -61,29 +65,25 @@ const MessagesWrapper = styled.div<{ backgroundColor: string; color: string }>`
 
 const InfoIcon = styled(IoInformationCircle)`
   color: dodgerblue;
-  height: 60px;
-  width: 60px;
+  ${IconBaseStyle}
 `;
 
 const WarningIcon = styled(IoWarning)`
   color: orange;
-  height: 60px;
-  width: 60px;
+  ${IconBaseStyle}
 `;
 
 const SuccessIcon = styled(IoCheckmarkCircleSharp)`
   color: limegreen;
-  height: 60px;
-  width: 60px;
+  ${IconBaseStyle}
 `;
 
 const FunIcon = styled(IoHappy)<{ theme: string }>`
   color: ${({ theme }) => theme};
-  height: 60px;
-  width: 60px;
+  ${IconBaseStyle}
 `;
 
-const ScrollingTextContainer = styled.div<{ duration: number }>`
+const ScrollingTextContainer = styled.div<{ duration: number; color: string }>`
   overflow: hidden;
   height: 60px;
   display: flex;
@@ -95,9 +95,7 @@ const ScrollingTextContainer = styled.div<{ duration: number }>`
     animation: scroll ${({ duration }) => duration}s linear running;
     animation-iteration-count: infinite;
     display: inline-block;
-    @media (prefers-color-scheme: dark){
-      color: white;
-    }
+    color: ${({ color }) => color};
   }
   @keyframes scroll {
     from {

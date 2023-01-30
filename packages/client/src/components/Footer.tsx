@@ -4,16 +4,17 @@ import { ReactComponent as TrolleybusIcon } from '../assets/icons/trolleybus.svg
 import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 import { FontSize } from '../utils/theme';
 import { KirDev } from './KirDev';
+import { VERSION } from '../config/environment.config';
 
 export function Footer() {
   const { fontPrimary } = useColorsOfScheme();
   return (
     <FooterWrapper color={fontPrimary}>
-      <FooterPart>&copy; 2022.</FooterPart>
+      <FooterPart>&copy; {new Date().getFullYear()}.</FooterPart>
       <FooterPart>
         Made with <TrolleybusIcon /> by <KirDev />
       </FooterPart>
-      <FooterPart>UI v3.0.0</FooterPart>
+      <FooterPart>UI v{VERSION}</FooterPart>
     </FooterWrapper>
   );
 }
