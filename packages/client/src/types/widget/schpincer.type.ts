@@ -1,12 +1,12 @@
 export type SchPincerOpening = {
-  name: String;
-  icon: String | undefined;
-  feeling: String;
+  name: string;
+  icon: string | undefined;
+  feeling: string;
   available: number;
   outOf: number;
-  banner: String | undefined;
-  day: String;
-  comment: String;
+  banner: string | undefined;
+  day: string;
+  comment: string;
 };
 
 export type SchPincerDto = SchPincerOpening[];
