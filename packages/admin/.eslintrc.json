@@ -6,7 +6,8 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "prettier",
+        "simple-import-sort"
     ],
     "overrides": [
     ],
@@ -20,6 +21,7 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "simple-import-sort/imports": "error"
     }
 }
