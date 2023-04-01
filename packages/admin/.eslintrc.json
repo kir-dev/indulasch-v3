@@ -6,8 +6,7 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "simple-import-sort"
+        "prettier"
     ],
     "overrides": [
     ],

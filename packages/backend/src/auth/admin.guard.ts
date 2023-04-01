@@ -1,4 +1,5 @@
 import { CanActivate, ExecutionContext } from '@nestjs/common';
+
 import { JwtAuthGuard } from '../strategies/jwt.strategy';
 import { UserDocument } from '../users/users.model';
 

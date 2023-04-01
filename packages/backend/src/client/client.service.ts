@@ -1,9 +1,10 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { DepartureQueryDto } from '../types/client.types';
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { ApiResponse, Departure, FutarAPI } from '../types/departure.types';
-import { decode } from 'html-entities';
 import { ConfigService } from '@nestjs/config';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { decode } from 'html-entities';
+
+import { DepartureQueryDto } from '../types/client.types';
+import { ApiResponse, Departure, FutarAPI } from '../types/departure.types';
 import { ConfigKeys } from '../utils/configuration';
 
 @Injectable()

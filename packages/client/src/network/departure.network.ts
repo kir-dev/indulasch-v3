@@ -1,10 +1,11 @@
-import { useQuery } from 'react-query';
 import axios from 'axios';
-import { useConfig } from '../layout/ConfigContext';
-import { DeparturesConfig } from '../types/widget.type';
-import { QueryKeys } from '../types/misc.type';
-import { DepartureDto } from '../types/widget/departures.type';
+import { useQuery } from 'react-query';
+
 import { API_URL } from '../config/environment.config';
+import { useConfig } from '../layout/ConfigContext';
+import { QueryKeys } from '../types/misc.type';
+import { DeparturesConfig } from '../types/widget.type';
+import { DepartureDto } from '../types/widget/departures.type';
 
 export function useDepartureQuery(config: DeparturesConfig) {
   const {

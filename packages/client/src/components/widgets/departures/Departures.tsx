@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Field } from './Field';
 import { useDepartureQuery } from '../../../network/departure.network';
 import { DeparturesConfig, GridSettings } from '../../../types/widget.type';
-import { useInterval } from '../../../utils/useInterval';
-import { WidgetHeading } from '../../Text';
-import { useWidgetConfig } from '../../../utils/useWidgetConfig';
 import { useColorsOfScheme } from '../../../utils/useColorsOfScheme';
+import { useInterval } from '../../../utils/useInterval';
+import { useWidgetConfig } from '../../../utils/useWidgetConfig';
+import { WidgetHeading } from '../../Text';
+import { Field } from './Field';
 
 export function Departures() {
   const config = useWidgetConfig<DeparturesConfig>('departures');

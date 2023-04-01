@@ -1,13 +1,14 @@
-import React from 'react';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import React from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
-import { RootNavigator } from './navigators/Root.navigator';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { initAxios, queryClient } from './config/api.config';
 import theme from './config/theme';
 import { AuthProvider } from './context/auth.context';
-import { initAxios, queryClient } from './config/api.config';
-import { ErrorBoundary } from './components/ErrorBoundary';
+import { RootNavigator } from './navigators/Root.navigator';
 
 initAxios();
 

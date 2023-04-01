@@ -1,4 +1,5 @@
 import { Badge } from '@chakra-ui/react';
+
 import { KioskRoleNames, KioskRoles } from '../types/types';
 
 export function RoleBadge({ role }: { role: KioskRoles }) {

@@ -16,10 +16,11 @@ import {
   useToast,
   WrapItem,
 } from '@chakra-ui/react';
-import { WidgetConfigFields, WidgetDisplay, WidgetWithoutGrid } from '../../types/kiosk.types';
 import { useForm } from 'react-hook-form';
+
 import { useKioskContext } from '../../context/kiosk.context';
 import { useSaveWidget } from '../../network/useSaveWidget';
+import { WidgetConfigFields, WidgetDisplay, WidgetWithoutGrid } from '../../types/kiosk.types';
 import { l } from '../../utils/language';
 
 interface WidgetListItemProps {

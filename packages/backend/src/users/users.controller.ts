@@ -1,9 +1,10 @@
 import { Controller, Get, Request, UseGuards } from '@nestjs/common';
-import { UsersService } from './users.service';
+
 import { AdminGuard } from '../auth/admin.guard';
 import { RoleBasedAuthGuard } from '../auth/role.guard';
 import { sanitize } from '../utils/sanitize';
 import { User } from './users.model';
+import { UsersService } from './users.service';
 
 @Controller('admin/users')
 export class UsersController {

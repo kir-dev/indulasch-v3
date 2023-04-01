@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { ReactComponent as TrolleybusIcon } from '../assets/icons/trolleybus.svg';
-import { useColorsOfScheme } from '../utils/useColorsOfScheme';
-import { FontSize } from '../utils/theme';
-import { KirDev } from './KirDev';
 import { VERSION } from '../config/environment.config';
+import { FontSize } from '../utils/theme';
+import { useColorsOfScheme } from '../utils/useColorsOfScheme';
+import { KirDev } from './KirDev';
 
 export function Footer() {
   const { fontPrimary } = useColorsOfScheme();

@@ -13,6 +13,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { TbCirclePlus, TbSettings } from 'react-icons/tb';
+
 import {
   WidgetConfig,
   WidgetConfigFields,
@@ -20,8 +23,6 @@ import {
   WidgetName,
   WidgetWithoutGrid,
 } from '../../types/kiosk.types';
-import { TbCirclePlus, TbSettings } from 'react-icons/tb';
-import { useForm } from 'react-hook-form';
 import { l } from '../../utils/language';
 
 interface AddWidgetPopoverProps {

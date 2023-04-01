@@ -1,4 +1,3 @@
-import { Page } from '../layout/Page';
 import {
   Button,
   ButtonGroup,
@@ -11,14 +10,16 @@ import {
   Input,
   VStack,
 } from '@chakra-ui/react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { MetaForm } from '../types/types';
-import { useKioskContext } from '../context/kiosk.context';
-import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSaveKiosk } from '../network/useSaveKiosk.network';
-import { l } from '../utils/language';
+import { FormProvider, useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+
 import { MapField } from '../components/Map';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
+import { useSaveKiosk } from '../network/useSaveKiosk.network';
+import { MetaForm } from '../types/types';
+import { l } from '../utils/language';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required(l('form.validation.required')),

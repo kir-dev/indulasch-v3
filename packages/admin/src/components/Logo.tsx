@@ -1,5 +1,5 @@
-import { SVGProps } from 'react';
 import { useColorModeValue } from '@chakra-ui/react';
+import { SVGProps } from 'react';
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
   const color = useColorModeValue('black', 'white');

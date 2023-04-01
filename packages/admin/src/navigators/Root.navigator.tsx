@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+
 import { UIPaths } from '../config/paths.config';
 import { KioskProvider } from '../context/kiosk.context';
 import { SsoLoginPage } from '../pages/SsoLogin.page';

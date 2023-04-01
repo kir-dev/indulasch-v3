@@ -1,8 +1,10 @@
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import L, { LatLngExpression, LatLngLiteral } from 'leaflet';
-import { Box } from '@chakra-ui/react';
 import 'leaflet/dist/leaflet.css';
+
+import { Box } from '@chakra-ui/react';
+import L, { LatLngExpression, LatLngLiteral } from 'leaflet';
 import { Controller, FieldPath, useFormContext } from 'react-hook-form';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+
 import { Coordinates } from '../types/kiosk.types';
 
 export function MapField<T extends { coordinates: Coordinates }, K extends FieldPath<T>>({ name }: { name: K }) {

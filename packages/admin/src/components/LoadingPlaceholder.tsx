@@ -1,8 +1,9 @@
-import { LoadingSpinner } from './LoadingSpinner';
-import { Page } from '../layout/Page';
-import { MainLayout } from '../layout/MainLayout';
 import { CardBody, Center } from '@chakra-ui/react';
+
+import { MainLayout } from '../layout/MainLayout';
+import { Page } from '../layout/Page';
 import { l } from '../utils/language';
+import { LoadingSpinner } from './LoadingSpinner';
 
 export function LoadingPlaceholder() {
   return (

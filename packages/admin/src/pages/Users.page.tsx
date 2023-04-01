@@ -1,13 +1,14 @@
-import { Page } from '../layout/Page';
 import { Button, CardBody, CardFooter, useDisclosure, useToast, VStack } from '@chakra-ui/react';
-import { useKioskContext } from '../context/kiosk.context';
 import { useEffect } from 'react';
-import { useKioskUsers } from '../network/useKioskUsers.network';
-import { useDeleteRole } from '../network/useDeleteRole.network';
-import { UserListItem } from '../components/UserListItem';
+
 import { AddUserModal } from '../components/AddUserModal';
-import { KioskRoles } from '../types/types';
+import { UserListItem } from '../components/UserListItem';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
 import { useChangeRole } from '../network/useChangeRole.network';
+import { useDeleteRole } from '../network/useDeleteRole.network';
+import { useKioskUsers } from '../network/useKioskUsers.network';
+import { KioskRoles } from '../types/types';
 import { l } from '../utils/language';
 
 export function UsersPage() {

@@ -1,9 +1,10 @@
-import styled from 'styled-components';
 import React from 'react';
-import { GlobalSize } from '../utils/theme';
-import { WidgetHeading } from './Text';
+import styled from 'styled-components';
+
 import { Spinner } from '../Spinner';
+import { GlobalSize } from '../utils/theme';
 import { ErrorIcon } from './ErrorIcon';
+import { WidgetHeading } from './Text';
 
 interface ErrorMessageProps {
   message: string;

@@ -1,4 +1,3 @@
-import { Page } from '../layout/Page';
 import {
   Button,
   ButtonGroup,
@@ -11,12 +10,14 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { StyleForm } from '../types/types';
-import { useKioskContext } from '../context/kiosk.context';
-import { l } from '../utils/language';
+
 import { ColorPickerField } from '../components/ColorPicker';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
 import { useSaveKiosk } from '../network/useSaveKiosk.network';
 import { Style } from '../types/kiosk.types';
+import { StyleForm } from '../types/types';
+import { l } from '../utils/language';
 
 export function StylePage() {
   const { kiosk, update, selectedKioskId } = useKioskContext();

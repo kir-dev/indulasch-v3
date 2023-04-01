@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ClientController } from './client.controller';
+
 import { KioskModule } from '../kiosk/kiosk.module';
 import { MessageModule } from '../message/message.module';
+import { ClientController } from './client.controller';
 import { ClientService } from './client.service';
 
 @Module({

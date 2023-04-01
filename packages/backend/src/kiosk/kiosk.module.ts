@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { KioskService } from './kiosk.service';
-import { KioskController } from './kiosk.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+
+import { MessageModule } from '../message/message.module';
 import { Kiosk, KioskSchema } from '../schemas/kiosk.schema';
 import { UsersModule } from '../users/users.module';
-import { MessageModule } from '../message/message.module';
+import { KioskController } from './kiosk.controller';
+import { KioskService } from './kiosk.service';
 
 @Module({
   imports: [UsersModule, MessageModule, MongooseModule.forFeature([{ name: Kiosk.name, schema: KioskSchema }])],

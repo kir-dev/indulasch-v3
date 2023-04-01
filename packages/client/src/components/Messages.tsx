@@ -1,12 +1,13 @@
-import { useMessages } from '../network/messages.network';
 import { useCallback, useMemo, useState } from 'react';
-import { useTimeout } from '../utils/useTimeout';
-import styled, { css } from 'styled-components';
-import { useColorsOfScheme } from '../utils/useColorsOfScheme';
-import { GlobalSize } from '../utils/theme';
-import { Message, MessageKinds } from '../types/message.type';
 import { IoCheckmarkCircleSharp, IoHappy, IoInformationCircle, IoWarning } from 'react-icons/io5';
+import styled, { css } from 'styled-components';
+
+import { useMessages } from '../network/messages.network';
+import { Message, MessageKinds } from '../types/message.type';
+import { GlobalSize } from '../utils/theme';
+import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 import { useInterval } from '../utils/useInterval';
+import { useTimeout } from '../utils/useTimeout';
 
 export function Messages() {
   const { data, isError, refetch } = useMessages();

@@ -1,5 +1,5 @@
-import { TbRefresh } from 'react-icons/tb';
 import { Button } from '@chakra-ui/react';
+import { TbRefresh } from 'react-icons/tb';
 
 interface RefreshButtonProps {
   onClick: () => void;

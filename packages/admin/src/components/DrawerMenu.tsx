@@ -7,8 +7,9 @@ import {
   DrawerOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
-import { NavBar } from './NavBar';
 import { TbMenu } from 'react-icons/tb';
+
+import { NavBar } from './NavBar';
 
 export function DrawerMenu() {
   const { onOpen, isOpen, onClose } = useDisclosure();
@@ -23,7 +24,7 @@ export function DrawerMenu() {
           <DrawerCloseButton />
           <DrawerBody
             onClick={(e) => {
-              if ((e.target as Element).closest('button')) onClose();
+              if ((e.target as Element).closest('button:not(.chakra-menu__menu-button)')) onClose();
             }}
           >
             <NavBar />

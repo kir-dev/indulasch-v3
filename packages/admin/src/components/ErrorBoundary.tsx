@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
-import { ErrorPage } from '../pages/Error.page';
+
 import { MainLayout } from '../layout/MainLayout';
+import { ErrorPage } from '../pages/Error.page';
 
 export class ErrorBoundary extends React.Component<PropsWithChildren> {
   state = {

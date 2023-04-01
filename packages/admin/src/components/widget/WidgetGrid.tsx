@@ -1,6 +1,7 @@
 import { Grid } from '@chakra-ui/react';
-import { GridSettings, WidgetConfig } from '../../types/kiosk.types';
 import { useCallback, useMemo } from 'react';
+
+import { GridSettings, WidgetConfig } from '../../types/kiosk.types';
 import { EmptyTile } from './EmptyTile';
 import { WidgetTile } from './WidgetTile';
 

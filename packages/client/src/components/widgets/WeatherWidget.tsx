@@ -1,13 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
 import 'weather-react-icons/lib/css/weather-icons.css';
 
+import React from 'react';
+import styled from 'styled-components';
+
+import { Widget } from '../../layout/Widget';
 import { useWeatherQuery } from '../../network/weather.network';
 import { WeatherConfig } from '../../types/widget.type';
-import { Widget } from '../../layout/Widget';
-import { WidgetHeading } from '../Text';
 import { useInterval } from '../../utils/useInterval';
 import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { WidgetHeading } from '../Text';
 
 export function WeatherWidget() {
   const config = useWidgetConfig<WeatherConfig>('weather');

@@ -15,14 +15,15 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { DefaultMessage, Message, MessageForm, MessageKinds } from '../types/message.types';
-import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
-import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+
 import { useKioskContext } from '../context/kiosk.context';
 import { useCreateMessage } from '../network/useCreateMessage.network';
 import { useSaveMessage } from '../network/useSaveMessage.network';
+import { DefaultMessage, Message, MessageForm, MessageKinds } from '../types/message.types';
 import { l } from '../utils/language';
 
 const validationSchema = Yup.object().shape({

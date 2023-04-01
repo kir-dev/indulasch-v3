@@ -1,5 +1,6 @@
-import { NavButton, NavButtonProps } from './NavButton';
 import { useLocation } from 'react-router-dom';
+
+import { NavButton, NavButtonProps } from './NavButton';
 
 export function MenuButton({ to, ...props }: NavButtonProps) {
   const { pathname } = useLocation();

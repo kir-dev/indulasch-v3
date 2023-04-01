@@ -1,5 +1,5 @@
-import { WidgetConfig } from './widget.type';
 import { Coordinates } from './misc.type';
+import { WidgetConfig } from './widget.type';
 
 export type ConfigDto = {
   _id: string;

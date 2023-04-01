@@ -1,8 +1,8 @@
-import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
-import { SchpincerConfig } from '../types/widget.type';
 import { QueryKeys } from '../types/misc.type';
+import { SchpincerConfig } from '../types/widget.type';
 import { SchPincerDto } from '../types/widget/schpincer.type';
 
 export function useSchPincerQuery(config: SchpincerConfig) {

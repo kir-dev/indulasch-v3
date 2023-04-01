@@ -1,7 +1,8 @@
-import { HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { KioskRoles } from '../types/kiosk.types';
+import { HydratedDocument, Types } from 'mongoose';
+
 import { Kiosk } from '../schemas/kiosk.schema';
+import { KioskRoles } from '../types/kiosk.types';
 
 export type UserDocument = HydratedDocument<User>;
 
