@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ClientModule } from './client/client.module';
 import { KioskModule } from './kiosk/kiosk.module';
 import { MessageModule } from './message/message.module';
+import { NotificationModule } from './notification/notification.module';
 import { UsersModule } from './users/users.module';
 import configuration, { ConfigKeys } from './utils/configuration';
 
@@ -32,6 +33,7 @@ import configuration, { ConfigKeys } from './utils/configuration';
     KioskModule,
     MessageModule,
     ClientModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,12 +1,20 @@
+import { KioskStatus } from '@indulasch-v3/backend/dist/types/kiosk.types';
 import { ReactElement } from 'react';
 import { TbBike, TbBus, TbCup, TbPhoto, TbQrcode, TbSettings, TbSun } from 'react-icons/tb';
-import * as Yup from 'yup';
 
 export type Kiosk = {
   _id: string;
   refreshNeeded: boolean;
   lastClientQuery: string | undefined;
   config: KioskConfig;
+  notification: KioskNotification;
+};
+
+export type KioskNotification = {
+  status: KioskStatus;
+  webhookUrl: string;
+  webhookEnabled: boolean;
+  emailEnabled: boolean;
 };
 
 export type KioskConfig = {
@@ -62,17 +70,6 @@ type WidgetConfigField = {
   label: string;
   type: string;
 };
-
-export const WidgetConfigValidation = Yup.object().shape({
-  name: Yup.string().required('Milyen csempe is ez?'),
-  apiKey: Yup.string().required('Máshogy nem tudjuk lekérni az adatot.'),
-  url: Yup.string().required('Milyen képek akarsz ide?'),
-  message: Yup.string().required('Üres QR kicsit értelmetlen lenne.'),
-  label: Yup.string().required('Címke nélkül kicsit ijesztő egy QR...'),
-  radius: Yup.number().required('A világ összes indulását nem akarod itt látni...'),
-  title: Yup.string().required('Cím kellene.'),
-  subtitle: Yup.string().required('Alcím se jön rosszul.'),
-});
 
 export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
   schpincer: [{ name: 'apiKey', type: 'text', label: 'API Kulcs' }],

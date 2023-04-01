@@ -1,4 +1,4 @@
-import { KioskConfig } from '../types/kiosk.types';
+import { KioskConfig, KioskStatus } from '../types/kiosk.types';
 
 const DefaultKiosk: KioskConfig = {
   style: {

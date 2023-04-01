@@ -1,14 +1,25 @@
-import { KioskRoles, MenuItem } from '../types/types';
-import { MessagesPage } from '../pages/Messages.page';
-import { UIPaths } from './paths.config';
-import { MetaPage } from '../pages/Meta.page';
-import { TbAdjustments, TbApps, TbCircleHalf2, TbListDetails, TbMessage, TbSettings, TbUsers } from 'react-icons/tb';
+import {
+  TbAdjustments,
+  TbApps,
+  TbBell,
+  TbCircleHalf2,
+  TbListDetails,
+  TbMessage,
+  TbSettings,
+  TbUsers,
+} from 'react-icons/tb';
+
 import { KioskDashboardPage } from '../pages/KioskDashboard.page';
+import { MessagesPage } from '../pages/Messages.page';
+import { MetaPage } from '../pages/Meta.page';
+import { NotificationPage } from '../pages/Notification.page';
 import { StylePage } from '../pages/Style.page';
-import { WidgetsPage } from '../pages/Widgets.page';
 import { UsersPage } from '../pages/Users.page';
 import { WidgetEditPage } from '../pages/WidgetEditPage';
+import { WidgetsPage } from '../pages/Widgets.page';
+import { KioskRoles, MenuItem } from '../types/types';
 import { l } from '../utils/language';
+import { UIPaths } from './paths.config';
 
 export const MenuItems: MenuItem[] = [
   {
@@ -58,6 +69,13 @@ export const MenuItems: MenuItem[] = [
     path: UIPaths.USERS,
     page: UsersPage,
     icon: TbUsers({}),
+    minRole: KioskRoles.OWNER,
+  },
+  {
+    name: l('title.notifications'),
+    path: UIPaths.NOTIFICATIONS,
+    page: NotificationPage,
+    icon: TbBell({}),
     minRole: KioskRoles.OWNER,
   },
 ];

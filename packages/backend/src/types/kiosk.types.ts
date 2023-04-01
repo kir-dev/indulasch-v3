@@ -4,6 +4,25 @@ export type KioskConfig = {
   widgets: WidgetConfig[];
 };
 
+export type KioskNotification = {
+  status: KioskStatus;
+  webhookUrl: string;
+  webhookEnabled: boolean;
+  emailEnabled: boolean;
+};
+
+export enum KioskStatus {
+  CONNECTED = 'CONNECTED',
+  DISCONNECTED = 'DISCONNECTED',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export const KioskStatusTranslation: Record<KioskStatus, string> = {
+  [KioskStatus.CONNECTED]: 'Kapcsolódva',
+  [KioskStatus.DISCONNECTED]: 'Megszakadt',
+  [KioskStatus.UNKNOWN]: 'Ismeretlen',
+};
+
 export type Coordinates = {
   lat: string;
   lon: string;
