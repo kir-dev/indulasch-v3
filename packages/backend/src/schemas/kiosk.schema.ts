@@ -1,8 +1,7 @@
-import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { KioskConfig } from '../types/kiosk.types';
+import { Schema as MongooseSchema } from 'mongoose';
 
-export type KioskDocument = HydratedDocument<Kiosk>;
+import { KioskConfig } from '../types/kiosk.types';
 
 @Schema()
 export class Kiosk {
