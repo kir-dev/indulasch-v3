@@ -1,4 +1,5 @@
 import { Badge } from '@chakra-ui/react';
+
 import { checkThreshold } from '../utils/checkThreshold';
 import { l } from '../utils/language';
 

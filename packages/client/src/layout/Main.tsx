@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import React, { CSSProperties, PropsWithChildren } from 'react';
+import styled from 'styled-components';
+
 import { Size } from '../utils/theme';
 
 const MainBase = styled.div`

@@ -1,10 +1,11 @@
-import { Page } from '../layout/Page';
-import { useAuthContext } from '../context/auth.context';
 import { CardBody, CardFooter, Flex, Heading } from '@chakra-ui/react';
+import { FaPlusCircle } from 'react-icons/fa';
+
 import { KioskListItem } from '../components/KioskListItem';
 import { NavButton } from '../components/NavButton';
-import { FaPlusCircle } from 'react-icons/fa';
 import { UIPaths } from '../config/paths.config';
+import { useAuthContext } from '../context/auth.context';
+import { Page } from '../layout/Page';
 import { l } from '../utils/language';
 
 export function KioskSelectPage() {

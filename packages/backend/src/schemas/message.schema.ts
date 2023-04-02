@@ -1,5 +1,6 @@
-import { HydratedDocument } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+
 import { MessageKinds } from '../types/dto.types';
 
 export type MessageDocument = HydratedDocument<Message>;

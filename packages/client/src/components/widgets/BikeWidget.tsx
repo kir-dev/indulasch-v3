@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
-import { BikeConfig } from '../../types/widget.type';
-import { Widget } from '../../layout/Widget';
-import { WidgetDescription, WidgetHeading } from '../Text';
-import { useBikeQuery } from '../../network/bike.network';
 import BubiIcon from '../../assets/icons/bubi.png';
+import { Widget } from '../../layout/Widget';
+import { useBikeQuery } from '../../network/bike.network';
+import { BikeConfig } from '../../types/widget.type';
 import { GlobalSize } from '../../utils/theme';
+import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { WidgetDescription, WidgetHeading } from '../Text';
 
 export function BikeWidget() {
   const config = useWidgetConfig<BikeConfig>('bike');

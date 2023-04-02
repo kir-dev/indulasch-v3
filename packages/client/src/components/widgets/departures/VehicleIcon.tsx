@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { VehicleIcons } from '../../../types/widget/departures.type';
-import { ReactComponent as TramIcon } from '../../../assets/icons/tram.svg';
-import { ReactComponent as BusIcon } from '../../../assets/icons/bus.svg';
-import { ReactComponent as SubwayIcon } from '../../../assets/icons/subway.svg';
-import { ReactComponent as SuburbanRailwayIcon } from '../../../assets/icons/suburban-railway.svg';
-import { ReactComponent as NightBusIcon } from '../../../assets/icons/night-bus.svg';
-import { ReactComponent as TrolleybusIcon } from '../../../assets/icons/trolleybus.svg';
 import { ReactComponent as AirplaneIcon } from '../../../assets/icons/airplane.svg';
-import { ReactComponent as FerryIcon } from '../../../assets/icons/ferry.svg';
+import { ReactComponent as BusIcon } from '../../../assets/icons/bus.svg';
 import { ReactComponent as ChairliftIcon } from '../../../assets/icons/chairlift.svg';
-import { ReactComponent as SikloIcon } from '../../../assets/icons/siklo.svg';
+import { ReactComponent as FerryIcon } from '../../../assets/icons/ferry.svg';
 import { ReactComponent as MavIcon } from '../../../assets/icons/mav.svg';
+import { ReactComponent as NightBusIcon } from '../../../assets/icons/night-bus.svg';
+import { ReactComponent as SikloIcon } from '../../../assets/icons/siklo.svg';
+import { ReactComponent as SuburbanRailwayIcon } from '../../../assets/icons/suburban-railway.svg';
+import { ReactComponent as SubwayIcon } from '../../../assets/icons/subway.svg';
+import { ReactComponent as TramIcon } from '../../../assets/icons/tram.svg';
+import { ReactComponent as TrolleybusIcon } from '../../../assets/icons/trolleybus.svg';
+import { VehicleIcons } from '../../../types/widget/departures.type';
 
 function VehicleIconSelector(vehicleIcon: string) {
   switch (vehicleIcon) {

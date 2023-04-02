@@ -1,9 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
+
 import { Kiosk } from '../schemas/kiosk.schema';
-import { getDefaultConfig } from '../utils/defaults';
 import { KioskPatchDto, WidgetPatchDto } from '../types/dto.types';
+import { KioskNotification, KioskStatus } from '../types/kiosk.types';
+import { getDefaultConfig } from '../utils/defaults';
 
 @Injectable()
 export class KioskService {
@@ -17,6 +19,7 @@ export class KioskService {
   async createKiosk(name: string) {
     return await this.kioskModel.create({
       refreshNeeded: false,
+      notification: { status: KioskStatus.UNKNOWN, webhookUrl: '', webhookEnabled: false, emailEnabled: false },
       config: getDefaultConfig(name),
     });
   }
@@ -62,6 +65,19 @@ export class KioskService {
       {
         $set: {
           config: kiosk.config,
+        },
+      }
+    );
+  }
+
+  async patchNotification(kioskId: string, notification: Omit<KioskNotification, 'status'>) {
+    return this.kioskModel.updateOne(
+      { _id: kioskId },
+      {
+        $set: {
+          'notification.webhookUrl': notification.webhookUrl,
+          'notification.webhookEnabled': notification.webhookEnabled,
+          'notification.emailEnabled': notification.emailEnabled,
         },
       }
     );

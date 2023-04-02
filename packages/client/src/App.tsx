@@ -1,11 +1,12 @@
 import React from 'react';
-import { Main } from './layout/Main';
-import { useColorsOfScheme } from './utils/useColorsOfScheme';
-import { Titlebar } from './components/Titlebar';
+
 import { Footer } from './components/Footer';
-import { WidgetGrid } from './layout/WidgetGrid';
+import { Titlebar } from './components/Titlebar';
 import { useConfig } from './layout/ConfigContext';
+import { Main } from './layout/Main';
 import { WidgetDistributor } from './layout/WidgetDistributor';
+import { WidgetGrid } from './layout/WidgetGrid';
+import { useColorsOfScheme } from './utils/useColorsOfScheme';
 
 function App() {
   const { background } = useColorsOfScheme();

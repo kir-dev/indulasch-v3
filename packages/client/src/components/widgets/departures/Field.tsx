@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { VehicleIcon } from './VehicleIcon';
-import { Departure } from '../../../types/widget/departures.type';
 import { FiAlertCircle } from 'react-icons/fi';
-import { useColorsOfScheme } from '../../../utils/useColorsOfScheme';
+import styled from 'styled-components';
+
+import { Departure } from '../../../types/widget/departures.type';
 import { GlobalSize, Size } from '../../../utils/theme';
+import { useColorsOfScheme } from '../../../utils/useColorsOfScheme';
+import { VehicleIcon } from './VehicleIcon';
 
 interface FieldProps {
   departure: Departure;

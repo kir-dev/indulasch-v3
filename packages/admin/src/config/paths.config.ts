@@ -10,6 +10,7 @@ export enum UIPaths {
   WIDGET_EDIT = '/edit-widgets',
   DASHBOARD = '/dashboard',
   USERS = '/users',
+  NOTIFICATIONS = '/notifications',
 }
 
 export enum ApiPaths {

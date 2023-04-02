@@ -9,6 +9,9 @@ export default () => ({
   expiration: process.env.JWT_EXPIRATION || '1h',
   port: parseInt(process.env.PORT, 10) || 3000,
   secret: process.env.SECRET || 'undefined_secret',
+  cors_origin: process.env.CORS_ORIGIN || '',
+  mailServerUrl: process.env.MAIL_SERVER_URL,
+  mailApiKey: process.env.MAIL_API_KEY,
 });
 
 export enum ConfigKeys {
@@ -20,4 +23,7 @@ export enum ConfigKeys {
   MONGODB_URI = 'mongodbUri',
   PORT = 'port',
   SECRET = 'secret',
+  CORS_ORIGIN = 'cors_origin',
+  MAIL_SERVER_URL = 'mailServerUrl',
+  MAIL_API_KEY = 'mailApiKey',
 }

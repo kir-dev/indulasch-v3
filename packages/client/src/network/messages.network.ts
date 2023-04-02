@@ -1,9 +1,10 @@
-import { useQuery } from 'react-query';
 import axios from 'axios';
-import { QueryKeys } from '../types/misc.type';
+import { useQuery } from 'react-query';
+
 import { API_URL } from '../config/environment.config';
-import { useKioskIdFromPath } from '../utils/useKioskIdFromPath';
 import { Message } from '../types/message.type';
+import { QueryKeys } from '../types/misc.type';
+import { useKioskIdFromPath } from '../utils/useKioskIdFromPath';
 
 export function useMessages() {
   const id = useKioskIdFromPath();

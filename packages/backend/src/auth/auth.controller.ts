@@ -1,8 +1,9 @@
 import { Controller, Get, Request, Res, UseGuards } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { OauthGuard } from '../strategies/oauth.strategy';
 import { ConfigService } from '@nestjs/config';
+
+import { OauthGuard } from '../strategies/oauth.strategy';
 import { ConfigKeys } from '../utils/configuration';
+import { AuthService } from './auth.service';
 
 @Controller('admin/auth')
 export class AuthController {

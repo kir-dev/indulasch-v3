@@ -1,12 +1,13 @@
-import { createContext, useContext, useEffect, useState } from 'react';
 import axios, { isAxiosError } from 'axios';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Kiosk } from '../types/kiosk.types';
+
 import { ApiPaths, UIPaths } from '../config/paths.config';
-import { KioskSelectorNavigator } from '../navigators/KioskSelector.navigator';
-import { KioskNavigator } from '../navigators/Kiosk.navigator';
-import { useAuthContext } from './auth.context';
 import { MainLayout } from '../layout/MainLayout';
+import { KioskNavigator } from '../navigators/Kiosk.navigator';
+import { KioskSelectorNavigator } from '../navigators/KioskSelector.navigator';
+import { Kiosk } from '../types/kiosk.types';
+import { useAuthContext } from './auth.context';
 
 type KioskContextType = {
   kiosk: Kiosk | undefined;

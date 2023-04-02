@@ -1,5 +1,6 @@
-import { NavBar } from './NavBar';
 import { Flex } from '@chakra-ui/react';
+
+import { NavBar } from './NavBar';
 
 export function DesktopNavbar() {
   return (

@@ -1,6 +1,7 @@
-import { KioskRoles } from '../types/types';
 import { Stat, StatNumber, useColorModeValue } from '@chakra-ui/react';
+
 import { useKioskContext } from '../context/kiosk.context';
+import { KioskRoles } from '../types/types';
 import { RoleBadge } from './RoleBadge';
 
 interface KioskGridItemProps {

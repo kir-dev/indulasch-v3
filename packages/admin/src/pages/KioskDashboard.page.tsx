@@ -1,5 +1,3 @@
-import { Page } from '../layout/Page';
-import { useAuthContext } from '../context/auth.context';
 import {
   Alert,
   AlertIcon,
@@ -19,18 +17,21 @@ import {
   VStack,
   Wrap,
 } from '@chakra-ui/react';
-import { useKioskContext } from '../context/kiosk.context';
-import { KioskRoles } from '../types/types';
-import { WidgetDisplay } from '../types/kiosk.types';
-import { CLIENT_BASE_URL } from '../config/environment.config';
-import { TbBrowserPlus, TbCopy, TbRefreshDot } from 'react-icons/tb';
-import { KioskStatusBadge } from '../components/KioskStatusBadge';
-import { checkThreshold } from '../utils/checkThreshold';
-import { useRequestRefreshNetwork } from '../network/useRequestRefresh.network';
 import { useEffect, useMemo } from 'react';
+import { TbBrowserPlus, TbCopy, TbRefreshDot } from 'react-icons/tb';
+
+import { KioskStatusBadge } from '../components/KioskStatusBadge';
 import { PageSection } from '../components/PageSection';
 import { RefreshButton } from '../components/RefreshButton';
 import { RoleBadge } from '../components/RoleBadge';
+import { CLIENT_BASE_URL } from '../config/environment.config';
+import { useAuthContext } from '../context/auth.context';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
+import { useRequestRefreshNetwork } from '../network/useRequestRefresh.network';
+import { WidgetDisplay } from '../types/kiosk.types';
+import { KioskRoles } from '../types/types';
+import { checkThreshold } from '../utils/checkThreshold';
 import { l } from '../utils/language';
 
 export function KioskDashboardPage() {

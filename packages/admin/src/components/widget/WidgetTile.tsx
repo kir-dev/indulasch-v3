@@ -1,8 +1,9 @@
-import { WidgetConfig, WidgetDisplay } from '../../types/kiosk.types';
 import { Button, Flex, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import { TbTrash } from 'react-icons/tb';
+
+import { WidgetConfig, WidgetDisplay } from '../../types/kiosk.types';
 import { ArrowButton } from './ArrowButton';
 import { WidgetConfigPopover } from './WidgetConfigPopover';
-import { TbTrash } from 'react-icons/tb';
 
 interface WidgetTileProps {
   widgets: WidgetConfig[];

@@ -1,10 +1,11 @@
-import { Page } from '../layout/Page';
-import { useKioskContext } from '../context/kiosk.context';
-import { useSaveKiosk } from '../network/useSaveKiosk.network';
-import { useState } from 'react';
 import { Button, ButtonGroup, CardBody, CardFooter, FormErrorMessage } from '@chakra-ui/react';
-import { l } from '../utils/language';
+import { useState } from 'react';
+
 import { WidgetGrid } from '../components/widget/WidgetGrid';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
+import { useSaveKiosk } from '../network/useSaveKiosk.network';
+import { l } from '../utils/language';
 
 export function WidgetsPage() {
   const { kiosk, update, selectedKioskId } = useKioskContext();

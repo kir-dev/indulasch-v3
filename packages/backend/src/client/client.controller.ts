@@ -1,9 +1,10 @@
 import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
+
 import { KioskService } from '../kiosk/kiosk.service';
 import { MessageService } from '../message/message.service';
 import { DepartureQueryDto } from '../types/client.types';
-import { ClientService } from './client.service';
 import { sanitizeArray } from '../utils/sanitize';
+import { ClientService } from './client.service';
 
 @Controller('client')
 export class ClientController {

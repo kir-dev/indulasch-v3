@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Strategy } from 'passport-oauth2';
-import { AuthGuard, PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
+import { AuthGuard, PassportStrategy } from '@nestjs/passport';
+import axios from 'axios';
+import { Strategy } from 'passport-oauth2';
+
+import { OauthProfile } from '../types/auth.types';
 import { UsersService } from '../users/users.service';
 import { ConfigKeys } from '../utils/configuration';
-import axios from 'axios';
-import { OauthProfile } from '../types/auth.types';
 
 const AUTH_SCH_URL = 'https://auth.sch.bme.hu';
 

@@ -1,7 +1,8 @@
 import axios, { isAxiosError } from 'axios';
-import { Config, ConfigDto } from '../types/config.type';
-import { API_URL } from '../config/environment.config';
 import { useEffect, useState } from 'react';
+
+import { API_URL } from '../config/environment.config';
+import { Config, ConfigDto } from '../types/config.type';
 import { useInterval } from '../utils/useInterval';
 
 export function useConfigQuery(id: string) {

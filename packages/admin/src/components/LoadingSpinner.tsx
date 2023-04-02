@@ -1,4 +1,5 @@
 import { Spinner, SpinnerProps, useColorModeValue } from '@chakra-ui/react';
+
 import theme from '../config/theme';
 
 export function LoadingSpinner(props: SpinnerProps) {

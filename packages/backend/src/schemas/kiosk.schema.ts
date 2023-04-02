@@ -1,6 +1,7 @@
-import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { KioskConfig } from '../types/kiosk.types';
+import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
+
+import { KioskConfig, KioskNotification } from '../types/kiosk.types';
 
 export type KioskDocument = HydratedDocument<Kiosk>;
 
@@ -12,6 +13,8 @@ export class Kiosk {
   refreshNeeded: boolean;
   @Prop({ type: MongooseSchema.Types.Mixed })
   config: KioskConfig;
+  @Prop({ type: MongooseSchema.Types.Mixed })
+  notification: KioskNotification;
 }
 
 export const KioskSchema = SchemaFactory.createForClass(Kiosk);

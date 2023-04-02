@@ -1,9 +1,10 @@
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { LoadingPlaceholder } from '../components/LoadingPlaceholder';
 import { ApiPaths, UIPaths } from '../config/paths.config';
 import { User } from '../types/types';
-import { LoadingPlaceholder } from '../components/LoadingPlaceholder';
 
 type AuthContextType = {
   isAuthenticated: boolean;

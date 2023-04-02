@@ -1,11 +1,12 @@
-import { useKioskContext } from '../context/kiosk.context';
-import { useAuthContext } from '../context/auth.context';
-import { useMenuItems } from '../utils/useMenuItems';
 import { Button, Menu, MenuButton as MenuDropdownButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
-import { MenuButton } from './MenuButton';
 import { PropsWithChildren } from 'react';
 import { TbAppWindow, TbChevronDown, TbUser } from 'react-icons/tb';
+
+import { useAuthContext } from '../context/auth.context';
+import { useKioskContext } from '../context/kiosk.context';
 import { l } from '../utils/language';
+import { useMenuItems } from '../utils/useMenuItems';
+import { MenuButton } from './MenuButton';
 
 export function NavBar() {
   const { kiosk, setSelectedKiosk, unselect } = useKioskContext();

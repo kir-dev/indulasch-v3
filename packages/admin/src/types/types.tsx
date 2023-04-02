@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
+
 import { UIPaths } from '../config/paths.config';
-import { ColorModeColor, ColorsWithScheme, Coordinates } from './kiosk.types';
 import { l } from '../utils/language';
+import { ColorModeColor, ColorsWithScheme, Coordinates, KioskNotification } from './kiosk.types';
 
 export type LoginCredentials = {
   username: string;
@@ -22,6 +23,8 @@ export type MetaForm = {
   name: string;
   coordinates: Coordinates;
 };
+
+export type NotificationForm = Omit<KioskNotification, 'status'>;
 
 export type StyleForm = {
   mode: keyof ColorModeColor;

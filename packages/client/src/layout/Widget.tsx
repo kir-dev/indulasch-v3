@@ -1,8 +1,9 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { useColorsOfScheme } from '../utils/useColorsOfScheme';
+
 import { GridSettings } from '../types/widget.type';
 import { GlobalSize, Size } from '../utils/theme';
+import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 
 interface WidgetProps extends PropsWithChildren {
   grid: GridSettings;

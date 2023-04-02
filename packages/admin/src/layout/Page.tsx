@@ -1,5 +1,6 @@
 import { CardHeader, ContainerProps, Heading, HStack } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet-async';
+
 import { CustomCard } from '../components/CustomCard';
 import { InlineLoadingSpinner } from '../components/LoadingSpinner';
 

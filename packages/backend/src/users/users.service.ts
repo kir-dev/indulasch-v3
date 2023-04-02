@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { User, UserDocument } from './users.model';
-import { KioskRoles } from '../types/kiosk.types';
+
 import { Kiosk } from '../schemas/kiosk.schema';
 import { OauthProfile } from '../types/auth.types';
+import { KioskRoles } from '../types/kiosk.types';
+import { User, UserDocument } from './users.model';
 
 @Injectable()
 export class UsersService {

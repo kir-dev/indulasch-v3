@@ -1,9 +1,10 @@
-import { useQuery } from 'react-query';
-import { Weather } from '../types/widget/weather.type';
 import axios from 'axios';
+import { useQuery } from 'react-query';
+
 import { useConfig } from '../layout/ConfigContext';
-import { WeatherConfig } from '../types/widget.type';
 import { QueryKeys } from '../types/misc.type';
+import { WeatherConfig } from '../types/widget.type';
+import { Weather } from '../types/widget/weather.type';
 
 export function useWeatherQuery(config: WeatherConfig) {
   const {

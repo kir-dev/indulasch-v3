@@ -1,8 +1,9 @@
-import { useNetwork } from '../utils/useNetwork';
 import axios from 'axios';
+
 import { ApiPaths } from '../config/paths.config';
 import { WidgetConfig, WidgetName } from '../types/kiosk.types';
 import { joinPath } from '../utils/path';
+import { useNetwork } from '../utils/useNetwork';
 
 type WidgetPatchDto = Partial<Omit<WidgetConfig, 'grid'>> & { name: WidgetName };
 

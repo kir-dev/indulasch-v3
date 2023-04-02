@@ -1,5 +1,6 @@
 import { HStack, Text, useColorModeValue } from '@chakra-ui/react';
 import { TbHeart } from 'react-icons/tb';
+
 import { UI_VERSION } from '../config/environment.config';
 import { KirDev } from './KirDev';
 

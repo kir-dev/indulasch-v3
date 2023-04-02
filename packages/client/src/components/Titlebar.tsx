@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Clock } from './Clock';
+
 import { useConfig } from '../layout/ConfigContext';
 import { Size } from '../utils/theme';
+import { Clock } from './Clock';
 import { ErrorIcon } from './ErrorIcon';
 import { Logo } from './Logo';
 import { Messages } from './Messages';

@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { AxiosResponse, isAxiosError } from 'axios';
+import { useState } from 'react';
+
 import { useAuthContext } from '../context/auth.context';
 
 export function useNetwork<Response, T>(request: (body: T) => Promise<AxiosResponse<Response>>) {

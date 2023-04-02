@@ -1,5 +1,6 @@
-import { useColorMode } from '../utils/useColorMode';
 import React from 'react';
+
+import { useColorMode } from '../utils/useColorMode';
 
 export function KirDev() {
   const color = useColorMode('black', 'white');

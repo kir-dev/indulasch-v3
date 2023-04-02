@@ -1,5 +1,6 @@
-import { PropsWithChildren } from 'react';
 import { Grid } from '@chakra-ui/react';
+import { PropsWithChildren } from 'react';
+
 import { DesktopNavbar } from '../components/DesktopNavbar';
 
 export function KioskLayout({ children }: PropsWithChildren) {

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useInterval } from '../utils/useInterval';
 import styled from 'styled-components';
-import { useColorsOfScheme } from '../utils/useColorsOfScheme';
+
 import { FontSize } from '../utils/theme';
+import { useColorsOfScheme } from '../utils/useColorsOfScheme';
+import { useInterval } from '../utils/useInterval';
 
 export function Clock() {
   const [time, setTime] = useState(new Date());

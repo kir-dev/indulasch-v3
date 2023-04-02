@@ -12,8 +12,9 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import { Message, MessageKinds } from '../types/message.types';
 import { TbAlertTriangle, TbCheckbox, TbEdit, TbInfoCircle, TbSmartHome, TbTrash } from 'react-icons/tb';
+
+import { Message, MessageKinds } from '../types/message.types';
 import { l } from '../utils/language';
 
 interface MessageListItemProps {

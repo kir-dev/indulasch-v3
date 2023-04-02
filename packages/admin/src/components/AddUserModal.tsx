@@ -15,14 +15,15 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { isAxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useKioskContext } from '../context/kiosk.context';
-import { KioskUserForm } from '../types/users.type';
-import { KioskRoleNames } from '../types/types';
 import { useChangeRole } from '../network/useChangeRole.network';
-import { isAxiosError } from 'axios';
+import { KioskRoleNames } from '../types/types';
+import { KioskUserForm } from '../types/users.type';
 import { l } from '../utils/language';
 
 const validationSchema = Yup.object().shape({

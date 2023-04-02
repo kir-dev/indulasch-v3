@@ -1,7 +1,8 @@
 import { HStack } from '@chakra-ui/react';
+
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 import { DrawerMenu } from './DrawerMenu';
+import { Logo } from './Logo';
 
 interface TitleBarProps {
   drawerEnabled?: boolean;

@@ -1,12 +1,13 @@
-import { Page } from '../layout/Page';
 import { Button, CardBody, CardFooter, useDisclosure, VStack } from '@chakra-ui/react';
-import { useMessages } from '../network/useMessages.network';
-import { useKioskContext } from '../context/kiosk.context';
 import { useEffect, useState } from 'react';
+
 import { EditMessageModal } from '../components/EditMessageModal';
 import { MessageListItem } from '../components/MessageListItem';
-import { Message } from '../types/message.types';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
 import { useDeleteMessage } from '../network/useDeleteMessage.network';
+import { useMessages } from '../network/useMessages.network';
+import { Message } from '../types/message.types';
 import { l } from '../utils/language';
 
 export function MessagesPage() {

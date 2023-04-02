@@ -1,20 +1,23 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import { useSchPincerQuery } from '../../network/schpincer.network';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
-import { SchpincerConfig } from '../../types/widget.type';
 import { Widget } from '../../layout/Widget';
-import { WidgetDescription, WidgetHeading, WidgetText } from '../Text';
+import { useSchPincerQuery } from '../../network/schpincer.network';
+import { SchpincerConfig } from '../../types/widget.type';
 import { useInterval } from '../../utils/useInterval';
+import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { WidgetDescription, WidgetHeading, WidgetText } from '../Text';
 
 export function SchPincerWidget() {
   const config = useWidgetConfig<SchpincerConfig>('schpincer');
-  const { data, error } = useSchPincerQuery(config);
+  const { data, error, refetch } = useSchPincerQuery(config);
   const [shownIndex, setShownIndex] = useState(0);
   useInterval(() => {
-    if (data) {
-      setShownIndex(shownIndex + 1 >= data.length ? 0 : shownIndex + 1);
-    } else setShownIndex(0);
+    if (data && shownIndex + 1 < (data?.length ?? 0)) {
+      setShownIndex(shownIndex + 1);
+    } else {
+      setShownIndex(0);
+      refetch();
+    }
   }, 10000);
   const shownOpening = useMemo(() => {
     return data?.[shownIndex];

@@ -1,6 +1,6 @@
-import { KioskConfig, KioskRoles, WidgetConfig } from './kiosk.types';
-import { UserDocument } from '../users/users.model';
 import { MessageDocument } from '../schemas/message.schema';
+import { UserDocument } from '../users/users.model';
+import { KioskConfig, KioskRoles, WidgetConfig } from './kiosk.types';
 
 export type UserPatchDto = Partial<Omit<UserDocument, '_id'>>;
 export type MessagePatchDto = Partial<Omit<MessageDocument, '_id'>>;

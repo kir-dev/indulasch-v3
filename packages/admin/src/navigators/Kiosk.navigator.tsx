@@ -1,6 +1,7 @@
-import { useMenuItems } from '../utils/useMenuItems';
 import { Route, Routes } from 'react-router-dom';
+
 import { KioskLayout } from '../layout/KioskLayout';
+import { useMenuItems } from '../utils/useMenuItems';
 
 export function KioskNavigator() {
   const menuItems = useMenuItems();

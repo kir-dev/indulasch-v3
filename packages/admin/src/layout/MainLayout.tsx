@@ -1,7 +1,8 @@
-import { PropsWithChildren } from 'react';
-import { TitleBar } from '../components/TitleBar';
 import { Container, Grid } from '@chakra-ui/react';
+import { PropsWithChildren } from 'react';
+
 import { Footer } from '../components/Footer';
+import { TitleBar } from '../components/TitleBar';
 
 interface MainLayoutProps extends PropsWithChildren {
   drawerEnabled?: boolean;

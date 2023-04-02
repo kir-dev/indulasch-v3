@@ -1,5 +1,6 @@
-import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useQuery } from 'react-query';
+
 import { useConfig } from '../layout/ConfigContext';
 import { QueryKeys } from '../types/misc.type';
 import { BikeDto, BikePlace } from '../types/widget/bike.type';

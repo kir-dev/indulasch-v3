@@ -1,4 +1,3 @@
-import { Page } from '../layout/Page';
 import {
   Button,
   CardBody,
@@ -10,15 +9,17 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { UIPaths } from '../config/paths.config';
-import { useForm } from 'react-hook-form';
-import { CreateKioskForm } from '../types/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { l } from '../utils/language';
-import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+
+import { UIPaths } from '../config/paths.config';
 import { useAuthContext } from '../context/auth.context';
+import { Page } from '../layout/Page';
 import { useCreateKiosk } from '../network/useCreateKiosk';
+import { CreateKioskForm } from '../types/types';
+import { l } from '../utils/language';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required(l('form.validation.required')),

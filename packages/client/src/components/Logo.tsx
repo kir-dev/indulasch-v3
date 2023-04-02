@@ -1,4 +1,5 @@
 import React, { SVGProps } from 'react';
+
 import { useColorMode } from '../utils/useColorMode';
 
 export function Logo(props: SVGProps<SVGSVGElement>) {

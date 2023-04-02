@@ -1,8 +1,9 @@
 import React, { createContext, PropsWithChildren } from 'react';
+
+import { ErrorPage, LoadingPage } from '../components/StatusPage';
+import { useConfigQuery } from '../network/config.network';
 import { ConfigContextType } from '../types/config.type';
 import { useKioskIdFromPath } from '../utils/useKioskIdFromPath';
-import { useConfigQuery } from '../network/config.network';
-import { ErrorPage, LoadingPage } from '../components/StatusPage';
 
 const ConfigContext = createContext<ConfigContextType>({
   fail: false,

@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+
 import { ErrorPage } from './StatusPage';
 
 export class ErrorBoundary extends React.Component<PropsWithChildren> {

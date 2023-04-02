@@ -1,7 +1,8 @@
-import { Page } from '../layout/Page';
 import { CardBody, Wrap } from '@chakra-ui/react';
-import { useKioskContext } from '../context/kiosk.context';
+
 import { WidgetListItem } from '../components/widget/WidgetListItem';
+import { useKioskContext } from '../context/kiosk.context';
+import { Page } from '../layout/Page';
 import { l } from '../utils/language';
 
 export function WidgetEditPage() {

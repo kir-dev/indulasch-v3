@@ -1,8 +1,9 @@
-import { ColorModeColor, ColorsWithScheme } from '../types/kiosk.types';
-import { useEffect, useState } from 'react';
 import { HStack, Text, VStack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { BlockPicker } from 'react-color';
 import { Controller, useFormContext } from 'react-hook-form';
+
+import { ColorModeColor, ColorsWithScheme } from '../types/kiosk.types';
 import { StyleForm } from '../types/types';
 import { l } from '../utils/language';
 

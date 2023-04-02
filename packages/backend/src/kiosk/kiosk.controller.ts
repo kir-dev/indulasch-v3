@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
-import { KioskRoles } from '../types/kiosk.types';
+import { Types } from 'mongoose';
+
 import { RoleBasedAuthGuard } from '../auth/role.guard';
-import { KioskService } from './kiosk.service';
-import { UsersService } from '../users/users.service';
+import { MessageService } from '../message/message.service';
 import {
   CreateKioskDto,
   CreateMessageDto,
@@ -11,9 +11,10 @@ import {
   SetRoleDto,
   WidgetPatchDto,
 } from '../types/dto.types';
-import { MessageService } from '../message/message.service';
-import { Types } from 'mongoose';
+import { KioskNotification, KioskRoles } from '../types/kiosk.types';
+import { UsersService } from '../users/users.service';
 import { sanitizeWithExclude } from '../utils/sanitize';
+import { KioskService } from './kiosk.service';
 
 @Controller('admin/kiosk')
 export class KioskController {
@@ -47,6 +48,15 @@ export class KioskController {
   @Patch(':id/widget')
   async patchWidget(@Body() patchDto: WidgetPatchDto, @Param('id') kioskId: string) {
     return await this.kioskService.patchWidget(kioskId, sanitizeWithExclude(patchDto, ['grid']));
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))
+  @Patch(':id/notification')
+  async patchNotification(@Body() patchDto: KioskNotification, @Param('id') kioskId: string) {
+    return await this.kioskService.patchNotification(
+      kioskId,
+      sanitizeWithExclude(patchDto, ['status']) as Omit<KioskNotification, 'status'>
+    );
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.OWNER))

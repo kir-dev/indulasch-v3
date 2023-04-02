@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import App from './App';
-import reportWebVitals from './misc/reportWebVitals';
-import { ConfigProvider } from './layout/ConfigContext';
 import { createGlobalStyle } from 'styled-components';
+
+import App from './App';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { ConfigProvider } from './layout/ConfigContext';
+import reportWebVitals from './misc/reportWebVitals';
 
 const GlobalStyle = createGlobalStyle`
   body {

@@ -13,9 +13,10 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { TbTrash } from 'react-icons/tb';
+
+import { useAuthContext } from '../context/auth.context';
 import { KioskRoleNames, KioskRoles } from '../types/types';
 import { KioskUser } from '../types/users.type';
-import { useAuthContext } from '../context/auth.context';
 import { l } from '../utils/language';
 
 interface UserListItemProps {

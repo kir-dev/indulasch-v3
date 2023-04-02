@@ -1,7 +1,8 @@
 import React, { CSSProperties, PropsWithChildren } from 'react';
-import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 import styled from 'styled-components';
+
 import { FontSize } from '../utils/theme';
+import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 
 export function WidgetHeading({ children, ...css }: CSSProperties & PropsWithChildren) {
   const { fontPrimary } = useColorsOfScheme();

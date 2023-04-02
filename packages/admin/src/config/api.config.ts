@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { QueryClient } from 'react-query';
+
 import { API_BASE_URL } from './environment.config';
 
 export const initAxios = () => {

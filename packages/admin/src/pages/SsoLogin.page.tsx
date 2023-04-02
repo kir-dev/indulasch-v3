@@ -1,9 +1,10 @@
-import { Page } from '../layout/Page';
 import { CardBody, Text, VStack } from '@chakra-ui/react';
+
 import { NavButton } from '../components/NavButton';
-import { ApiPaths } from '../config/paths.config';
 import { API_BASE_URL } from '../config/environment.config';
+import { ApiPaths } from '../config/paths.config';
 import { MainLayout } from '../layout/MainLayout';
+import { Page } from '../layout/Page';
 import { l } from '../utils/language';
 
 export function SsoLoginPage() {

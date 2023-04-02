@@ -12,6 +12,7 @@ const languageData = {
   'title.login': 'Bejelentkezés',
   'title.style': 'Megjelenés',
   'title.users': 'Kioszk kezelői',
+  'title.notifications': 'Értesítések',
   'title.widgetEdit': 'Csempék beállításai',
   'title.widgets': 'Csempék',
   'title.dashboard': 'Dashboard',
@@ -105,4 +106,10 @@ const languageData = {
   'page.users.roleModified': 'Jogosultság módosítva',
   'page.users.roleModificationError': 'Módosítás sikertelen',
   'page.users.newUser': 'Új kezelő',
+  'page.notification.email.label': 'E-mail értesítés',
+  'page.notification.email.helper': 'Az AuthSch fiókod e-mail címére küldünk értesítőt.',
+  'page.notification.webhookUrl.label': 'Webhook URL',
+  'page.notification.webhookUrl.helper':
+    'Egy { kioskName, newStatus } formátumú JSON-t küld POST metódussal a megadott címre.',
+  'page.notification.webhookEnabled.title': 'Webhook engedélyezése',
 };
