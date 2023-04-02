@@ -22,7 +22,7 @@ import { NotificationService } from './notification.service';
     MailingModule.registerAsync({
       useFactory: async (config: ConfigService) => {
         return {
-          templates: { default: 'src/templates/status.ejs' },
+          templates: { default: config.get(ConfigKeys.TEMPLATE_ROOT) + 'status.ejs' },
           apiKey: config.get(ConfigKeys.MAIL_API_KEY),
           mailServiceUrl: config.get(ConfigKeys.MAIL_SERVER_URL),
         };

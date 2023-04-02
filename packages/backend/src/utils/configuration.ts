@@ -12,6 +12,7 @@ export default () => ({
   cors_origin: process.env.CORS_ORIGIN || '',
   mailServerUrl: process.env.MAIL_SERVER_URL,
   mailApiKey: process.env.MAIL_API_KEY,
+  template_root: process.env.TEMPLATE_ROOT,
 });
 
 export enum ConfigKeys {
@@ -26,4 +27,5 @@ export enum ConfigKeys {
   CORS_ORIGIN = 'cors_origin',
   MAIL_SERVER_URL = 'mailServerUrl',
   MAIL_API_KEY = 'mailApiKey',
+  TEMPLATE_ROOT = 'template_root',
 }
