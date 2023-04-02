@@ -1,4 +1,3 @@
-import { KioskStatus } from '@indulasch-v3/backend/dist/types/kiosk.types';
 import { ReactElement } from 'react';
 import { TbBike, TbBus, TbCup, TbPhoto, TbQrcode, TbSettings, TbSun } from 'react-icons/tb';
 
@@ -16,6 +15,12 @@ export type KioskNotification = {
   webhookEnabled: boolean;
   emailEnabled: boolean;
 };
+
+export enum KioskStatus {
+  CONNECTED = 'CONNECTED',
+  DISCONNECTED = 'DISCONNECTED',
+  UNKNOWN = 'UNKNOWN',
+}
 
 export type KioskConfig = {
   style: Style;
