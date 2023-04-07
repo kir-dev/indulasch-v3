@@ -1,4 +1,4 @@
-import { Box, HStack, useBreakpointValue, VStack } from '@chakra-ui/react';
+import { Box, HStack, VStack } from '@chakra-ui/react';
 import Image from 'next/image';
 import { PropsWithChildren } from 'react';
 
@@ -8,7 +8,6 @@ interface Props extends PropsWithChildren {
 }
 
 export function Section({ children, image, reverse }: Props) {
-  const width = useBreakpointValue(['100%', '100%', '50%']);
   return (
     <section>
       <HStack
@@ -18,11 +17,11 @@ export function Section({ children, image, reverse }: Props) {
         my={10}
         spacing={5}
       >
-        <VStack w={width} align='flex-start'>
+        <VStack w={['100%', '100%', '50%']} align='flex-start'>
           {children}
         </VStack>
         {image && (
-          <Box p={5} maxW={width} margin='auto'>
+          <Box p={5} maxW={['100%', '100%', '50%']} margin='auto'>
             <Image
               src={image}
               alt='Image'
