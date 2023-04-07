@@ -13,6 +13,9 @@ export default function Document() {
         <link rel='manifest' href='/site.webmanifest' />
         <meta name='msapplication-TileColor' content='#97739c' />
         <meta name='theme-color' content='#171923' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://indulasch.kir-dev.hu/' />
+        <meta property='og:image' content='/banner.png' />
       </Head>
       <body>
         <TitleBar />
