@@ -1,0 +1,31 @@
+{
+  "name": "landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node_modules/.bin/next dev",
+    "build": "node_modules/.bin/next build",
+    "start": "node_modules/.bin/next start",
+    "lint": "node_modules/.bin/next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.18",
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.33",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.3.0",
+    "framer-motion": "^10.11.2",
+    "next": "13.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.3"
+  },
+  "devDependencies": {
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^2.8.7"
+  }
+}
