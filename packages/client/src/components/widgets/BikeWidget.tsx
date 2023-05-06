@@ -6,12 +6,18 @@ import { Widget } from '../../layout/Widget';
 import { useBikeQuery } from '../../network/bike.network';
 import { BikeConfig } from '../../types/widget.type';
 import { GlobalSize } from '../../utils/theme';
+import { useInterval } from '../../utils/useInterval';
 import { useWidgetConfig } from '../../utils/useWidgetConfig';
 import { WidgetDescription, WidgetHeading } from '../Text';
 
 export function BikeWidget() {
   const config = useWidgetConfig<BikeConfig>('bike');
-  const { data, error } = useBikeQuery();
+  const { data, error, refetch } = useBikeQuery();
+
+  useInterval(async () => {
+    await refetch();
+  }, 10000);
+
   if (!data || error) {
     return (
       <Widget grid={config.grid}>
