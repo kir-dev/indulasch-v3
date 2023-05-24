@@ -18,7 +18,6 @@ export class OauthStrategy extends PassportStrategy(Strategy, 'authsch') {
       tokenURL: `${AUTH_SCH_URL}/oauth2/token`,
       clientID: configService.get(ConfigKeys.AUTHSCH_CLIENT_ID),
       clientSecret: configService.get(ConfigKeys.AUTHSCH_CLIENT_SECRET),
-      callbackURL: '/admin/auth/callback',
       scope: ['basic', 'displayName', 'mail'],
     });
   }
