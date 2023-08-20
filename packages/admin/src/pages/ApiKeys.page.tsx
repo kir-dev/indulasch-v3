@@ -7,12 +7,15 @@ import { useKioskContext } from '../context/kiosk.context';
 import { Page } from '../layout/Page';
 import { useDeleteApiKey } from '../network/useDeleteApiKey.network';
 import { useKioskApiKeys } from '../network/useKioskApiKeys.network';
+import { useSetApiKeyRole } from '../network/useSetApiKeyRole.network';
+import { KioskRoles } from '../types/types';
 import { l } from '../utils/language';
 
 export function ApiKeysPage() {
   const { selectedKioskId } = useKioskContext();
   const { isLoading, data, makeRequest } = useKioskApiKeys(selectedKioskId ?? '');
   const deleteApiKey = useDeleteApiKey(selectedKioskId ?? '');
+  const setApiKeyRole = useSetApiKeyRole(selectedKioskId ?? '');
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   useEffect(() => {
@@ -21,6 +24,10 @@ export function ApiKeysPage() {
 
   const onDelete = (id: string) => {
     deleteApiKey.makeRequest(id, () => makeRequest(undefined));
+  };
+
+  const onChangeRole = (keyId: string, role: KioskRoles) => {
+    setApiKeyRole.makeRequest({ keyId, role }, () => makeRequest(undefined));
   };
 
   return (
@@ -35,6 +42,7 @@ export function ApiKeysPage() {
             <ApiKeyListItem
               key={apiKey._id}
               apiKey={apiKey}
+              onChangeRole={(role) => onChangeRole(apiKey._id, role)}
               onDeleteApiKey={() => {
                 onDelete(apiKey._id);
               }}

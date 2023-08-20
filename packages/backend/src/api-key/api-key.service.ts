@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { ApiKey } from '../schemas/api-key.schema';
 import { Kiosk } from '../schemas/kiosk.schema';
 import { CreateApiKeyDto } from '../types/dto.types';
+import { KioskRoles } from '../types/kiosk.types';
 
 @Injectable()
 export class ApiKeyService {
@@ -17,6 +18,14 @@ export class ApiKeyService {
       name: createApiKeyDto.name ?? '',
       key: uuid(),
     });
+  }
+
+  async setApiKeyRole(keyId: string, role: KioskRoles) {
+    const key = await this.apiKeyModel.findById(keyId);
+    if (key) {
+      key.role = role;
+      return key.save();
+    }
   }
 
   async getApiKeyAsUser(key: string) {

@@ -7,6 +7,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -15,15 +16,16 @@ import {
 import { TbClipboard, TbTrash } from 'react-icons/tb';
 
 import { ApiKey } from '../types/apiKeys.type';
-import { KioskRoleNames } from '../types/types';
+import { KioskRoleNames, KioskRoles } from '../types/types';
 import { l } from '../utils/language';
 
 interface ApiKeyListItemProps {
   apiKey: ApiKey;
   onDeleteApiKey: () => void;
+  onChangeRole: (role: KioskRoles) => void;
 }
 
-export function ApiKeyListItem({ apiKey, onDeleteApiKey }: ApiKeyListItemProps) {
+export function ApiKeyListItem({ apiKey, onDeleteApiKey, onChangeRole }: ApiKeyListItemProps) {
   const toast = useToast();
   const bgColor = useColorModeValue('gray.100', 'gray.600');
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -43,7 +45,15 @@ export function ApiKeyListItem({ apiKey, onDeleteApiKey }: ApiKeyListItemProps) 
       <HStack display={['none', null, 'flex']} overflow='hidden'>
         <Text isTruncated>{apiKey.key}</Text>
       </HStack>
-      <Text>{KioskRoleNames[apiKey.role]}</Text>
+      <Select w='fit-content' defaultValue={apiKey.role} onChange={(evt) => onChangeRole(parseInt(evt.target.value))}>
+        {Object.entries(KioskRoleNames)
+          .filter(([key]) => parseInt(key) <= KioskRoles.EDITOR)
+          .map(([key, value]) => (
+            <option key={key} value={key}>
+              {value}
+            </option>
+          ))}
+      </Select>
       <HStack>
         <ButtonGroup>
           <Button mr={1} variant='ghost' onClick={copy}>

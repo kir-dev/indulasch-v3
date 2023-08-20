@@ -10,6 +10,7 @@ import {
   CreateMessageDto,
   KioskPatchDto,
   MessagePatchDto,
+  SetApiKeyRoleDto,
   SetRoleDto,
   WidgetPatchDto,
 } from '../types/dto.types';
@@ -124,6 +125,16 @@ export class KioskController {
   @Post(':id/api-key')
   async createApiKey(@Param('id') kioskId: string, @Body() createApiKeyDto: CreateApiKeyDto) {
     return this.apiKeyService.createApiKey(kioskId, createApiKeyDto);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
+  @Patch(':id/api-key/:keyId/role')
+  async setApiKeyRole(
+    @Param('id') kioskId: string,
+    @Param('keyId') keyId: string,
+    @Body() setApiKeyRoleDto: SetApiKeyRoleDto
+  ) {
+    return this.apiKeyService.setApiKeyRole(keyId, setApiKeyRoleDto.role);
   }
 
   @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
