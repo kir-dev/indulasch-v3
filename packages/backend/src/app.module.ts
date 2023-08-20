@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { ApiKeyModule } from './api-key/api-key.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -34,6 +35,7 @@ import configuration, { ConfigKeys } from './utils/configuration';
     MessageModule,
     ClientModule,
     NotificationModule,
+    ApiKeyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

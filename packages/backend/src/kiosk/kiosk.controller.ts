@@ -1,13 +1,16 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { Types } from 'mongoose';
 
+import { ApiKeyService } from '../api-key/api-key.service';
 import { RoleBasedAuthGuard } from '../auth/role.guard';
 import { MessageService } from '../message/message.service';
 import {
+  CreateApiKeyDto,
   CreateKioskDto,
   CreateMessageDto,
   KioskPatchDto,
   MessagePatchDto,
+  SetApiKeyRoleDto,
   SetRoleDto,
   WidgetPatchDto,
 } from '../types/dto.types';
@@ -21,6 +24,7 @@ export class KioskController {
   constructor(
     private readonly kioskService: KioskService,
     private readonly userService: UsersService,
+    private readonly apiKeyService: ApiKeyService,
     private readonly messageService: MessageService
   ) {}
 
@@ -115,5 +119,33 @@ export class KioskController {
   @Get(':id/message')
   async getMessages(@Param('id') kioskId: string) {
     return await this.messageService.getMessageList(kioskId);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
+  @Post(':id/api-key')
+  async createApiKey(@Param('id') kioskId: string, @Body() createApiKeyDto: CreateApiKeyDto) {
+    return this.apiKeyService.createApiKey(kioskId, createApiKeyDto);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
+  @Patch(':id/api-key/:keyId/role')
+  async setApiKeyRole(
+    @Param('id') kioskId: string,
+    @Param('keyId') keyId: string,
+    @Body() setApiKeyRoleDto: SetApiKeyRoleDto
+  ) {
+    return this.apiKeyService.setApiKeyRole(keyId, setApiKeyRoleDto.role);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
+  @Get(':id/api-key')
+  async getApiKey(@Param('id') kioskId: string) {
+    return this.apiKeyService.getApiKeysForKioskId(kioskId);
+  }
+
+  @UseGuards(RoleBasedAuthGuard(KioskRoles.EDITOR))
+  @Delete(':id/api-key/:keyId')
+  async deleteApiKey(@Param('id') kioskId: string, @Param('keyId') keyId: string) {
+    return this.apiKeyService.deleteApiKey(keyId);
   }
 }

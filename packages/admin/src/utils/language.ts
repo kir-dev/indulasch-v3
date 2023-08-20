@@ -16,6 +16,7 @@ const languageData = {
   'title.widgetEdit': 'Csempék beállításai',
   'title.widgets': 'Csempék',
   'title.dashboard': 'Dashboard',
+  'title.apiKeys': 'API Kulcsok',
   'error.wrongCredentials': 'Hibás bejelentkezési adatok',
   'error.unauthorized': 'Nem vagy bejelentkezve',
   'error.forbidden': 'Nincs jogosultságod',
@@ -106,6 +107,16 @@ const languageData = {
   'page.users.roleModified': 'Jogosultság módosítva',
   'page.users.roleModificationError': 'Módosítás sikertelen',
   'page.users.newUser': 'Új kezelő',
+  'page.apiKeys.newApiKey': 'Új API kulcs',
+  'page.apiKeys.copySuccess': 'Másolva!',
+  'page.apiKeys.copyFail': 'Sikertelen másolás!',
+  'page.apiKeys.warning':
+    'A nem használt API kulcsokat mindig távolítsd el! A jogosultságokat tartsd a lehető legkisebb szinten!',
+  'addApiKeyModal.header': 'API Kulcs hozzáadása',
+
+  'addApiKeyModal.warning':
+    'Használd a lehető legkissebb jogosultságot! Az API kulcs minden olyan funkcióhoz hozzáfér, amelyhez az adott rang is hozzáfér.',
+  'addApiKeyModal.label.name': 'Kulcs neve',
   'page.notification.email.label': 'E-mail értesítés',
   'page.notification.email.helper': 'Az AuthSch fiókod e-mail címére küldünk értesítőt.',
   'page.notification.webhookUrl.label': 'Webhook URL',

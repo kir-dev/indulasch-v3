@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
+import { ApiKeyModule } from '../api-key/api-key.module';
+import { ApiKeyStrategy } from '../strategies/apiKey.strategy';
 import { JwtStrategy } from '../strategies/jwt.strategy';
 import { OauthStrategy } from '../strategies/oauth.strategy';
 import { UsersModule } from '../users/users.module';
@@ -14,6 +16,7 @@ import { AuthService } from './auth.service';
   imports: [
     UsersModule,
     PassportModule,
+    ApiKeyModule,
     JwtModule.registerAsync({
       useFactory: (config: ConfigService) => {
         return {
@@ -26,7 +29,7 @@ import { AuthService } from './auth.service';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthService, JwtStrategy, OauthStrategy],
+  providers: [AuthService, JwtStrategy, OauthStrategy, ApiKeyStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })
