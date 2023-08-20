@@ -13,5 +13,7 @@ RUN yarn install
 # Copy the rest of the project files to the container
 COPY . .
 
+COPY src/templates ./templates
+
 # Build the NestJS application (you might need to adjust the build command based on your project's setup)
 RUN yarn build
