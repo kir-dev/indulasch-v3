@@ -24,7 +24,7 @@ import * as Yup from 'yup';
 import { useKioskContext } from '../context/kiosk.context';
 import { useCreateApiKey } from '../network/useCreateApiKey.network';
 import { CreateApiKeyDto } from '../types/apiKeys.type';
-import { KioskRoleNames } from '../types/types';
+import { KioskRoleNames, KioskRoles } from '../types/types';
 import { l } from '../utils/language';
 
 interface AddApiKeyModalProps {
@@ -72,11 +72,13 @@ export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
               <FormControl isInvalid={!!errors.role}>
                 <FormLabel>{l('addUserModal.label.role')}</FormLabel>
                 <Select {...register('role')}>
-                  {Object.entries(KioskRoleNames).map(([key, value]) => (
-                    <option key={key} value={key}>
-                      {value}
-                    </option>
-                  ))}
+                  {Object.entries(KioskRoleNames)
+                    .filter(([key]) => parseInt(key) <= KioskRoles.EDITOR)
+                    .map(([key, value]) => (
+                      <option key={key} value={key}>
+                        {value}
+                      </option>
+                    ))}
                 </Select>
                 {!!errors.role && <FormErrorMessage>{errors.role.message}</FormErrorMessage>}
               </FormControl>

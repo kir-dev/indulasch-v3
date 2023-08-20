@@ -13,7 +13,7 @@ export class ApiKeyService {
   createApiKey(kioskId: string, createApiKeyDto: CreateApiKeyDto) {
     return this.apiKeyModel.create({
       kioskId,
-      role: createApiKeyDto.role ?? 0,
+      role: Math.min(createApiKeyDto.role ?? 0, 2),
       name: createApiKeyDto.name ?? '',
       key: uuid(),
     });

@@ -38,6 +38,9 @@ export function ApiKeyListItem({ apiKey, onDeleteApiKey }: ApiKeyListItemProps) 
   return (
     <HStack justifyContent='space-between' p={3} backgroundColor={bgColor} borderRadius='lg' w='100%'>
       <HStack overflow='hidden'>
+        <Text isTruncated>{apiKey.name}</Text>
+      </HStack>
+      <HStack display={['none', null, 'flex']} overflow='hidden'>
         <Text isTruncated>{apiKey.key}</Text>
       </HStack>
       <Text>{KioskRoleNames[apiKey.role]}</Text>
