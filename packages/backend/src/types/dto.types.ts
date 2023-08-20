@@ -27,6 +27,15 @@ export type CreateMessageDto = {
   until: Date;
 };
 
+export type CreateApiKeyDto = {
+  name: string;
+  role: KioskRoles;
+};
+
+export type SetApiKeyRoleDto = {
+  role: KioskRoles;
+};
+
 export enum MessageKinds {
   INFO = 'INFO',
   WARNING = 'WARNING',

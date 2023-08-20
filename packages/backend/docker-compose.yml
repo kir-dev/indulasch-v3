@@ -1,3 +1,4 @@
+name: indulasch
 services:
   backend:
     build: .
