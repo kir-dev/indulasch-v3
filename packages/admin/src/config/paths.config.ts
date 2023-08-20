@@ -11,6 +11,7 @@ export enum UIPaths {
   DASHBOARD = '/dashboard',
   USERS = '/users',
   NOTIFICATIONS = '/notifications',
+  API_KEYS = '/api-keys',
 }
 
 export enum ApiPaths {

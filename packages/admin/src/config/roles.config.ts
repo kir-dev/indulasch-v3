@@ -3,12 +3,14 @@ import {
   TbApps,
   TbBell,
   TbCircleHalf2,
+  TbKey,
   TbListDetails,
   TbMessage,
   TbSettings,
   TbUsers,
 } from 'react-icons/tb';
 
+import { ApiKeysPage } from '../pages/ApiKeys.page';
 import { KioskDashboardPage } from '../pages/KioskDashboard.page';
 import { MessagesPage } from '../pages/Messages.page';
 import { MetaPage } from '../pages/Meta.page';
@@ -63,6 +65,13 @@ export const MenuItems: MenuItem[] = [
     page: MessagesPage,
     icon: TbMessage({}),
     minRole: KioskRoles.MARKETING,
+  },
+  {
+    name: l('title.apiKeys'),
+    path: UIPaths.API_KEYS,
+    page: ApiKeysPage,
+    icon: TbKey({}),
+    minRole: KioskRoles.EDITOR,
   },
   {
     name: l('title.users'),
