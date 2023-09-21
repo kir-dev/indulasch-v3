@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { TbBike, TbBus, TbCup, TbPhoto, TbQrcode, TbSettings, TbSun } from 'react-icons/tb';
+import { TbAlignLeft, TbBike, TbBus, TbCup, TbPhoto, TbQrcode, TbSun } from 'react-icons/tb';
 
 export type Kiosk = {
   _id: string;
@@ -58,12 +58,12 @@ export type ColorModeColor = {
   dark: string;
 };
 
-export type WidgetName = 'weather' | 'schpincer' | 'custom' | 'image' | 'qr' | 'departures' | 'bike';
+export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike';
 
 export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElement }> = {
   weather: { name: 'Időjárás', icon: TbSun({ size: 50 }) },
   schpincer: { name: 'Schpincér', icon: TbCup({ size: 50 }) },
-  custom: { name: 'Egyedi', icon: TbSettings({ size: 50 }) },
+  text: { name: 'Szöveg', icon: TbAlignLeft({ size: 50 }) },
   image: { name: 'Kép', icon: TbPhoto({ size: 50 }) },
   qr: { name: 'QR Kód', icon: TbQrcode({ size: 50 }) },
   departures: { name: 'Indulások', icon: TbBus({ size: 50 }) },
@@ -86,7 +86,7 @@ export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
   ],
   departures: [{ name: 'radius', type: 'number', label: 'Hatósugár' }],
   bike: [],
-  custom: [
+  text: [
     { name: 'title', type: 'text', label: 'Cím' },
     { name: 'subtitle', type: 'text', label: 'Alcím' },
   ],
@@ -107,8 +107,8 @@ export interface SchpincerConfig extends WidgetConfigBase {
   apiKey: string;
 }
 
-export interface CustomConfig extends WidgetConfigBase {
-  name: 'custom';
+export interface TextConfig extends WidgetConfigBase {
+  name: 'text';
   title: string;
   subtitle: string;
 }
@@ -148,7 +148,7 @@ export type WidgetWithoutGrid = Omit<WidgetConfig, 'grid'>;
 export type WidgetConfig =
   | WeatherConfig
   | SchpincerConfig
-  | CustomConfig
+  | TextConfig
   | ImageConfig
   | QRConfig
   | DeparturesConfig

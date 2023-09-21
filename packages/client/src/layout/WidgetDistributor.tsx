@@ -5,6 +5,7 @@ import { Departures } from '../components/widgets/departures/Departures';
 import { ImageWidget } from '../components/widgets/ImageWidget';
 import { QrWidget } from '../components/widgets/QrWidget';
 import { SchPincerWidget } from '../components/widgets/SchPincerWidget';
+import { TextWidget } from '../components/widgets/TextWidget';
 import { WeatherWidget } from '../components/widgets/WeatherWidget';
 import { WidgetConfig } from '../types/widget.type';
 
@@ -26,6 +27,8 @@ export function WidgetDistributor({ config }: WidgetDistributorProps) {
       return <QrWidget />;
     case 'image':
       return <ImageWidget />;
+    case 'text':
+      return <TextWidget />;
     default:
       return null;
   }

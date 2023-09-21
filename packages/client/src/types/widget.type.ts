@@ -1,4 +1,4 @@
-export type WidgetName = 'weather' | 'schpincer' | 'custom' | 'image' | 'qr' | 'departures' | 'bike';
+export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike';
 
 export type WidgetConfigBase = {
   name: WidgetName;
@@ -15,8 +15,8 @@ export interface SchpincerConfig extends WidgetConfigBase {
   apiKey: string;
 }
 
-export interface CustomConfig extends WidgetConfigBase {
-  name: 'custom';
+export interface TextConfig extends WidgetConfigBase {
+  name: 'text';
   title: string;
   subtitle: string;
 }
@@ -54,7 +54,7 @@ type Axis = {
 export type WidgetConfig =
   | WeatherConfig
   | SchpincerConfig
-  | CustomConfig
+  | TextConfig
   | ImageConfig
   | QRConfig
   | DeparturesConfig
