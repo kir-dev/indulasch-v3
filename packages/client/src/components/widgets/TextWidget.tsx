@@ -10,7 +10,7 @@ export function TextWidget() {
   return (
     <Widget grid={config.grid}>
       <WidgetHeading>{config.title}</WidgetHeading>
-      <WidgetDescription>{config.title}</WidgetDescription>
+      <WidgetDescription>{config.subtitle}</WidgetDescription>
     </Widget>
   );
 }
