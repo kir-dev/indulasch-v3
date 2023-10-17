@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { UIPaths } from '../config/paths.config';
 import { useAuthContext } from '../context/auth.context';
@@ -7,8 +7,9 @@ import { NewKioskPage } from '../pages/NewKiosk.page';
 
 export function KioskSelectorNavigator() {
   const { user, isAuthenticated } = useAuthContext();
-  const navigate = useNavigate();
-  if (!isAuthenticated || !user) navigate(UIPaths.LOGIN);
+  if (!isAuthenticated || !user) {
+    return <Navigate to={UIPaths.LOGIN} replace={true} />
+  }
   return (
     <Routes>
       <Route path={UIPaths.NEW_KIOSK} element={<NewKioskPage />} />
