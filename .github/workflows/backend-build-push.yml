@@ -23,7 +23,8 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx inspect --bootstrap
-          docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKER_REGISTRY_URL }}/your-image-name:latest -f packages/backend/Dockerfile .
+          docker buildx build --platform linux/amd64 -t indulasch-backend -f packages/backend/Dockerfile ./packages/backend
+          docker buildx tag indulasch-backend:latest ${{ secrets.DOCKER_REGISTRY_URL }}/indulasch-backend:latest
           docker push ${{ secrets.DOCKER_REGISTRY_URL }}/indulasch-backend:latest
 
       - name: Logout from Docker Registry
