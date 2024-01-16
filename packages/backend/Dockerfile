@@ -1,5 +1,5 @@
 # Use the official Node.js LTS (Long Term Support) image as the base image
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -17,3 +17,5 @@ COPY src/templates ./templates
 
 # Build the NestJS application (you might need to adjust the build command based on your project's setup)
 RUN yarn build
+
+CMD ["node", "dist/main"]
