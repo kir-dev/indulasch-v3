@@ -1,0 +1,128 @@
+name: Code Style Check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  backend-eslint:
+    name: Backend ESLint Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dev Dependencies
+        run: |
+          npm install --only=dev
+        working-directory: "./packages/backend"
+
+      - name: Run ESLint
+        run: npm run lint
+        working-directory: "./packages/backend"
+
+  backend-prettier:
+    name: Backend Prettier Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dev Dependencies
+        run: |
+          npm install --only=dev
+        working-directory: "./packages/backend"
+
+      - name: Run Prettier
+        run: npm run prettier
+        working-directory: "./packages/backend"
+
+  admin-eslint:
+    name: Admin ESLint Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dev Dependencies
+        run: |
+          npm install --only=dev
+        working-directory: "./packages/admin"
+
+      - name: Run ESLint
+        run: npm run lint
+        working-directory: "./packages/admin"
+
+  admin-prettier:
+    name: Admin Prettier Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dev Dependencies
+        run: |
+          npm install --only=dev
+        working-directory: "./packages/admin"
+
+      - name: Run Prettier
+        run: npm run prettier
+        working-directory: "./packages/admin"
+
+  client-eslint:
+    name: Client ESLint Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dev Dependencies
+        run: |
+          npm install --only=dev
+        working-directory: "./packages/client"
+
+      - name: Run ESLint
+        run: npm run lint
+        working-directory: "./packages/client"
+
+  client-prettier:
+    name: Client Prettier Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dev Dependencies
+        run: |
+          npm install --only=dev
+        working-directory: "./packages/client"
+
+      - name: Run Prettier
+        run: npm run prettier
+        working-directory: "./packages/client"

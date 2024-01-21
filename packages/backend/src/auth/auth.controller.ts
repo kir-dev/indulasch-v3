@@ -1,13 +1,16 @@
 import { Controller, Get, Request, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { OauthGuard } from '../strategies/oauth.strategy';
 import { ConfigKeys } from '../utils/configuration';
 import { AuthService } from './auth.service';
+import { OauthGuard } from './oauth.guard';
 
 @Controller('admin/auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService, private readonly configService: ConfigService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService
+  ) {}
 
   @UseGuards(OauthGuard)
   @Get('login')

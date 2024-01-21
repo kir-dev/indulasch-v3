@@ -3,8 +3,9 @@ import * as process from 'process';
 export default () => ({
   admin_site_callback: process.env.ADMIN_SITE_CALLBACK,
   futar_api_key: process.env.FUTAR_API_KEY,
-  authSch_client_id: process.env.AUTHSCH_CLIENT_ID,
-  authSch_client_secret: process.env.AUTHSCH_CLIENT_SECRET,
+  oauth_base_url: process.env.OAUTH_BASE_URL,
+  oauth_client_id: process.env.OAUTH_CLIENT_ID,
+  oauth_client_secret: process.env.OAUTH_CLIENT_SECRET,
   mongodbUri: process.env.MONGODB_URI,
   expiration: process.env.JWT_EXPIRATION || '1h',
   port: parseInt(process.env.PORT, 10) || 3000,
@@ -17,8 +18,9 @@ export default () => ({
 
 export enum ConfigKeys {
   ADMIN_SITE_CALLBACK = 'admin_site_callback',
-  AUTHSCH_CLIENT_ID = 'authSch_client_id',
-  AUTHSCH_CLIENT_SECRET = 'authSch_client_secret',
+  OAUTH_BASE_URL = 'oauth_base_url',
+  OAUTH_CLIENT_ID = 'oauth_client_id',
+  OAUTH_CLIENT_SECRET = 'oauth_client_secret',
   FUTAR_API_KEY = 'futar_api_key',
   EXPIRATION = 'expiration',
   MONGODB_URI = 'mongodbUri',
