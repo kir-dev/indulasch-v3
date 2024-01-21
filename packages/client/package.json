@@ -30,8 +30,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "prettier": "prettier -c src/**/*",
-    "prettier:fix": "prettier --write src/**/*"
+    "prettier": "prettier -c \"src/**/*\"",
+    "prettier:fix": "prettier --write \"src/**/*\""
   },
   "eslintConfig": {
     "extends": [
