@@ -18,7 +18,10 @@ const config: ConfigParams = {
 
 @Controller('admin/auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService, private readonly configService: ConfigService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService
+  ) {}
 
   @UseGuards(OauthGuard)
   @Get('login')

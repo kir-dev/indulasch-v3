@@ -7,6 +7,7 @@ export interface MailingModuleOptions {
   apiKey: string;
   mailServiceUrl: string;
 }
+
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new ConfigurableModuleBuilder<MailingModuleOptions>({
   moduleName: 'Mailing',
 }).build();

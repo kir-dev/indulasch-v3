@@ -12,6 +12,7 @@ import { User } from '../users/users.model';
 @Injectable()
 export class ApiKeyService {
   constructor(@InjectModel(ApiKey.name) private readonly apiKeyModel: Model<ApiKey>) {}
+
   createApiKey(kioskId: string, createApiKeyDto: CreateApiKeyDto) {
     return this.apiKeyModel.create({
       kioskId,

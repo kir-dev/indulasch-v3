@@ -3,14 +3,17 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import axios from 'axios';
 import { Strategy } from 'passport-oauth2';
-import { Auth0Profile } from '../types/auth.types';
 
+import { Auth0Profile } from '../types/auth.types';
 import { UsersService } from '../users/users.service';
 import { ConfigKeys } from '../utils/configuration';
 
 @Injectable()
 export class Auth0Strategy extends PassportStrategy(Strategy, 'auth0') {
-  constructor(private configService: ConfigService, private userService: UsersService) {
+  constructor(
+    private configService: ConfigService,
+    private userService: UsersService
+  ) {
     super({
       authorizationURL: `${configService.get(ConfigKeys.OAUTH_BASE_URL)}/authorize`,
       tokenURL: `${configService.get(ConfigKeys.OAUTH_BASE_URL)}/oauth/token`,

@@ -7,7 +7,6 @@ import { ApiKeyModule } from '../api-key/api-key.module';
 import { ApiKeyStrategy } from '../strategies/apiKey.strategy';
 import { Auth0Strategy } from '../strategies/auth0.strategy';
 import { JwtStrategy } from '../strategies/jwt.strategy';
-import { OauthStrategy } from '../strategies/oauth.strategy';
 import { UsersModule } from '../users/users.module';
 import { ConfigKeys } from '../utils/configuration';
 import { AuthController } from './auth.controller';

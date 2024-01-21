@@ -10,6 +10,7 @@ import { ConfigKeys } from '../utils/configuration';
 @Injectable()
 export class ClientService {
   private readonly apiUrl: URL;
+
   constructor(private configService: ConfigService) {
     this.apiUrl = new URL('https://go.bkk.hu/api/query/v1/ws/otp/api/where/arrivals-and-departures-for-location.json');
     this.apiUrl.searchParams.append('minutesBefore', '0');
@@ -18,6 +19,7 @@ export class ClientService {
     this.apiUrl.searchParams.append('onlyDepartures', 'true');
     this.apiUrl.searchParams.append('key', configService.get<string>(ConfigKeys.FUTAR_API_KEY));
   }
+
   getUrl({ lat, lon, radius }: DepartureQueryDto) {
     const url = new URL(this.apiUrl);
     url.searchParams.append('radius', radius.toString());
@@ -27,6 +29,7 @@ export class ClientService {
     url.searchParams.append('clientLat', lat);
     return url;
   }
+
   async getDepartures(query: DepartureQueryDto) {
     const url = this.getUrl(query).toString();
     let response: AxiosResponse<FutarAPI>;

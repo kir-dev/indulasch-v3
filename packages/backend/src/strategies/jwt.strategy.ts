@@ -9,7 +9,10 @@ import { ConfigKeys } from '../utils/configuration';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private configService: ConfigService, private userService: UsersService) {
+  constructor(
+    private configService: ConfigService,
+    private userService: UsersService
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
