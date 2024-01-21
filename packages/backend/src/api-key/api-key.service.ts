@@ -7,6 +7,7 @@ import { ApiKey } from '../schemas/api-key.schema';
 import { Kiosk } from '../schemas/kiosk.schema';
 import { CreateApiKeyDto } from '../types/dto.types';
 import { KioskRoles } from '../types/kiosk.types';
+import { User } from '../users/users.model';
 
 @Injectable()
 export class ApiKeyService {
@@ -28,7 +29,7 @@ export class ApiKeyService {
     }
   }
 
-  async getApiKeyAsUser(key: string) {
+  async getApiKeyAsUser(key: string): Promise<User> {
     const apiKey = await this.apiKeyModel
       .findOne({ key })
       .populate({
@@ -43,7 +44,7 @@ export class ApiKeyService {
       return {
         displayName: 'ApiKey-' + apiKey.name.replace(' ', ''),
         mail: '',
-        authSchId: '',
+        authId: '',
         isAdmin: false,
         roles: [{ kioskId: apiKey.kioskId, role: apiKey.role }],
       };

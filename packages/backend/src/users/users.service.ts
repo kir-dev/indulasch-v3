@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
 import { Kiosk } from '../schemas/kiosk.schema';
-import { OauthProfile } from '../types/auth.types';
+import { Auth0Profile, AuthSchProfile } from '../types/auth.types';
 import { KioskRoles } from '../types/kiosk.types';
 import { User, UserDocument } from './users.model';
 
@@ -14,11 +14,22 @@ export class UsersService {
     @InjectModel(Kiosk.name) private readonly kioskModel: Model<Kiosk>
   ) {}
 
-  async createUser(authSchProfile: OauthProfile): Promise<UserDocument> {
+  async createUserForAuthSchUser(authSchProfile: AuthSchProfile): Promise<UserDocument> {
     return this.userModel.create({
-      authSchId: authSchProfile.internal_id,
+      authId: authSchProfile.internal_id,
       mail: authSchProfile.mail,
       displayName: authSchProfile.displayName,
+      isAdmin: false,
+      roles: [],
+    });
+  }
+
+  async createUserForAuth0User(auth0Profile: Auth0Profile): Promise<UserDocument> {
+    console.log(auth0Profile);
+    return this.userModel.create({
+      authId: auth0Profile.sub,
+      mail: auth0Profile.email,
+      displayName: auth0Profile.name,
       isAdmin: false,
       roles: [],
     });
@@ -40,9 +51,9 @@ export class UsersService {
       .exec();
   }
 
-  async getUserByAuthSchId(authSchId: string): Promise<UserDocument | undefined> {
+  async getUserByAuthId(authId: string): Promise<UserDocument | undefined> {
     return await this.userModel
-      .findOne({ authSchId })
+      .findOne({ authId: authId })
       .populate({
         path: 'roles.kioskId',
         foreignField: '_id',

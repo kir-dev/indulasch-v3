@@ -5,6 +5,7 @@ import { PassportModule } from '@nestjs/passport';
 
 import { ApiKeyModule } from '../api-key/api-key.module';
 import { ApiKeyStrategy } from '../strategies/apiKey.strategy';
+import { Auth0Strategy } from '../strategies/auth0.strategy';
 import { JwtStrategy } from '../strategies/jwt.strategy';
 import { OauthStrategy } from '../strategies/oauth.strategy';
 import { UsersModule } from '../users/users.module';
@@ -29,7 +30,7 @@ import { AuthService } from './auth.service';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthService, JwtStrategy, OauthStrategy, ApiKeyStrategy],
+  providers: [AuthService, JwtStrategy, Auth0Strategy, ApiKeyStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })
