@@ -28,11 +28,8 @@ export class Auth0Strategy extends PassportStrategy(Strategy, 'auth0') {
   async validate(accessToken: string) {
     const profile = await this.fetchProfile(accessToken);
     const user = await this.userService.getUserByAuthId(profile.sub);
-    console.log('user', user);
     if (!user) {
-      const newUser = await this.userService.createUserForAuth0User(profile);
-      console.log('newUser', newUser);
-      return newUser;
+      return await this.userService.createUserForAuth0User(profile);
     }
     return user;
   }

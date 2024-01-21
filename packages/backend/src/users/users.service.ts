@@ -25,7 +25,6 @@ export class UsersService {
   }
 
   async createUserForAuth0User(auth0Profile: Auth0Profile): Promise<UserDocument> {
-    console.log(auth0Profile);
     return this.userModel.create({
       authId: auth0Profile.sub,
       mail: auth0Profile.email,
