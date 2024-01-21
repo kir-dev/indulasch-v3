@@ -14,10 +14,12 @@ export default () => ({
   mailServerUrl: process.env.MAIL_SERVER_URL,
   mailApiKey: process.env.MAIL_API_KEY,
   template_root: process.env.TEMPLATE_ROOT,
+  oauth_redirect_uri: process.env.OAUTH_REDIRECT_URI,
 });
 
 export enum ConfigKeys {
   ADMIN_SITE_CALLBACK = 'admin_site_callback',
+  OAUTH_REDIRECT_URI = 'oauth_redirect_uri',
   OAUTH_BASE_URL = 'oauth_base_url',
   OAUTH_CLIENT_ID = 'oauth_client_id',
   OAUTH_CLIENT_SECRET = 'oauth_client_secret',

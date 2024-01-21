@@ -21,7 +21,7 @@ export class Auth0Strategy extends PassportStrategy(Strategy, 'auth0') {
       clientSecret: configService.get(ConfigKeys.OAUTH_CLIENT_SECRET),
       profileURL: `${configService.get(ConfigKeys.OAUTH_BASE_URL)}/userinfo`,
       scope: ['profile', 'openid', 'email'],
-      callbackURL: `http://localhost:3002/admin/auth/callback`,
+      callbackURL: configService.get(ConfigKeys.OAUTH_REDIRECT_URI),
     });
   }
 
