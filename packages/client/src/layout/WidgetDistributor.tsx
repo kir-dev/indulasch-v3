@@ -6,6 +6,7 @@ import { ImageWidget } from '../components/widgets/ImageWidget';
 import { QrWidget } from '../components/widgets/QrWidget';
 import { SchPincerWidget } from '../components/widgets/SchPincerWidget';
 import { TextWidget } from '../components/widgets/TextWidget';
+import { WeatherCamWidget } from '../components/widgets/WeatherCamWidget';
 import { WeatherWidget } from '../components/widgets/WeatherWidget';
 import { WidgetConfig } from '../types/widget.type';
 
@@ -29,6 +30,8 @@ export function WidgetDistributor({ config }: WidgetDistributorProps) {
       return <ImageWidget />;
     case 'text':
       return <TextWidget />;
+    case 'weathercam':
+      return <WeatherCamWidget />;
     default:
       return null;
   }

@@ -1,4 +1,4 @@
-export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike';
+export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike' | 'weathercam';
 
 export type WidgetConfigBase = {
   name: WidgetName;
@@ -41,6 +41,10 @@ export interface BikeConfig extends WidgetConfigBase {
   name: 'bike';
 }
 
+export interface WeatherCamConfig extends WidgetConfigBase {
+  name: 'weathercam';
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -58,4 +62,5 @@ export type WidgetConfig =
   | ImageConfig
   | QRConfig
   | DeparturesConfig
-  | BikeConfig;
+  | BikeConfig
+  | WeatherCamConfig;

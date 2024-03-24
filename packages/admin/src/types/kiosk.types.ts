@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { TbAlignLeft, TbBike, TbBus, TbCup, TbPhoto, TbQrcode, TbSun } from 'react-icons/tb';
+import { TbAlignLeft, TbBike, TbBus, TbCloudStorm, TbCup, TbPhoto, TbQrcode, TbSun } from 'react-icons/tb';
 
 export type Kiosk = {
   _id: string;
@@ -58,7 +58,7 @@ export type ColorModeColor = {
   dark: string;
 };
 
-export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike';
+export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike' | 'weathercam';
 
 export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElement }> = {
   weather: { name: 'Időjárás', icon: TbSun({ size: 50 }) },
@@ -68,6 +68,7 @@ export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElemen
   qr: { name: 'QR Kód', icon: TbQrcode({ size: 50 }) },
   departures: { name: 'Indulások', icon: TbBus({ size: 50 }) },
   bike: { name: 'Bubi', icon: TbBike({ size: 50 }) },
+  weathercam: { name: 'Időjárás kamera', icon: TbCloudStorm({ size: 50 }) },
 };
 
 type WidgetConfigField = {
@@ -90,6 +91,7 @@ export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
     { name: 'title', type: 'text', label: 'Cím' },
     { name: 'subtitle', type: 'text', label: 'Alcím' },
   ],
+  weathercam: [],
 };
 
 export type WidgetConfigBase = {
@@ -133,6 +135,10 @@ export interface BikeConfig extends WidgetConfigBase {
   name: 'bike';
 }
 
+export interface WeatherCamConfig extends WidgetConfigBase {
+  name: 'weathercam';
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -152,4 +158,5 @@ export type WidgetConfig =
   | ImageConfig
   | QRConfig
   | DeparturesConfig
-  | BikeConfig;
+  | BikeConfig
+  | WeatherCamConfig;
