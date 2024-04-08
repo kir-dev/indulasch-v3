@@ -11,6 +11,7 @@ export type Departure = {
   alert: string;
   isDelayed: boolean;
   departureText: string;
+  stopId: string;
 };
 
 export type Alert = {

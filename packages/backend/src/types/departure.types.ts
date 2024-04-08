@@ -90,6 +90,7 @@ export type Departure = {
   alert: string[] | undefined;
   isDelayed: boolean;
   departureText: string;
+  stopId: string;
 };
 export type Style = {
   color: string;
