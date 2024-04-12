@@ -7,6 +7,7 @@ import { useDepartureQuery } from '../../network/departure.network';
 import { DeparturesConfig, MapConfig } from '../../types/widget.type';
 import { useInterval } from '../../utils/useInterval';
 import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { RealCity } from '../RealCity';
 import { WidgetHeading } from '../Text';
 
 const mapSrc = 'https://futar.bkk.hu/ride-gui/sign.html';
@@ -27,7 +28,6 @@ export function MapWidget() {
 
   const src = useMemo(() => {
     const url = new URL(mapSrc);
-    console.log(data);
     data?.departures?.map((departure) => departure.stopId).forEach((stop) => url.searchParams.append('stop', stop));
     url.searchParams.set('mapZoom', config.zoom.toString());
     url.searchParams.set('mapBoundsRadiusMeters', config.radius.toString());
@@ -35,7 +35,7 @@ export function MapWidget() {
     url.searchParams.set('mapWidth', mapWidth);
     return url.toString();
   }, [data]);
-  console.log(config.grid.column.end - config.grid.column.start - 1);
+
   if (error || !data) {
     return (
       <Widget grid={config.grid}>
@@ -55,7 +55,9 @@ export function MapWidget() {
             top: -430 + 120 * (config.grid.row.end - config.grid.row.start - 1),
           }}
         ></IFrameContainer>
-        <SponsorText>Forrás: realcity.io</SponsorText>
+        <SponsorText>
+          <RealCity size={35} />
+        </SponsorText>
       </ContentContainer>
     </Widget>
   );
@@ -86,4 +88,6 @@ const SponsorText = styled.p`
   bottom: 0;
   right: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 `;
