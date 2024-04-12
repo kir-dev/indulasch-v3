@@ -20,7 +20,7 @@ export function Field({ departure }: FieldProps) {
         <LineNumber circle={departure.style.icon.type !== 'BOX'} backgroundColor={departure.style.color}>
           <LineText color={departure.style.icon.textColor}>{departure.style.icon.text}</LineText>
         </LineNumber>
-        {departure.alert && <FiAlertCircle size={40} color='orange' />}
+        {departure.alert.length > 1 && <FiAlertCircle size={40} color='orange' />}
       </LineElement>
       <DestinationElement>
         <DestinationText>{departure.headsign}</DestinationText>
