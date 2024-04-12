@@ -105,6 +105,8 @@ export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
   map: [
     { name: 'radius', type: 'number', label: 'Hatósugár' },
     { name: 'zoom', type: 'number', label: 'Nagyítás' },
+    { name: 'xOffset', type: 'number', label: 'X eltolás' },
+    { name: 'yOffset', type: 'number', label: 'Y eltolás' },
   ],
 };
 
@@ -156,6 +158,8 @@ export interface MapConfig extends WidgetConfigBase {
   name: 'map';
   radius: number;
   zoom: number;
+  yOffset: number;
+  xOffset: number;
 }
 
 export type GridSettings = {

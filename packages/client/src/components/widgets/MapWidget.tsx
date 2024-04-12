@@ -19,7 +19,7 @@ export function MapWidget() {
   useInterval(async () => {
     await refetch();
   }, 5000);
-  const mapWidth = '1800px';
+  const mapWidth = '2000px';
   const {
     config: {
       meta: { coordinates },
@@ -35,7 +35,6 @@ export function MapWidget() {
     url.searchParams.set('mapWidth', mapWidth);
     return url.toString();
   }, [data]);
-
   if (error || !data) {
     return (
       <Widget grid={config.grid}>
@@ -45,14 +44,22 @@ export function MapWidget() {
       </Widget>
     );
   }
+  const leftBaseOffset = -760 * devicePixelRatio;
+  const topBaseOffset = -300 * devicePixelRatio;
+  const leftZoomOffset = 1050 * (devicePixelRatio / 2 - 1);
+  const topZoomOffset = 210 * (devicePixelRatio / 2 - 1);
+  const leftColumnOffset =
+    (devicePixelRatio > 1.75 ? 120 : 160) * (config.grid.column.end - config.grid.column.start - 1) * devicePixelRatio;
+  const topRowOffset = 70 * (config.grid.row.end - config.grid.row.start - 1) * devicePixelRatio;
+
   return (
     <Widget grid={config.grid}>
       <ContentContainer>
         <IFrameContainer
           src={src.replace('%2C', ',').replace('.html', '.html#')} // # nélkül nem működik, Köszönd Gábornak xd
           style={{
-            left: -1420 + 240 * (config.grid.column.end - config.grid.column.start - 1), // haha, fix nem ták :DDD
-            top: -430 + 120 * (config.grid.row.end - config.grid.row.start - 1),
+            left: leftBaseOffset + leftZoomOffset + leftColumnOffset + Number(config.xOffset), // haha, fix nem ták :DDD
+            top: topBaseOffset + topZoomOffset + topRowOffset + Number(config.yOffset),
           }}
         ></IFrameContainer>
         <SponsorText>
@@ -72,9 +79,9 @@ const ContentContainer = styled.div`
 const IFrameContainer = styled.iframe`
   position: absolute;
   /* Adjust this value to crop from the left half */
-  width: 2560px;
+  width: 2760px;
   /* Width of the iframe */
-  height: 1080px;
+  height: 1440px;
   /* Height of the iframe */
   border: none;
 `;
