@@ -10,4 +10,5 @@ export enum QueryKeys {
   BIKE = 'bike',
   SCHPINCER = 'schpincer',
   CONFIG = 'config',
+  MAP = 'map',
 }

@@ -53,7 +53,16 @@ export type ColorModeColor = {
   dark: string;
 };
 
-export type WidgetName = 'weather' | 'schpincer' | 'text' | 'image' | 'qr' | 'departures' | 'bike' | 'weathercam';
+export type WidgetName =
+  | 'weather'
+  | 'schpincer'
+  | 'text'
+  | 'image'
+  | 'qr'
+  | 'departures'
+  | 'bike'
+  | 'weathercam'
+  | 'map';
 
 export type WidgetConfigBase = {
   name: WidgetName;
@@ -100,6 +109,11 @@ export interface BikeConfig extends WidgetConfigBase {
   name: 'bike';
 }
 
+export interface MapConfig extends WidgetConfigBase {
+  name: 'map';
+  radius: number;
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -118,7 +132,8 @@ export type WidgetConfig =
   | QRConfig
   | DeparturesConfig
   | BikeConfig
-  | WeatherCamConfig;
+  | WeatherCamConfig
+  | MapConfig;
 
 export enum KioskRoles {
   VISITOR,

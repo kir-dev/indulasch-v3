@@ -45,7 +45,7 @@ export class ClientService {
       const { list, references } = response.data.data;
 
       list?.forEach(({ stopTimes, headsign, routeId }) => {
-        stopTimes?.forEach(({ departureTime, predictedDepartureTime, alertIds }) => {
+        stopTimes?.forEach(({ departureTime, predictedDepartureTime, alertIds, stopId }) => {
           const departure: Departure = {
             type: references.routes[routeId].type,
             style: references.routes[routeId].style,
@@ -59,6 +59,7 @@ export class ClientService {
             ),
             isDelayed: (predictedDepartureTime || departureTime) - departureTime > 180,
             departureText: '',
+            stopId: stopId,
           };
           const minutes = Math.floor((departure.predicted * 1000 - Date.now()) / 60000);
 
