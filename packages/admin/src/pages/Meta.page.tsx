@@ -22,7 +22,15 @@ import { MetaForm } from '../types/types';
 import { l } from '../utils/language';
 
 const validationSchema = z.object({
-  name: z.string({ required_error: l('form.validation.required') }),
+  name: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
+  coordinates: z.object({
+    lat: z
+      .string({ required_error: l('form.validation.required') })
+      .regex(/^-?\d+(\.\d+)?$/, { message: l('form.validation.number') }),
+    lon: z
+      .string({ required_error: l('form.validation.required') })
+      .regex(/^-?\d+(\.\d+)?$/, { message: l('form.validation.number') }),
+  }),
 });
 
 export function MetaPage() {
@@ -53,6 +61,11 @@ export function MetaPage() {
                 <FormHelperText>
                   <i>{l('page.meta.label.coordinateHelpText')}</i>
                 </FormHelperText>
+                {Boolean(errors.coordinates) && (
+                  <FormErrorMessage>
+                    {errors.coordinates?.message} {errors.coordinates?.lat?.message} {errors.coordinates?.lon?.message}
+                  </FormErrorMessage>
+                )}
               </FormControl>
               <MapField name='coordinates' />
               <FormControl isInvalid={Boolean(errors.name)}>

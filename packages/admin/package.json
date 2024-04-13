@@ -44,7 +44,7 @@
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "prettier": "prettier -c \"src/**/*\"",
     "prettier:fix": "prettier --write \"src/**/*\"",
-    "start": "vite",
+    "start": "vite --mode development",
     "build": "tsc && VITE_APP_VERSION=$(node -pe 'require(\"./package.json\").version') vite build",
     "preview": "vite preview"
   },

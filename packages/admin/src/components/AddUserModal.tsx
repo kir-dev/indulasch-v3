@@ -28,7 +28,7 @@ import { l } from '../utils/language';
 
 const validationSchema = z.object({
   mail: z.string().email('E-mail cím kell ide, nem más'),
-  role: z.number({ required_error: 'Jogosultság kellene' }),
+  role: z.enum(['0', '1', '2', '3'], { required_error: 'Jogosultság kellene' }),
 });
 
 interface AddUserModalProps {

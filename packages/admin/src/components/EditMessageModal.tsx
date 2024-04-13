@@ -27,10 +27,10 @@ import { DefaultMessage, Message, MessageForm, MessageKinds } from '../types/mes
 import { l } from '../utils/language';
 
 const validationSchema = z.object({
-  text: z.string({ required_error: l('form.validation.required') }),
+  text: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
   kind: z.string({ required_error: l('form.validation.required') }),
-  from: z.date({ required_error: l('form.validation.required') }),
-  until: z.date({ required_error: l('form.validation.required') }),
+  from: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
+  until: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
 });
 
 interface EditMessageModalProps {
@@ -72,12 +72,12 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.text)}>
                 <FormLabel>{l('editMessage.label.text')}</FormLabel>
                 <Input {...register('text')} />
                 {Boolean(errors.text) && <FormErrorMessage>{errors.text?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.kind)}>
                 <FormLabel>{l('editMessage.label.type')}</FormLabel>
                 <Select {...register('kind')}>
                   <option value={MessageKinds.INFO}>{l('editMessage.type.info')}</option>
@@ -87,12 +87,12 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
                 </Select>
                 {Boolean(errors.kind) && <FormErrorMessage>{errors.kind?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.from)}>
                 <FormLabel>{l('editMessage.label.from')}</FormLabel>
                 <Input {...register('from')} type='datetime-local' />
                 {Boolean(errors.from) && <FormErrorMessage>{errors.from?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.until)}>
                 <FormLabel>{l('editMessage.label.until')}</FormLabel>
                 <Input {...register('until')} type='datetime-local' />
                 {Boolean(errors.until) && <FormErrorMessage>{errors.until?.message}</FormErrorMessage>}

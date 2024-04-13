@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import TrolleybusIcon from '../assets/icons/trolleybus.svg';
+import TrolleybusIcon from '../assets/icons/trolleybus.svg?react';
 import { VERSION } from '../config/environment.config';
 import { FontSize } from '../utils/theme';
 import { useColorsOfScheme } from '../utils/useColorsOfScheme';
@@ -35,8 +35,5 @@ const FooterWrapper = styled.footer<{ color: string }>`
   svg {
     height: ${FontSize.lg};
     margin: 0 0.5rem;
-    .logo-dark {
-      fill: ${({ color }) => color};
-    }
   }
 `;

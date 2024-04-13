@@ -37,6 +37,8 @@ const languageData = {
   'form.validation.date': 'Dátumot kellene írni.',
   'form.validation.number': 'Valami ilyesminek kellene lennie: x.y',
   'form.validation.email': 'Ellenőrizd az e-mail címet!',
+  'form.validation.min': 'Legalább egy karaktert írjál!',
+  'form.validation.datetime': 'Dátumot kellene írni.',
   'addUserModal.header': 'Kezelő hozzáadása',
   'addUserModal.label.email': 'Felhasználó e-mail címe',
   'addUserModal.label.role': 'Jogosultság',
