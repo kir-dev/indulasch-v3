@@ -1,5 +1,3 @@
-import { WidgetConfig, WidgetConfigFields, WidgetDisplay, WidgetName, WidgetWithoutGrid } from '@/types/kiosk.types.ts';
-import { l } from '@/utils/language.ts';
 import {
   Button,
   Flex,
@@ -17,6 +15,9 @@ import {
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { TbCirclePlus, TbSettings } from 'react-icons/tb';
+
+import { WidgetConfig, WidgetConfigFields, WidgetDisplay, WidgetName, WidgetWithoutGrid } from '@/types/kiosk.types.ts';
+import { l } from '@/utils/language.ts';
 
 interface AddWidgetPopoverProps {
   widget?: WidgetWithoutGrid;

@@ -13,7 +13,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['.eslintrc.js', '.prettierrc.js', 'dist'],
+  ignorePatterns: ['.eslintrc.js', '.prettierrc.js', 'dist', 'vite.config.ts'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
