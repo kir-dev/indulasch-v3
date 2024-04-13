@@ -1,7 +1,7 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react';
-import { Open_Sans } from 'next/font/google';
+import { Open_Sans as OpenSans } from 'next/font/google';
 
-const opensans = Open_Sans({ subsets: ['latin'] });
+const opensans = OpenSans({ subsets: ['latin'] });
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',

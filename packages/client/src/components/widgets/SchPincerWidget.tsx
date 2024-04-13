@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 
-import { Widget } from '../../layout/Widget';
-import { useSchPincerQuery } from '../../network/schpincer.network';
-import { SchpincerConfig } from '../../types/widget.type';
-import { useInterval } from '../../utils/useInterval';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { Widget } from '@/layout/Widget';
+import { useSchPincerQuery } from '@/network/schpincer.network.ts';
+import { SchpincerConfig } from '@/types/widget.type.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { WidgetDescription, WidgetHeading, WidgetText } from '../Text';
 
 export function SchPincerWidget() {
@@ -28,13 +29,7 @@ export function SchPincerWidget() {
         <WidgetDescription>SchPincér hiba</WidgetDescription>
       </Widget>
     );
-  } else if (!shownOpening) {
-    return (
-      <Widget grid={config.grid}>
-        <WidgetDescription>Nincs nyitás</WidgetDescription>
-      </Widget>
-    );
-  } else
+  } else if (shownOpening) {
     return (
       <Widget grid={config.grid}>
         <WidgetText>{shownOpening.name || 'Ismeretlen'}</WidgetText>
@@ -42,6 +37,12 @@ export function SchPincerWidget() {
           {shownOpening.available.toString() || '?'} / {shownOpening.outOf.toString() || '?'}
         </WidgetHeading>
         <WidgetDescription>{shownOpening.comment}</WidgetDescription>
+      </Widget>
+    );
+  } else
+    return (
+      <Widget grid={config.grid}>
+        <WidgetDescription>Nincs nyitás</WidgetDescription>
       </Widget>
     );
 }

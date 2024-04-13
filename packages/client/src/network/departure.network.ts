@@ -14,7 +14,7 @@ export function useDepartureQuery(config: DeparturesConfig) {
     },
   } = useConfig();
 
-  const url = new URL(API_URL + '/departures');
+  const url = new URL(`${API_URL}/departures`);
 
   return useQuery<DepartureDto, Error>(QueryKeys.DEPARTURE, async () => {
     const { data } = await axios.post<DepartureDto>(url.toString(), {

@@ -15,10 +15,10 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { isAxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { useKioskContext } from '../context/kiosk.context';
 import { useChangeRole } from '../network/useChangeRole.network';
@@ -26,9 +26,9 @@ import { KioskRoleNames } from '../types/types';
 import { KioskUserForm } from '../types/users.type';
 import { l } from '../utils/language';
 
-const validationSchema = Yup.object().shape({
-  mail: Yup.string().email('E-mail cím kell ide, nem más').required('Mindenkit nem akarsz meghívni.'),
-  role: Yup.number().required('Jogosultság kellene'),
+const validationSchema = z.object({
+  mail: z.string().email('E-mail cím kell ide, nem más'),
+  role: z.enum(['0', '1', '2', '3'], { required_error: 'Jogosultság kellene' }),
 });
 
 interface AddUserModalProps {
@@ -44,7 +44,7 @@ export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<KioskUserForm>({ resolver: yupResolver(validationSchema) });
+  } = useForm<KioskUserForm>({ resolver: zodResolver(validationSchema) });
 
   const onSubmit = (values: KioskUserForm) => {
     makeRequest(values, onClose, (err) => {
@@ -62,12 +62,12 @@ export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
-              <FormControl isInvalid={!!errors.mail}>
+              <FormControl isInvalid={Boolean(errors.mail)}>
                 <FormLabel>{l('addUserModal.label.email')}</FormLabel>
                 <Input {...register('mail')} />
-                {!!errors.mail && <FormErrorMessage>{errors.mail.message}</FormErrorMessage>}
+                {Boolean(errors.mail) && <FormErrorMessage>{errors.mail?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl isInvalid={!!errors.role}>
+              <FormControl isInvalid={Boolean(errors.role)}>
                 <FormLabel>{l('addUserModal.label.role')}</FormLabel>
                 <Select {...register('role')}>
                   {Object.entries(KioskRoleNames).map(([key, value]) => (
@@ -76,7 +76,7 @@ export function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                     </option>
                   ))}
                 </Select>
-                {!!errors.role && <FormErrorMessage>{errors.role.message}</FormErrorMessage>}
+                {Boolean(errors.role) && <FormErrorMessage>{errors.role?.message}</FormErrorMessage>}
               </FormControl>
               {isError && <FormErrorMessage>{l('form.validation.email')}</FormErrorMessage>}
             </VStack>

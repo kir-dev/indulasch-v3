@@ -15,10 +15,10 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { useKioskContext } from '../context/kiosk.context';
 import { useCreateMessage } from '../network/useCreateMessage.network';
@@ -26,11 +26,11 @@ import { useSaveMessage } from '../network/useSaveMessage.network';
 import { DefaultMessage, Message, MessageForm, MessageKinds } from '../types/message.types';
 import { l } from '../utils/language';
 
-const validationSchema = Yup.object().shape({
-  text: Yup.string().required(l('form.validation.required')),
-  kind: Yup.string().required(l('form.validation.required')),
-  from: Yup.date().required(l('form.validation.required')).typeError(l('form.validation.date')),
-  until: Yup.date().required(l('form.validation.required')).typeError(l('form.validation.date')),
+const validationSchema = z.object({
+  text: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
+  kind: z.string({ required_error: l('form.validation.required') }),
+  from: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
+  until: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
 });
 
 interface EditMessageModalProps {
@@ -51,7 +51,7 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<MessageForm>({ defaultValues: message, resolver: yupResolver(validationSchema) });
+  } = useForm<MessageForm>({ defaultValues: message, resolver: zodResolver(validationSchema) });
   useEffect(() => {
     reset(DefaultMessage);
     reset(message);
@@ -72,12 +72,12 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.text)}>
                 <FormLabel>{l('editMessage.label.text')}</FormLabel>
                 <Input {...register('text')} />
-                {!!errors.text && <FormErrorMessage>{errors.text.message}</FormErrorMessage>}
+                {Boolean(errors.text) && <FormErrorMessage>{errors.text?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.kind)}>
                 <FormLabel>{l('editMessage.label.type')}</FormLabel>
                 <Select {...register('kind')}>
                   <option value={MessageKinds.INFO}>{l('editMessage.type.info')}</option>
@@ -85,17 +85,17 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
                   <option value={MessageKinds.WARNING}>{l('editMessage.type.warning')}</option>
                   <option value={MessageKinds.FUN}>{l('editMessage.type.fun')}</option>
                 </Select>
-                {!!errors.kind && <FormErrorMessage>{errors.kind.message}</FormErrorMessage>}
+                {Boolean(errors.kind) && <FormErrorMessage>{errors.kind?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.from)}>
                 <FormLabel>{l('editMessage.label.from')}</FormLabel>
                 <Input {...register('from')} type='datetime-local' />
-                {!!errors.from && <FormErrorMessage>{errors.from.message}</FormErrorMessage>}
+                {Boolean(errors.from) && <FormErrorMessage>{errors.from?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={Boolean(errors.until)}>
                 <FormLabel>{l('editMessage.label.until')}</FormLabel>
                 <Input {...register('until')} type='datetime-local' />
-                {!!errors.until && <FormErrorMessage>{errors.until.message}</FormErrorMessage>}
+                {Boolean(errors.until) && <FormErrorMessage>{errors.until?.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
           </ModalBody>

@@ -33,7 +33,7 @@ export class OauthStrategy extends PassportStrategy(Strategy, 'authsch') {
   }
 
   async fetchProfile(accessToken: string) {
-    const url = new URL(this.configService.get(ConfigKeys.OAUTH_BASE_URL) + '/api/profile');
+    const url = new URL(`${this.configService.get(ConfigKeys.OAUTH_BASE_URL)}/api/profile`);
     url.searchParams.append('access_token', accessToken);
     const response = await axios.get<AuthSchProfile>(url.toString());
     return response.data;

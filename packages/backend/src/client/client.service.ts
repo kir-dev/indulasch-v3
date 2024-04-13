@@ -63,7 +63,7 @@ export class ClientService {
           };
           const minutes = Math.floor((departure.predicted * 1000 - Date.now()) / 60000);
 
-          departure.departureText = minutes < 1 ? 'azonnal indul' : minutes + ' perc';
+          departure.departureText = minutes < 1 ? 'azonnal indul' : `${minutes} perc`;
           apiResponse.departures.push(departure);
         });
       });

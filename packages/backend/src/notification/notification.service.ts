@@ -55,8 +55,8 @@ export class NotificationService {
   async sendStatusNotification(kiosk: KioskDocument, newStatus: KioskStatus) {
     const kioskName = kiosk.config.meta.name;
     const allUsers = await this.userModel.find();
-    const kioskUsers = allUsers.filter(
-      (u) => !!u.roles.find((r) => r.kioskId.equals(kiosk._id) && r.role >= KioskRoles.OWNER)
+    const kioskUsers = allUsers.filter((u) =>
+      Boolean(u.roles.find((r) => r.kioskId.equals(kiosk._id) && r.role >= KioskRoles.OWNER))
     );
     const { emailEnabled, webhookEnabled, webhookUrl } = kiosk.notification;
     if (emailEnabled) {
@@ -75,14 +75,14 @@ export class NotificationService {
           }))
         );
       } catch (e) {
-        Logger.error('E-mail notification failed for ' + kioskName, NotificationService.name);
+        Logger.error(`E-mail notification failed for ${kioskName}`, NotificationService.name);
       }
     }
     if (webhookEnabled && webhookUrl) {
       try {
         await axios.post(webhookUrl, { kioskName, newStatus });
       } catch (e) {
-        Logger.error('Webhook notification failed for ' + kioskName, NotificationService.name);
+        Logger.error(`Webhook notification failed for ${kioskName}`, NotificationService.name);
       }
     }
   }

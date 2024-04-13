@@ -75,10 +75,10 @@ export class UsersService {
     const user = await this.userModel.findOne({ mail: mail });
     if (!user) throw new NotFoundException();
     const kioskRoleIndex = user.roles.findIndex((k) => k.kioskId.toString() === kioskId.toString());
-    if (kioskRoleIndex !== -1) {
-      user.roles[kioskRoleIndex].role = role;
-    } else {
+    if (kioskRoleIndex === -1) {
       user.roles.push({ kioskId, role });
+    } else {
+      user.roles[kioskRoleIndex].role = role;
     }
     await this.userModel.updateOne({ _id: user._id }, { $set: { roles: user.roles } });
     return user;

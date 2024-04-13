@@ -49,7 +49,7 @@ interface DraggableMarkerProps {
 function DraggableMarker({ onDragEnd, defaultPos }: DraggableMarkerProps) {
   return (
     <Marker
-      draggable={true}
+      draggable
       icon={markerIcon}
       eventHandlers={{ dragend: (evt) => onDragEnd(evt.target._latlng) }}
       position={defaultPos}

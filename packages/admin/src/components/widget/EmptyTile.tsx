@@ -1,6 +1,7 @@
 import { Center, useColorModeValue } from '@chakra-ui/react';
 
-import { GridSettings, WidgetConfig } from '../../types/kiosk.types';
+import { GridSettings, WidgetConfig } from '@/types/kiosk.types.ts';
+
 import { WidgetConfigPopover } from './WidgetConfigPopover';
 
 interface EmptyTileProps {

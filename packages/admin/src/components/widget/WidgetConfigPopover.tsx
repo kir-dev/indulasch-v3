@@ -16,14 +16,8 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { TbCirclePlus, TbSettings } from 'react-icons/tb';
 
-import {
-  WidgetConfig,
-  WidgetConfigFields,
-  WidgetDisplay,
-  WidgetName,
-  WidgetWithoutGrid,
-} from '../../types/kiosk.types';
-import { l } from '../../utils/language';
+import { WidgetConfig, WidgetConfigFields, WidgetDisplay, WidgetName, WidgetWithoutGrid } from '@/types/kiosk.types.ts';
+import { l } from '@/utils/language.ts';
 
 interface AddWidgetPopoverProps {
   widget?: WidgetWithoutGrid;
@@ -52,7 +46,7 @@ export function WidgetConfigPopover({ onSave, widget, widgets }: AddWidgetPopove
     onClose();
   };
   return (
-    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} closeOnBlur={true}>
+    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} closeOnBlur>
       <PopoverTrigger>
         {widget ? (
           <Button variant='ghost' colorScheme='gray'>

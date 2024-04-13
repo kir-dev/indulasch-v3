@@ -1,5 +1,4 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
-import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';

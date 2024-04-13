@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import { Spinner } from '../Spinner';
@@ -11,7 +10,7 @@ interface ErrorMessageProps {
   onAction?: () => void;
 }
 
-export function ErrorPage({ message, onAction }: ErrorMessageProps) {
+export function ErrorPage({ message }: ErrorMessageProps) {
   return (
     <PageBackground>
       <MessageCard>
@@ -44,7 +43,9 @@ const PageBackground = styled.div`
 
 const MessageCard = styled.div`
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 0, rgba(0, 0, 0, 0.06) 0 1px 2px 0;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0 1px 3px 0,
+    rgba(0, 0, 0, 0.06) 0 1px 2px 0;
   border-radius: ${GlobalSize.borderRadius};
   padding: 3rem;
   display: flex;

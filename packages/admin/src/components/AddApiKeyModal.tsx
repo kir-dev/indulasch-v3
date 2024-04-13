@@ -17,9 +17,9 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { useKioskContext } from '../context/kiosk.context';
 import { useCreateApiKey } from '../network/useCreateApiKey.network';
@@ -32,9 +32,9 @@ interface AddApiKeyModalProps {
   onClose: () => void;
 }
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Nem lenne szép üresen hagyni'),
-  role: Yup.number().required('Jogosultság kellene'),
+const validationSchema = z.object({
+  name: z.string({ required_error: 'Nem lenne szép üresen hagyni' }),
+  role: z.number({ required_error: 'Jogosultság kellene' }),
 });
 
 export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
@@ -45,7 +45,7 @@ export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<CreateApiKeyDto>({
-    resolver: yupResolver(validationSchema),
+    resolver: zodResolver(validationSchema),
   });
 
   const onSubmit = (values: CreateApiKeyDto) => {
@@ -64,12 +64,12 @@ export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
-              <FormControl isInvalid={!!errors.name}>
+              <FormControl isInvalid={Boolean(errors.name)}>
                 <FormLabel>{l('addApiKeyModal.label.name')}</FormLabel>
                 <Input {...register('name')} />
-                {!!errors.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
+                {Boolean(errors.name) && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl isInvalid={!!errors.role}>
+              <FormControl isInvalid={Boolean(errors.role)}>
                 <FormLabel>{l('addUserModal.label.role')}</FormLabel>
                 <Select {...register('role')}>
                   {Object.entries(KioskRoleNames)
@@ -80,7 +80,7 @@ export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
                       </option>
                     ))}
                 </Select>
-                {!!errors.role && <FormErrorMessage>{errors.role.message}</FormErrorMessage>}
+                {Boolean(errors.role) && <FormErrorMessage>{errors.role?.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
           </ModalBody>

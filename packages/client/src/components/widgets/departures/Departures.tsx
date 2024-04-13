@@ -1,11 +1,11 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { useDepartureQuery } from '../../../network/departure.network';
-import { DeparturesConfig, GridSettings } from '../../../types/widget.type';
-import { useColorsOfScheme } from '../../../utils/useColorsOfScheme';
-import { useInterval } from '../../../utils/useInterval';
-import { useWidgetConfig } from '../../../utils/useWidgetConfig';
+import { useDepartureQuery } from '@/network/departure.network.ts';
+import { DeparturesConfig, GridSettings } from '@/types/widget.type.ts';
+import { useColorsOfScheme } from '@/utils/useColorsOfScheme.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { WidgetHeading } from '../../Text';
 import { Field } from './Field';
 
@@ -28,8 +28,8 @@ export function Departures() {
   }
   return (
     <DeparturesWrapper color={fontPrimary} {...config.grid}>
-      {data.departures?.map((departure, index) => (
-        <Field key={index} departure={departure} />
+      {data.departures?.map((departure) => (
+        <Field key={departure.departureText + departure.headsign} departure={departure} />
       ))}
     </DeparturesWrapper>
   );

@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import { Widget } from '../../layout/Widget';
-import { WeatherCamConfig } from '../../types/widget.type';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { Widget } from '@/layout/Widget';
+import { WeatherCamConfig } from '@/types/widget.type.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { ImageContainer } from '../ImageContainer';
 
 const weatherImageSrc = 'https://ha5kfu.hu/idokep/kamera.php';

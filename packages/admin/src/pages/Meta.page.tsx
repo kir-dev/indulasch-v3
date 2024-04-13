@@ -10,9 +10,9 @@ import {
   Input,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { MapField } from '../components/Map';
 import { useKioskContext } from '../context/kiosk.context';
@@ -21,8 +21,16 @@ import { useSaveKiosk } from '../network/useSaveKiosk.network';
 import { MetaForm } from '../types/types';
 import { l } from '../utils/language';
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required(l('form.validation.required')),
+const validationSchema = z.object({
+  name: z.string({ required_error: l('form.validation.required') }).min(1, { message: l('form.validation.min') }),
+  coordinates: z.object({
+    lat: z
+      .string({ required_error: l('form.validation.required') })
+      .regex(/^-?\d+(\.\d+)?$/, { message: l('form.validation.number') }),
+    lon: z
+      .string({ required_error: l('form.validation.required') })
+      .regex(/^-?\d+(\.\d+)?$/, { message: l('form.validation.number') }),
+  }),
 });
 
 export function MetaPage() {
@@ -31,7 +39,7 @@ export function MetaPage() {
   const meta = kiosk?.config.meta;
   const formProperties = useForm<MetaForm>({
     defaultValues: meta,
-    resolver: yupResolver(validationSchema),
+    resolver: zodResolver(validationSchema),
   });
   const {
     register,
@@ -48,17 +56,22 @@ export function MetaPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardBody>
             <VStack>
-              <FormControl isInvalid={!!errors.coordinates}>
+              <FormControl isInvalid={Boolean(errors.coordinates)}>
                 <FormLabel>{l('page.meta.label.coordinate')}</FormLabel>
                 <FormHelperText>
                   <i>{l('page.meta.label.coordinateHelpText')}</i>
                 </FormHelperText>
+                {Boolean(errors.coordinates) && (
+                  <FormErrorMessage>
+                    {errors.coordinates?.message} {errors.coordinates?.lat?.message} {errors.coordinates?.lon?.message}
+                  </FormErrorMessage>
+                )}
               </FormControl>
               <MapField name='coordinates' />
-              <FormControl isInvalid={!!errors.name}>
+              <FormControl isInvalid={Boolean(errors.name)}>
                 <FormLabel>{l('page.meta.label.name')}</FormLabel>
                 <Input {...register('name')} />
-                {!!errors.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
+                {Boolean(errors.name) && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
             {isError && <FormErrorMessage>{l('error.save')}</FormErrorMessage>}

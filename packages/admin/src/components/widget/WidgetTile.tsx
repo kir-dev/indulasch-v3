@@ -1,7 +1,8 @@
 import { Button, Flex, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { TbTrash } from 'react-icons/tb';
 
-import { WidgetConfig, WidgetDisplay } from '../../types/kiosk.types';
+import { WidgetConfig, WidgetDisplay } from '@/types/kiosk.types.ts';
+
 import { ArrowButton } from './ArrowButton';
 import { WidgetConfigPopover } from './WidgetConfigPopover';
 

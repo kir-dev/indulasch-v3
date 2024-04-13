@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { useConfig } from '../../layout/ConfigContext';
-import { Widget } from '../../layout/Widget';
-import { useDepartureQuery } from '../../network/departure.network';
-import { DeparturesConfig, MapConfig } from '../../types/widget.type';
-import { useInterval } from '../../utils/useInterval';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { useConfig } from '@/layout/ConfigContext';
+import { Widget } from '@/layout/Widget';
+import { useDepartureQuery } from '@/network/departure.network.ts';
+import { DeparturesConfig, MapConfig } from '@/types/widget.type.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { RealCity } from '../RealCity';
 import { WidgetHeading } from '../Text';
 
@@ -31,7 +32,7 @@ export function MapWidget() {
     data?.departures?.map((departure) => departure.stopId).forEach((stop) => url.searchParams.append('stop', stop));
     url.searchParams.set('mapZoom', config.zoom.toString());
     url.searchParams.set('mapBoundsRadiusMeters', config.radius.toString());
-    url.searchParams.set('display-coordinates', coordinates.lon + ',' + coordinates.lat);
+    url.searchParams.set('display-coordinates', `${coordinates.lon},${coordinates.lat}`);
     url.searchParams.set('mapWidth', mapWidth);
     return url.toString();
   }, [data]);
@@ -61,7 +62,7 @@ export function MapWidget() {
             left: leftBaseOffset + leftZoomOffset + leftColumnOffset + Number(config.xOffset), // haha, fix nem ták :DDD
             top: topBaseOffset + topZoomOffset + topRowOffset + Number(config.yOffset),
           }}
-        ></IFrameContainer>
+        />
         <SponsorText>
           <RealCity size={35} />
         </SponsorText>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { TbAlertTriangle } from 'react-icons/tb';
 import styled from 'styled-components';
 
@@ -9,7 +8,7 @@ interface ErrorIconProps {
 export function ErrorIcon({ size = 5 }: ErrorIconProps) {
   return (
     <ErrorIconContainer size={size}>
-      <TbAlertTriangle size={size + 'rem'} color='red' />
+      <TbAlertTriangle size={`${size}rem`} color='red' />
     </ErrorIconContainer>
   );
 }

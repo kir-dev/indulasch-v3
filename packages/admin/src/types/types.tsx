@@ -40,10 +40,10 @@ export type User = {
 export type UserRole = { kioskId: { _id: string; config: { meta: { name: string } } }; role: KioskRoles };
 
 export enum KioskRoles {
-  VISITOR,
-  MARKETING,
-  EDITOR,
-  OWNER,
+  VISITOR = 0,
+  MARKETING = 1,
+  EDITOR = 2,
+  OWNER = 3,
 }
 
 export const KioskRoleNames: Record<KioskRoles, string> = {
@@ -57,7 +57,7 @@ export type MenuItem = {
   name: string;
   path: UIPaths;
   icon?: ReactElement;
-  page: () => JSX.Element;
+  page: () => ReactElement;
   minRole?: KioskRoles;
   admin?: boolean;
 };

@@ -8,7 +8,7 @@ import { NewKioskPage } from '../pages/NewKiosk.page';
 export function KioskSelectorNavigator() {
   const { user, isAuthenticated } = useAuthContext();
   if (!isAuthenticated || !user) {
-    return <Navigate to={UIPaths.LOGIN} replace={true} />;
+    return <Navigate to={UIPaths.LOGIN} replace />;
   }
   return (
     <Routes>
