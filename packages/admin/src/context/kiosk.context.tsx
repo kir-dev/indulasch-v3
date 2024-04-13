@@ -47,7 +47,7 @@ export function KioskProvider() {
 
   const update = () => {
     axios
-      .get<Kiosk>(ApiPaths.KIOSK + '/' + kioskId)
+      .get<Kiosk>(`${ApiPaths.KIOSK}/${kioskId}`)
       .then((res) => {
         setKiosk(res.data);
         navigate(UIPaths.DASHBOARD);

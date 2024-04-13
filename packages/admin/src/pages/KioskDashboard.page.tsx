@@ -39,7 +39,7 @@ export function KioskDashboardPage() {
   const { user } = useAuthContext();
   const { kiosk, selectedKioskId, update } = useKioskContext();
   const { makeRequest, isLoading } = useRequestRefreshNetwork(selectedKioskId || '');
-  const clientUrl = CLIENT_BASE_URL ? CLIENT_BASE_URL + '/' + selectedKioskId : undefined;
+  const clientUrl = CLIENT_BASE_URL ? `${CLIENT_BASE_URL}/${selectedKioskId}` : undefined;
   const role = useMemo(() => {
     return user?.roles.find((r) => r.kioskId._id === selectedKioskId);
   }, [user]);
@@ -72,12 +72,12 @@ export function KioskDashboardPage() {
             </Wrap>
           )}
           <PageSection>
-            <Heading size={'md'}>{l('page.dashboard.clientId')}</Heading>
+            <Heading size='md'>{l('page.dashboard.clientId')}</Heading>
             <Text>{selectedKioskId}</Text>
           </PageSection>
           <PageSection>
             <HStack>
-              <Heading size={'md'}>{l('page.dashboard.clientStatus')}</Heading>
+              <Heading size='md'>{l('page.dashboard.clientStatus')}</Heading>
               <RefreshButton onClick={update} />
             </HStack>
             {kiosk?.lastClientQuery && (
@@ -89,11 +89,11 @@ export function KioskDashboardPage() {
             <KioskStatusBadge date={kiosk?.lastClientQuery} />
           </PageSection>
           <PageSection>
-            <Heading size={'md'}>{l('page.dashboard.role')}</Heading>
+            <Heading size='md'>{l('page.dashboard.role')}</Heading>
             <RoleBadge role={role?.role || KioskRoles.VISITOR} />
           </PageSection>
           <PageSection>
-            <Heading size={'md'}>{l('page.dashboard.coordinates')}</Heading>
+            <Heading size='md'>{l('page.dashboard.coordinates')}</Heading>
             <Text>
               {l('page.dashboard.latitude')}: {kiosk?.config.meta.coordinates.lat}
             </Text>
@@ -102,10 +102,8 @@ export function KioskDashboardPage() {
             </Text>
           </PageSection>
           <PageSection>
-            <Heading size={'md'}>{l('page.dashboard.enabledWidgets')}</Heading>
-            {kiosk?.config.widgets.map((w) => (
-              <Text key={w.name}>{WidgetDisplay[w.name].name}</Text>
-            ))}
+            <Heading size='md'>{l('page.dashboard.enabledWidgets')}</Heading>
+            {kiosk?.config.widgets.map((w) => <Text key={w.name}>{WidgetDisplay[w.name].name}</Text>)}
           </PageSection>
           {role && role.role >= 2 && (
             <PageSection>

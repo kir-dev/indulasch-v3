@@ -45,7 +45,7 @@ export function NewKioskPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody>
           <VStack>
-            <FormControl isInvalid={!!errors.name?.message}>
+            <FormControl isInvalid={Boolean(errors.name?.message)}>
               <FormLabel>{l('page.newKiosk.name')}</FormLabel>
               <Input {...register('name', { required: true })} />
               {errors.name?.message && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}

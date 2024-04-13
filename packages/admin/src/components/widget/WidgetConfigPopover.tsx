@@ -52,7 +52,7 @@ export function WidgetConfigPopover({ onSave, widget, widgets }: AddWidgetPopove
     onClose();
   };
   return (
-    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} closeOnBlur={true}>
+    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} closeOnBlur>
       <PopoverTrigger>
         {widget ? (
           <Button variant='ghost' colorScheme='gray'>

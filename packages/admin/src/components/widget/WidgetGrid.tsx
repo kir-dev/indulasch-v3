@@ -130,16 +130,16 @@ export function WidgetGrid({ widgets, onChange }: WidgetGridProps) {
           verticalShrink={verticalShrinkPossible(index)}
           horizontalShrink={horizontalShrinkPossible(index)}
           widget={w}
-          key={index}
+          key={w.name}
         />
       ))}
-      {emptyTiles.map((et, index) => (
+      {emptyTiles.map((et) => (
         <EmptyTile
           widgets={widgets}
           onAddWidget={(w) => {
             onChange([...widgets, w]);
           }}
-          key={index}
+          key={et.column.start + et.row.start}
           grid={et}
         />
       ))}

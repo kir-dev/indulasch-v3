@@ -10,7 +10,7 @@ export function useConfigQuery(id: string) {
   const [fail, setFail] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const request = () => {
-    const url = new URL(API_URL + '/' + id);
+    const url = new URL(`${API_URL}/${id}`);
     axios
       .get<ConfigDto>(url.toString())
       .then((response) => {
@@ -21,7 +21,7 @@ export function useConfigQuery(id: string) {
       })
       .catch((err) => {
         if (isAxiosError(err)) {
-          console.log(err.response);
+          console.error(err.response);
           if (err.response?.status === 404) {
             setNotFound(true);
           } else setFail(true);

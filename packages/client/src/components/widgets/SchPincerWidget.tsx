@@ -28,13 +28,7 @@ export function SchPincerWidget() {
         <WidgetDescription>SchPincér hiba</WidgetDescription>
       </Widget>
     );
-  } else if (!shownOpening) {
-    return (
-      <Widget grid={config.grid}>
-        <WidgetDescription>Nincs nyitás</WidgetDescription>
-      </Widget>
-    );
-  } else
+  } else if (shownOpening) {
     return (
       <Widget grid={config.grid}>
         <WidgetText>{shownOpening.name || 'Ismeretlen'}</WidgetText>
@@ -42,6 +36,12 @@ export function SchPincerWidget() {
           {shownOpening.available.toString() || '?'} / {shownOpening.outOf.toString() || '?'}
         </WidgetHeading>
         <WidgetDescription>{shownOpening.comment}</WidgetDescription>
+      </Widget>
+    );
+  } else
+    return (
+      <Widget grid={config.grid}>
+        <WidgetDescription>Nincs nyitás</WidgetDescription>
       </Widget>
     );
 }

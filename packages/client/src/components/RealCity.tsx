@@ -1,5 +1,3 @@
-import { useColorModeValue } from '@chakra-ui/react';
-
 export function RealCity({ size }: { size: number | string }) {
   const color = 'white';
   return (

@@ -57,7 +57,7 @@ export type MenuItem = {
   name: string;
   path: UIPaths;
   icon?: ReactElement;
-  page: () => JSX.Element;
+  page: () => Element;
   minRole?: KioskRoles;
   admin?: boolean;
 };

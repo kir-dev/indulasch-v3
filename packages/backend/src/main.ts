@@ -11,5 +11,5 @@ async function bootstrap() {
 }
 
 bootstrap().then((port) => {
-  Logger.log('App listening on ' + port);
+  Logger.log(`App listening on ${port}`);
 });

@@ -9,7 +9,7 @@ interface ErrorIconProps {
 export function ErrorIcon({ size = 5 }: ErrorIconProps) {
   return (
     <ErrorIconContainer size={size}>
-      <TbAlertTriangle size={size + 'rem'} color='red' />
+      <TbAlertTriangle size={`${size}rem`} color='red' />
     </ErrorIconContainer>
   );
 }

@@ -54,22 +54,22 @@ export function NotificationPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody>
           <VStack>
-            <FormControl isInvalid={!!errors.emailEnabled}>
+            <FormControl isInvalid={Boolean(errors.emailEnabled)}>
               <FormLabel>{l('page.notification.email.label')}</FormLabel>
               <Switch {...register('emailEnabled')} />
               <FormHelperText>
                 <i>{l('page.notification.email.helper')}</i>
               </FormHelperText>
             </FormControl>
-            <FormControl isInvalid={!!errors.webhookUrl}>
+            <FormControl isInvalid={Boolean(errors.webhookUrl)}>
               <FormLabel>{l('page.notification.webhookUrl.label')}</FormLabel>
               <Input {...register('webhookUrl')} />
               <FormHelperText>
                 <i>{l('page.notification.webhookUrl.helper')}</i>
               </FormHelperText>
-              {!!errors.webhookUrl && <FormErrorMessage>{errors.webhookUrl.message}</FormErrorMessage>}
+              {Boolean(errors.webhookUrl) && <FormErrorMessage>{errors.webhookUrl.message}</FormErrorMessage>}
             </FormControl>
-            <FormControl isInvalid={!!errors.webhookEnabled}>
+            <FormControl isInvalid={Boolean(errors.webhookEnabled)}>
               <FormLabel>{l('page.notification.webhookEnabled.title')}</FormLabel>
               <Switch {...register('webhookEnabled')} />
             </FormControl>

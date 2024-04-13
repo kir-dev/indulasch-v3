@@ -6,6 +6,7 @@ module.exports = {
   env: {
     node: true,
     jest: true,
+    browser: true,
   },
   settings: {
     react: {
@@ -45,7 +46,6 @@ module.exports = {
     'no-negated-condition': 'error',
     'no-unneeded-ternary': 'error',
     'no-undef-init': 'error',
-    'no-underscore-dangle': 'error',
     'no-useless-concat': 'error',
     'no-void': 'error',
     'no-var': 'error',
@@ -71,8 +71,9 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'react/style-prop-object': 'error',
     'react/void-dom-elements-no-children': 'error',
-
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-extra-semi': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
 };

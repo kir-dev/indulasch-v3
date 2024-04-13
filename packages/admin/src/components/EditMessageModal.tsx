@@ -75,7 +75,7 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
               <FormControl>
                 <FormLabel>{l('editMessage.label.text')}</FormLabel>
                 <Input {...register('text')} />
-                {!!errors.text && <FormErrorMessage>{errors.text.message}</FormErrorMessage>}
+                {Boolean(errors.text) && <FormErrorMessage>{errors.text?.message}</FormErrorMessage>}
               </FormControl>
               <FormControl>
                 <FormLabel>{l('editMessage.label.type')}</FormLabel>
@@ -85,17 +85,17 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
                   <option value={MessageKinds.WARNING}>{l('editMessage.type.warning')}</option>
                   <option value={MessageKinds.FUN}>{l('editMessage.type.fun')}</option>
                 </Select>
-                {!!errors.kind && <FormErrorMessage>{errors.kind.message}</FormErrorMessage>}
+                {Boolean(errors.kind) && <FormErrorMessage>{errors.kind?.message}</FormErrorMessage>}
               </FormControl>
               <FormControl>
                 <FormLabel>{l('editMessage.label.from')}</FormLabel>
                 <Input {...register('from')} type='datetime-local' />
-                {!!errors.from && <FormErrorMessage>{errors.from.message}</FormErrorMessage>}
+                {Boolean(errors.from) && <FormErrorMessage>{errors.from?.message}</FormErrorMessage>}
               </FormControl>
               <FormControl>
                 <FormLabel>{l('editMessage.label.until')}</FormLabel>
                 <Input {...register('until')} type='datetime-local' />
-                {!!errors.until && <FormErrorMessage>{errors.until.message}</FormErrorMessage>}
+                {Boolean(errors.until) && <FormErrorMessage>{errors.until?.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
           </ModalBody>

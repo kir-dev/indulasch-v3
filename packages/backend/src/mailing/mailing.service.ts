@@ -35,7 +35,7 @@ export class MailingService {
   constructor(@Inject(MODULE_OPTIONS_TOKEN) private options: MailingModuleOptions) {
     this.templates = Object.entries(options.templates).reduce(
       (accumulator: Templates, [name, path]) => {
-        if (!existsSync(path)) throw new Error('Template not found for ' + name);
+        if (!existsSync(path)) throw new Error(`Template not found for ${name}`);
         accumulator[name] = readFileSync(path).toString();
         return accumulator;
       },

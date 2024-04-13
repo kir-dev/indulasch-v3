@@ -35,7 +35,7 @@ export class Auth0Strategy extends PassportStrategy(Strategy, 'auth0') {
   }
 
   async fetchProfile(accessToken: string) {
-    const url = new URL(this.configService.get(ConfigKeys.OAUTH_BASE_URL) + '/userinfo');
+    const url = new URL(`${this.configService.get(ConfigKeys.OAUTH_BASE_URL)}/userinfo`);
     const response = await axios.get<Auth0Profile>(url.toString(), {
       headers: {
         Authorization: `Bearer ${accessToken}`,

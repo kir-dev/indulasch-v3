@@ -31,7 +31,7 @@ export function MapWidget() {
     data?.departures?.map((departure) => departure.stopId).forEach((stop) => url.searchParams.append('stop', stop));
     url.searchParams.set('mapZoom', config.zoom.toString());
     url.searchParams.set('mapBoundsRadiusMeters', config.radius.toString());
-    url.searchParams.set('display-coordinates', coordinates.lon + ',' + coordinates.lat);
+    url.searchParams.set('display-coordinates', `${coordinates.lon},${coordinates.lat}`);
     url.searchParams.set('mapWidth', mapWidth);
     return url.toString();
   }, [data]);
@@ -54,7 +54,7 @@ export function MapWidget() {
             left: -1420 + 240 * (config.grid.column.end - config.grid.column.start - 1), // haha, fix nem ták :DDD
             top: -430 + 120 * (config.grid.row.end - config.grid.row.start - 1),
           }}
-        ></IFrameContainer>
+        />
         <SponsorText>
           <RealCity size={35} />
         </SponsorText>

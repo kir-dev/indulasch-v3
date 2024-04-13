@@ -64,12 +64,12 @@ export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <VStack>
-              <FormControl isInvalid={!!errors.name}>
+              <FormControl isInvalid={Boolean(errors.name)}>
                 <FormLabel>{l('addApiKeyModal.label.name')}</FormLabel>
                 <Input {...register('name')} />
-                {!!errors.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
+                {Boolean(errors.name) && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
               </FormControl>
-              <FormControl isInvalid={!!errors.role}>
+              <FormControl isInvalid={Boolean(errors.role)}>
                 <FormLabel>{l('addUserModal.label.role')}</FormLabel>
                 <Select {...register('role')}>
                   {Object.entries(KioskRoleNames)
@@ -80,7 +80,7 @@ export function AddApiKeyModal({ isOpen, onClose }: AddApiKeyModalProps) {
                       </option>
                     ))}
                 </Select>
-                {!!errors.role && <FormErrorMessage>{errors.role.message}</FormErrorMessage>}
+                {Boolean(errors.role) && <FormErrorMessage>{errors.role.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
           </ModalBody>

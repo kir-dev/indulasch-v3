@@ -48,17 +48,17 @@ export function MetaPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardBody>
             <VStack>
-              <FormControl isInvalid={!!errors.coordinates}>
+              <FormControl isInvalid={Boolean(errors.coordinates)}>
                 <FormLabel>{l('page.meta.label.coordinate')}</FormLabel>
                 <FormHelperText>
                   <i>{l('page.meta.label.coordinateHelpText')}</i>
                 </FormHelperText>
               </FormControl>
               <MapField name='coordinates' />
-              <FormControl isInvalid={!!errors.name}>
+              <FormControl isInvalid={Boolean(errors.name)}>
                 <FormLabel>{l('page.meta.label.name')}</FormLabel>
                 <Input {...register('name')} />
-                {!!errors.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
+                {Boolean(errors.name) && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
             {isError && <FormErrorMessage>{l('error.save')}</FormErrorMessage>}

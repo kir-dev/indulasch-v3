@@ -11,9 +11,7 @@ export function WidgetEditPage() {
     <Page title={l('title.widgetEdit')}>
       <CardBody>
         <Wrap gap={3} w='fit-content'>
-          {kiosk?.config.widgets.map((widget, index) => (
-            <WidgetListItem widget={widget} key={index} />
-          ))}
+          {kiosk?.config.widgets.map((widget) => <WidgetListItem widget={widget} key={widget.name} />)}
         </Wrap>
       </CardBody>
     </Page>

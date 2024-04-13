@@ -43,7 +43,7 @@ export class ApiKeyService {
 
     if (apiKey) {
       return {
-        displayName: 'ApiKey-' + apiKey.name.replace(' ', ''),
+        displayName: `ApiKey-${apiKey.name.replace(' ', '')}`,
         mail: '',
         authId: '',
         isAdmin: false,
