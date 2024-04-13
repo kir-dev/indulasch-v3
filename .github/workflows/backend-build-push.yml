@@ -10,12 +10,8 @@ jobs:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
     needs:
-      - backend-eslint
-      - backend-prettier
-      - admin-eslint
-      - admin-prettier
-      - client-eslint
-      - client-prettier
+      - eslint
+      - prettier
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
