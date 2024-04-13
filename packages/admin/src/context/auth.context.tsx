@@ -20,7 +20,7 @@ export const AuthContext = createContext<AuthContextType>({
   user: undefined,
   token: undefined,
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
-  login: (token: string) => {},
+  login: (_: string) => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   logout: () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function

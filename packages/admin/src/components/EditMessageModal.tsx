@@ -15,10 +15,10 @@ import {
   Select,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { useKioskContext } from '../context/kiosk.context';
 import { useCreateMessage } from '../network/useCreateMessage.network';
@@ -26,11 +26,11 @@ import { useSaveMessage } from '../network/useSaveMessage.network';
 import { DefaultMessage, Message, MessageForm, MessageKinds } from '../types/message.types';
 import { l } from '../utils/language';
 
-const validationSchema = Yup.object().shape({
-  text: Yup.string().required(l('form.validation.required')),
-  kind: Yup.string().required(l('form.validation.required')),
-  from: Yup.date().required(l('form.validation.required')).typeError(l('form.validation.date')),
-  until: Yup.date().required(l('form.validation.required')).typeError(l('form.validation.date')),
+const validationSchema = z.object({
+  text: z.string({ required_error: l('form.validation.required') }),
+  kind: z.string({ required_error: l('form.validation.required') }),
+  from: z.date({ required_error: l('form.validation.required') }),
+  until: z.date({ required_error: l('form.validation.required') }),
 });
 
 interface EditMessageModalProps {
@@ -51,7 +51,7 @@ export function EditMessageModal({ message, isOpen, onClose }: EditMessageModalP
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<MessageForm>({ defaultValues: message, resolver: yupResolver(validationSchema) });
+  } = useForm<MessageForm>({ defaultValues: message, resolver: zodResolver(validationSchema) });
   useEffect(() => {
     reset(DefaultMessage);
     reset(message);

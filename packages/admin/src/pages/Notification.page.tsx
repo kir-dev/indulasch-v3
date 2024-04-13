@@ -11,9 +11,9 @@ import {
   Switch,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { useKioskContext } from '../context/kiosk.context';
 import { Page } from '../layout/Page';
@@ -21,10 +21,10 @@ import { useSaveNotificationNetwork } from '../network/useSaveNotification.netwo
 import { NotificationForm } from '../types/types';
 import { l } from '../utils/language';
 
-const validationSchema = Yup.object().shape({
-  emailEnabled: Yup.boolean().required(l('form.validation.required')),
-  webhookEnabled: Yup.boolean().required(l('form.validation.required')),
-  webhookUrl: Yup.string().url('URL formátumú legyen!'),
+const validationSchema = z.object({
+  emailEnabled: z.boolean({ required_error: l('form.validation.required') }),
+  webhookEnabled: z.boolean({ required_error: l('form.validation.required') }),
+  webhookUrl: z.string().url('URL formátumú legyen!'),
 });
 
 export function NotificationPage() {
@@ -37,7 +37,7 @@ export function NotificationPage() {
       emailEnabled: notification?.emailEnabled,
       webhookUrl: notification?.webhookUrl,
     },
-    resolver: yupResolver(validationSchema),
+    resolver: zodResolver(validationSchema),
   });
   const {
     register,
@@ -67,7 +67,7 @@ export function NotificationPage() {
               <FormHelperText>
                 <i>{l('page.notification.webhookUrl.helper')}</i>
               </FormHelperText>
-              {Boolean(errors.webhookUrl) && <FormErrorMessage>{errors.webhookUrl.message}</FormErrorMessage>}
+              {Boolean(errors.webhookUrl) && <FormErrorMessage>{errors.webhookUrl?.message}</FormErrorMessage>}
             </FormControl>
             <FormControl isInvalid={Boolean(errors.webhookEnabled)}>
               <FormLabel>{l('page.notification.webhookEnabled.title')}</FormLabel>

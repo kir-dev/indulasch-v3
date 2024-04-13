@@ -10,9 +10,9 @@ import {
   Input,
   VStack,
 } from '@chakra-ui/react';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { MapField } from '../components/Map';
 import { useKioskContext } from '../context/kiosk.context';
@@ -21,8 +21,8 @@ import { useSaveKiosk } from '../network/useSaveKiosk.network';
 import { MetaForm } from '../types/types';
 import { l } from '../utils/language';
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required(l('form.validation.required')),
+const validationSchema = z.object({
+  name: z.string({ required_error: l('form.validation.required') }),
 });
 
 export function MetaPage() {
@@ -31,7 +31,7 @@ export function MetaPage() {
   const meta = kiosk?.config.meta;
   const formProperties = useForm<MetaForm>({
     defaultValues: meta,
-    resolver: yupResolver(validationSchema),
+    resolver: zodResolver(validationSchema),
   });
   const {
     register,
@@ -58,7 +58,7 @@ export function MetaPage() {
               <FormControl isInvalid={Boolean(errors.name)}>
                 <FormLabel>{l('page.meta.label.name')}</FormLabel>
                 <Input {...register('name')} />
-                {Boolean(errors.name) && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
+                {Boolean(errors.name) && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
               </FormControl>
             </VStack>
             {isError && <FormErrorMessage>{l('error.save')}</FormErrorMessage>}

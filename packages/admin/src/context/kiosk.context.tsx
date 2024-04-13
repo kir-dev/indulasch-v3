@@ -21,7 +21,7 @@ export const KioskContext = createContext<KioskContextType>({
   kiosk: undefined,
   selectedKioskId: undefined,
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
-  setSelectedKiosk: (id: string) => {},
+  setSelectedKiosk: (_: string) => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   unselect: () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
