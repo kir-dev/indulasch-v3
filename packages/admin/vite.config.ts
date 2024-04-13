@@ -7,4 +7,7 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [react()],
+  optimizeDeps: {
+    exclude: ['node_modules'],
+  },
 });
