@@ -18,10 +18,11 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
+import { useSaveWidget } from '@/network/useSaveWidget.ts';
+import { WidgetConfigFields, WidgetDisplay, WidgetWithoutGrid } from '@/types/kiosk.types.ts';
+import { l } from '@/utils/language.ts';
+
 import { useKioskContext } from '../../context/kiosk.context';
-import { useSaveWidget } from '../../network/useSaveWidget';
-import { WidgetConfigFields, WidgetDisplay, WidgetWithoutGrid } from '../../types/kiosk.types';
-import { l } from '../../utils/language';
 
 interface WidgetListItemProps {
   widget: WidgetWithoutGrid;
