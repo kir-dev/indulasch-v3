@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 
-import { Widget } from '../../layout/Widget';
-import { useSchPincerQuery } from '../../network/schpincer.network';
-import { SchpincerConfig } from '../../types/widget.type';
-import { useInterval } from '../../utils/useInterval';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { Widget } from '@/layout/Widget';
+import { useSchPincerQuery } from '@/network/schpincer.network.ts';
+import { SchpincerConfig } from '@/types/widget.type.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { WidgetDescription, WidgetHeading, WidgetText } from '../Text';
 
 export function SchPincerWidget() {

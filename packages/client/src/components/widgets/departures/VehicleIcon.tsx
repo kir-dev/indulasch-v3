@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
-import AirplaneIcon from '../../../assets/icons/airplane.svg';
-import BusIcon from '../../../assets/icons/bus.svg';
-import ChairliftIcon from '../../../assets/icons/chairlift.svg';
-import FerryIcon from '../../../assets/icons/ferry.svg';
-import MavIcon from '../../../assets/icons/mav.svg';
-import NightBusIcon from '../../../assets/icons/night-bus.svg';
-import SikloIcon from '../../../assets/icons/siklo.svg';
-import SuburbanRailwayIcon from '../../../assets/icons/suburban-railway.svg';
-import SubwayIcon from '../../../assets/icons/subway.svg';
-import TramIcon from '../../../assets/icons/tram.svg';
-import TrolleybusIcon from '../../../assets/icons/trolleybus.svg';
-import { VehicleIcons } from '../../../types/widget/departures.type';
+import AirplaneIcon from '@/assets/icons/airplane.svg';
+import BusIcon from '@/assets/icons/bus.svg';
+import ChairliftIcon from '@/assets/icons/chairlift.svg';
+import FerryIcon from '@/assets/icons/ferry.svg';
+import MavIcon from '@/assets/icons/mav.svg';
+import NightBusIcon from '@/assets/icons/night-bus.svg';
+import SikloIcon from '@/assets/icons/siklo.svg';
+import SuburbanRailwayIcon from '@/assets/icons/suburban-railway.svg';
+import SubwayIcon from '@/assets/icons/subway.svg';
+import TramIcon from '@/assets/icons/tram.svg';
+import TrolleybusIcon from '@/assets/icons/trolleybus.svg';
+import { VehicleIcons } from '@/types/widget/departures.type.ts';
 
 function VehicleIconSelector(vehicleIcon: string) {
   switch (vehicleIcon) {

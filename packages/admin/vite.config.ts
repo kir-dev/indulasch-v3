@@ -7,6 +7,7 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [react()],
+  base: '.',
   resolve: {
     alias: {
       '@': '/src',

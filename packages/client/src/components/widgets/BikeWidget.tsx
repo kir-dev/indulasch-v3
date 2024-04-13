@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-import BubiIcon from '../../assets/icons/bubi.png';
-import { Widget } from '../../layout/Widget';
-import { useBikeQuery } from '../../network/bike.network';
-import { BikeConfig } from '../../types/widget.type';
-import { GlobalSize } from '../../utils/theme';
-import { useInterval } from '../../utils/useInterval';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import BubiIcon from '@/assets/icons/bubi.png';
+import { Widget } from '@/layout/Widget';
+import { useBikeQuery } from '@/network/bike.network.ts';
+import { BikeConfig } from '@/types/widget.type.ts';
+import { GlobalSize } from '@/utils/theme.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { WidgetDescription, WidgetHeading } from '../Text';
 
 export function BikeWidget() {

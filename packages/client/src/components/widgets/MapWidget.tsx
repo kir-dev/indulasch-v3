@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { useConfig } from '../../layout/ConfigContext';
-import { Widget } from '../../layout/Widget';
-import { useDepartureQuery } from '../../network/departure.network';
-import { DeparturesConfig, MapConfig } from '../../types/widget.type';
-import { useInterval } from '../../utils/useInterval';
-import { useWidgetConfig } from '../../utils/useWidgetConfig';
+import { useConfig } from '@/layout/ConfigContext';
+import { Widget } from '@/layout/Widget';
+import { useDepartureQuery } from '@/network/departure.network.ts';
+import { DeparturesConfig, MapConfig } from '@/types/widget.type.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { RealCity } from '../RealCity';
 import { WidgetHeading } from '../Text';
 

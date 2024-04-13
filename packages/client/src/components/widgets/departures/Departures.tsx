@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-import { useDepartureQuery } from '../../../network/departure.network';
-import { DeparturesConfig, GridSettings } from '../../../types/widget.type';
-import { useColorsOfScheme } from '../../../utils/useColorsOfScheme';
-import { useInterval } from '../../../utils/useInterval';
-import { useWidgetConfig } from '../../../utils/useWidgetConfig';
+import { useDepartureQuery } from '@/network/departure.network.ts';
+import { DeparturesConfig, GridSettings } from '@/types/widget.type.ts';
+import { useColorsOfScheme } from '@/utils/useColorsOfScheme.ts';
+import { useInterval } from '@/utils/useInterval.ts';
+import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
+
 import { WidgetHeading } from '../../Text';
 import { Field } from './Field';
 

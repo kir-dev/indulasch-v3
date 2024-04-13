@@ -8,6 +8,12 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [react(), svgr()],
+  base: '.',
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
   optimizeDeps: {
     exclude: ['node_modules'],
   },
