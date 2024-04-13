@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Dev Dependencies
         run: |
-          npm install --only=dev
+            yarn install
 
       - name: Run ESLint
         run: npm run lint
@@ -38,7 +38,7 @@ jobs:
 
       - name: Install Dev Dependencies
         run: |
-          npm install --only=dev
+          yarn install
 
       - name: Run Prettier
         run: npm run prettier
