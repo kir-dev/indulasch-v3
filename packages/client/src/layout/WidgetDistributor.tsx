@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BikeWidget } from '../components/widgets/BikeWidget';
 import { Departures } from '../components/widgets/departures/Departures';
 import { ImageWidget } from '../components/widgets/ImageWidget';

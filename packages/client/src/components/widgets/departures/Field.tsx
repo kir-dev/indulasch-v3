@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 import styled from 'styled-components';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { TbAlertTriangle } from 'react-icons/tb';
 import styled from 'styled-components';
 

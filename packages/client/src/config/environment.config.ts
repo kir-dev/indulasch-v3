@@ -1,2 +1,2 @@
-export const API_URL = process.env.REACT_APP_API_URL || 'invalid';
-export const VERSION = process.env.REACT_APP_VERSION || 'unknown';
+export const API_URL = import.meta.env.VITE_APP_API_URL as string;
+export const VERSION = import.meta.env.VITE_APP_VERSION as string;

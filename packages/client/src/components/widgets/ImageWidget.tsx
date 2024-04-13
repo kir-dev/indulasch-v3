@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Widget } from '../../layout/Widget';
 import { ImageConfig } from '../../types/widget.type';
 import { useWidgetConfig } from '../../utils/useWidgetConfig';

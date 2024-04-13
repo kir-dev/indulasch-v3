@@ -1,17 +1,16 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as AirplaneIcon } from '../../../assets/icons/airplane.svg';
-import { ReactComponent as BusIcon } from '../../../assets/icons/bus.svg';
-import { ReactComponent as ChairliftIcon } from '../../../assets/icons/chairlift.svg';
-import { ReactComponent as FerryIcon } from '../../../assets/icons/ferry.svg';
-import { ReactComponent as MavIcon } from '../../../assets/icons/mav.svg';
-import { ReactComponent as NightBusIcon } from '../../../assets/icons/night-bus.svg';
-import { ReactComponent as SikloIcon } from '../../../assets/icons/siklo.svg';
-import { ReactComponent as SuburbanRailwayIcon } from '../../../assets/icons/suburban-railway.svg';
-import { ReactComponent as SubwayIcon } from '../../../assets/icons/subway.svg';
-import { ReactComponent as TramIcon } from '../../../assets/icons/tram.svg';
-import { ReactComponent as TrolleybusIcon } from '../../../assets/icons/trolleybus.svg';
+import AirplaneIcon from '../../../assets/icons/airplane.svg';
+import BusIcon from '../../../assets/icons/bus.svg';
+import ChairliftIcon from '../../../assets/icons/chairlift.svg';
+import FerryIcon from '../../../assets/icons/ferry.svg';
+import MavIcon from '../../../assets/icons/mav.svg';
+import NightBusIcon from '../../../assets/icons/night-bus.svg';
+import SikloIcon from '../../../assets/icons/siklo.svg';
+import SuburbanRailwayIcon from '../../../assets/icons/suburban-railway.svg';
+import SubwayIcon from '../../../assets/icons/subway.svg';
+import TramIcon from '../../../assets/icons/tram.svg';
+import TrolleybusIcon from '../../../assets/icons/trolleybus.svg';
 import { VehicleIcons } from '../../../types/widget/departures.type';
 
 function VehicleIconSelector(vehicleIcon: string) {

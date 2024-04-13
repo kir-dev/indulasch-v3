@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 import { Size } from '../utils/theme';

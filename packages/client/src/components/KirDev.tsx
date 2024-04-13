@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useColorMode } from '../utils/useColorMode';
 
 export function KirDev() {

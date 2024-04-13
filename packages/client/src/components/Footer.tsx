@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as TrolleybusIcon } from '../assets/icons/trolleybus.svg';
+import TrolleybusIcon from '../assets/icons/trolleybus.svg';
 import { VERSION } from '../config/environment.config';
 import { FontSize } from '../utils/theme';
 import { useColorsOfScheme } from '../utils/useColorsOfScheme';

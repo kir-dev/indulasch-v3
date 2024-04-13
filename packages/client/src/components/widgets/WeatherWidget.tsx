@@ -1,6 +1,3 @@
-import 'weather-react-icons/lib/css/weather-icons.css';
-
-import React from 'react';
 import styled from 'styled-components';
 
 import { Widget } from '../../layout/Widget';

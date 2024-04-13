@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Footer } from './components/Footer';
 import { Titlebar } from './components/Titlebar';
 import { useConfig } from './layout/ConfigContext';
