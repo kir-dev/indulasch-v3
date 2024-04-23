@@ -28,9 +28,8 @@ export function Departures() {
   }
   return (
     <DeparturesWrapper color={fontPrimary} {...config.grid}>
-      {data.departures?.map((departure) => (
-        <Field key={departure.departureText + departure.headsign} departure={departure} />
-      ))}
+      {/* eslint-disable-next-line react/no-array-index-key */}
+      {data.departures?.map((departure, index) => <Field key={index} departure={departure} />)}
     </DeparturesWrapper>
   );
 }
