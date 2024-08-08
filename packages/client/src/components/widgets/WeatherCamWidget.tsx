@@ -16,7 +16,7 @@ export function WeatherCamWidget() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCamId((prev) => (prev % 2) + 1);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
