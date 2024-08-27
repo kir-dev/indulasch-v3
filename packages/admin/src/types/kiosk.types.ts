@@ -1,5 +1,16 @@
 import { ReactElement } from 'react';
-import { TbAlignLeft, TbBike, TbBus, TbCloudStorm, TbCup, TbMap, TbPhoto, TbQrcode, TbSun } from 'react-icons/tb';
+import {
+  TbAlignLeft,
+  TbBike,
+  TbBus,
+  TbCalendarEvent,
+  TbCloudStorm,
+  TbCup,
+  TbMap,
+  TbPhoto,
+  TbQrcode,
+  TbSun,
+} from 'react-icons/tb';
 
 export type Kiosk = {
   _id: string;
@@ -67,7 +78,8 @@ export type WidgetName =
   | 'departures'
   | 'bike'
   | 'weathercam'
-  | 'map';
+  | 'map'
+  | 'cmschEvents';
 
 export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElement }> = {
   weather: { name: 'Időjárás', icon: TbSun({ size: 50 }) },
@@ -79,6 +91,7 @@ export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElemen
   bike: { name: 'Bubi', icon: TbBike({ size: 50 }) },
   weathercam: { name: 'Időjárás kamera', icon: TbCloudStorm({ size: 50 }) },
   map: { name: 'Térkép', icon: TbMap({ size: 50 }) },
+  cmschEvents: { name: 'CMSch események', icon: TbCalendarEvent({ size: 50 }) },
 };
 
 type WidgetConfigField = {
@@ -108,6 +121,7 @@ export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
     { name: 'xOffset', type: 'number', label: 'X eltolás' },
     { name: 'yOffset', type: 'number', label: 'Y eltolás' },
   ],
+  cmschEvents: [{ name: 'baseUrl', type: 'text', label: 'Szerver Hoszt' }],
 };
 
 export type WidgetConfigBase = {
@@ -162,6 +176,11 @@ export interface MapConfig extends WidgetConfigBase {
   xOffset: number;
 }
 
+export interface CMSchEventsConfig extends WidgetConfigBase {
+  name: 'cmschEvents';
+  baseUrl: string;
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -183,4 +202,5 @@ export type WidgetConfig =
   | DeparturesConfig
   | BikeConfig
   | WeatherCamConfig
-  | MapConfig;
+  | MapConfig
+  | CMSchEventsConfig;

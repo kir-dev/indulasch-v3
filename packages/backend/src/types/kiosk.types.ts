@@ -62,7 +62,8 @@ export type WidgetName =
   | 'departures'
   | 'bike'
   | 'weathercam'
-  | 'map';
+  | 'map'
+  | 'cmschEvents';
 
 export type WidgetConfigBase = {
   name: WidgetName;
@@ -117,6 +118,11 @@ export interface MapConfig extends WidgetConfigBase {
   xOffset: number;
 }
 
+export interface CMSchEventsConfig extends WidgetConfigBase {
+  name: 'cmschEvents';
+  baseUrl: string;
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -136,7 +142,8 @@ export type WidgetConfig =
   | DeparturesConfig
   | BikeConfig
   | WeatherCamConfig
-  | MapConfig;
+  | MapConfig
+  | CMSchEventsConfig;
 
 export enum KioskRoles {
   VISITOR,

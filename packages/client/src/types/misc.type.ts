@@ -11,4 +11,5 @@ export enum QueryKeys {
   SCHPINCER = 'schpincer',
   CONFIG = 'config',
   MAP = 'map',
+  CMSCH_EVENTS = 'cmschEvents',
 }

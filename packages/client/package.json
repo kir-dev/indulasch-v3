@@ -13,7 +13,8 @@
     "react-qr-code": "^2.0.8",
     "react-query": "^3.39.2",
     "styled-components": "^5.3.6",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "date-fns": "^3.6.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
@@ -31,7 +32,7 @@
     "prettier": "prettier -c \"src/**/*\"",
     "prettier:fix": "prettier --write \"src/**/*\"",
     "start": "vite --mode development",
-    "build": "tsc && VITE_APP_VERSION=$(node -pe 'require(\"./package.json\").version') vite build",
+    "build": "tsc && VITE_VERSION=$(node -pe 'require(\"./package.json\").version') vite build",
     "preview": "vite preview"
   },
   "browserslist": {

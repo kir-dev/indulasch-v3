@@ -1,3 +1,5 @@
+import { CmschEventsWidget } from '@/components/widgets/CmschEventsWidget.tsx';
+
 import { BikeWidget } from '../components/widgets/BikeWidget';
 import { Departures } from '../components/widgets/departures/Departures';
 import { ImageWidget } from '../components/widgets/ImageWidget';
@@ -33,6 +35,8 @@ export function WidgetDistributor({ config }: WidgetDistributorProps) {
       return <WeatherCamWidget />;
     case 'map':
       return <MapWidget />;
+    case 'cmschEvents':
+      return <CmschEventsWidget />;
     default:
       return null;
   }

@@ -1,21 +1,17 @@
-import { PropsWithChildren } from 'react';
+import { HTMLAttributes, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 import { GridSettings } from '../types/widget.type';
 import { GlobalSize, Size } from '../utils/theme';
 import { useColorsOfScheme } from '../utils/useColorsOfScheme';
 
-interface WidgetProps extends PropsWithChildren {
+interface WidgetProps extends PropsWithChildren, HTMLAttributes<HTMLDivElement> {
   grid: GridSettings;
 }
 
-export function Widget({ children, grid }: WidgetProps) {
+export function Widget({ grid, ...props }: WidgetProps) {
   const { tile } = useColorsOfScheme();
-  return (
-    <WidgetStyle {...grid} style={{ backgroundColor: tile }}>
-      {children}
-    </WidgetStyle>
-  );
+  return <WidgetStyle {...grid} style={{ backgroundColor: tile }} {...props} />;
 }
 
 const WidgetStyle = styled.div<GridSettings>`
