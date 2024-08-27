@@ -5,6 +5,7 @@ import { decode } from 'html-entities';
 
 import { DepartureQueryDto } from '../types/client.types';
 import { ApiResponse, Departure, FutarAPI } from '../types/departure.types';
+import { ProxyQueryDto } from '../types/proxy.types';
 import { ConfigKeys } from '../utils/configuration';
 
 @Injectable()
@@ -71,5 +72,9 @@ export class ClientService {
       throw new InternalServerErrorException();
     }
     return apiResponse;
+  }
+
+  async getResource(proxyQueryDto: ProxyQueryDto) {
+    return axios.get(proxyQueryDto.url).then((response) => response.data);
   }
 }

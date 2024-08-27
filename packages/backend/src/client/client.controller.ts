@@ -3,6 +3,7 @@ import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/c
 import { KioskService } from '../kiosk/kiosk.service';
 import { MessageService } from '../message/message.service';
 import { DepartureQueryDto } from '../types/client.types';
+import { ProxyQueryDto } from '../types/proxy.types';
 import { sanitizeArray } from '../utils/sanitize';
 import { ClientService } from './client.service';
 
@@ -36,5 +37,10 @@ export class ClientController {
   @Post('departures')
   async getDepartures(@Body() departureQuery: DepartureQueryDto) {
     return this.clientService.getDepartures(departureQuery);
+  }
+
+  @Post('proxy')
+  async getResource(@Body() proxyQueryDto: ProxyQueryDto) {
+    return this.clientService.getResource(proxyQueryDto);
   }
 }
