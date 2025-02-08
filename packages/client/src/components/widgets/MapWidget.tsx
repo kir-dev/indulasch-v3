@@ -1,68 +1,73 @@
-import { useMemo } from 'react';
+import 'leaflet/dist/leaflet.css';
+
+import polyline from '@mapbox/polyline';
+import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
 import styled from 'styled-components';
 
 import { useConfig } from '@/layout/ConfigContext';
 import { Widget } from '@/layout/Widget';
-import { useDepartureQuery } from '@/network/departure.network.ts';
-import { DeparturesConfig, MapConfig } from '@/types/widget.type.ts';
+import { useMapQuery } from '@/network/map.network';
+import { MapConfig } from '@/types/widget.type.ts';
 import { useInterval } from '@/utils/useInterval.ts';
 import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
 
 import { RealCity } from '../RealCity';
-import { WidgetHeading } from '../Text';
-
-const mapSrc = 'https://futar.bkk.hu/ride-gui/sign.html';
+import { randomInt } from 'crypto';
 
 export function MapWidget() {
   const config = useWidgetConfig<MapConfig>('map');
-  const departuresConfig = useWidgetConfig<DeparturesConfig>('departures');
-  const { data, error, refetch } = useDepartureQuery(departuresConfig);
+  const mapConfig = useWidgetConfig<MapConfig>('map');
+  const { data, refetch } = useMapQuery(mapConfig);
   useInterval(async () => {
     await refetch();
   }, 5000);
-  const mapWidth = '2000px';
   const {
     config: {
       meta: { coordinates },
     },
   } = useConfig();
 
-  const src = useMemo(() => {
-    const url = new URL(mapSrc);
-    data?.departures?.map((departure) => departure.stopId).forEach((stop) => url.searchParams.append('stop', stop));
-    url.searchParams.set('mapZoom', config.zoom.toString());
-    url.searchParams.set('mapBoundsRadiusMeters', config.radius.toString());
-    url.searchParams.set('display-coordinates', `${coordinates.lon},${coordinates.lat}`);
-    url.searchParams.set('mapWidth', mapWidth);
-    return url.toString();
-  }, [data]);
-  if (error || !data) {
-    return (
-      <Widget grid={config.grid}>
-        <WidgetHeading>
-          <i>{error ? 'Hiba történt' : 'Nincs indulás'}</i>
-        </WidgetHeading>
-      </Widget>
-    );
-  }
-  const leftBaseOffset = -760 * devicePixelRatio;
-  const topBaseOffset = -300 * devicePixelRatio;
-  const leftZoomOffset = 1050 * (devicePixelRatio / 2 - 1);
-  const topZoomOffset = 210 * (devicePixelRatio / 2 - 1);
-  const leftColumnOffset =
-    (devicePixelRatio > 1.75 ? 120 : 160) * (config.grid.column.end - config.grid.column.start - 1) * devicePixelRatio;
-  const topRowOffset = 70 * (config.grid.row.end - config.grid.row.start - 1) * devicePixelRatio;
-
   return (
     <Widget grid={config.grid}>
       <ContentContainer>
-        <IFrameContainer
-          src={src.replace('%2C', ',').replace('.html', '.html#')} // # nélkül nem működik, Köszönd Gábornak xd
-          style={{
-            left: leftBaseOffset + leftZoomOffset + leftColumnOffset + Number(config.xOffset), // haha, fix nem ták :DDD
-            top: topBaseOffset + topZoomOffset + topRowOffset + Number(config.yOffset),
-          }}
-        />
+        <MapContainer
+          style={{ width: '100%', height: '100%' }}
+          center={[coordinates.lat, coordinates.lon]}
+          zoom={config.zoom}
+          scrollWheelZoom
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url='https://tileserver.realcity.io/styles/kti/{z}/{x}/{y}.png'
+          />
+
+          {data?.vehicles.map((vehicle) => (
+            <Marker
+              key={vehicle.vehicleId + (vehicle.location.lat + vehicle.location.lon)}
+              position={[vehicle.location.lat, vehicle.location.lon]}
+            >
+              <Popup>
+                <span>{vehicle.vehicleId}</span>
+              </Popup>
+            </Marker>
+          ))}
+          {data?.stops.map((stop) => (
+            <Marker key={stop.id + (stop.lat + stop.lon)} position={[stop.lat, stop.lon]}>
+              <Popup>
+                <span>{stop.id}</span>
+              </Popup>
+            </Marker>
+          ))}
+
+          {data?.routes.map((route) => {
+            return route.variants.map((variant) => {
+              const points = polyline.decode(variant.polyline.points);
+              return (
+                <Polyline key={variant.name + variant.headsign} positions={points} color={`#${route.style.color}`} />
+              );
+            });
+          })}
+        </MapContainer>
         <SponsorText>
           <RealCity size={35} />
         </SponsorText>
@@ -72,20 +77,12 @@ export function MapWidget() {
 }
 
 const ContentContainer = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   position: relative;
   overflow: hidden;
 `;
-const IFrameContainer = styled.iframe`
-  position: absolute;
-  /* Adjust this value to crop from the left half */
-  width: 2760px;
-  /* Width of the iframe */
-  height: 1440px;
-  /* Height of the iframe */
-  border: none;
-`;
+
 const SponsorText = styled.p`
   background-color: rgba(0, 0, 0, 0.5);
   color: white;

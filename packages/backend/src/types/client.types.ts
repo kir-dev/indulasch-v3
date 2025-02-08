@@ -3,3 +3,13 @@ export type DepartureQueryDto = {
   lon: string;
   radius: number;
 };
+
+export type MapQueryDto = {
+  lat: string;
+  lon: string;
+  radius: number;
+};
+
+export type RouteQueryDto = {
+  routeId: string[];
+};
