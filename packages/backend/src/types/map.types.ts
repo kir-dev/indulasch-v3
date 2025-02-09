@@ -11,7 +11,7 @@ export type Data = {
   outOfRange: boolean;
   limitExceeded: boolean;
   references: References;
-  className: string; // Renamed 'class' as it's a reserved keyword
+  className: string;
 };
 
 export type DeparturesData = Data & {

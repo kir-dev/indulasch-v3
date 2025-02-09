@@ -112,10 +112,8 @@ export interface BikeConfig extends WidgetConfigBase {
 
 export interface MapConfig extends WidgetConfigBase {
   name: 'map';
-  radius: number;
   zoom: number;
-  yOffset: number;
-  xOffset: number;
+  radius: number;
 }
 
 export interface CMSchEventsConfig extends WidgetConfigBase {
