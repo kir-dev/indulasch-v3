@@ -11,7 +11,6 @@ import { MapConfig } from '@/types/widget.type.ts';
 import { useInterval } from '@/utils/useInterval.ts';
 import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
 
-import { RealCity } from '../RealCity';
 import { StopMarker } from './map/StopMarker';
 import { VehicleMarker } from './map/VehicleMarker';
 
@@ -35,7 +34,12 @@ export function MapWidget() {
           style={{ width: '100%', height: '100%' }}
           center={[coordinates.lat, coordinates.lon]}
           zoom={config.zoom}
-          scrollWheelZoom
+          scrollWheelZoom={false}
+          zoomControl={false}
+          attributionControl={false}
+          dragging={false}
+          doubleClickZoom={false}
+          touchZoom={false}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -54,9 +58,6 @@ export function MapWidget() {
             });
           })}
         </MapContainer>
-        <SponsorText>
-          <RealCity size={35} />
-        </SponsorText>
       </ContentContainer>
     </Widget>
   );
@@ -67,18 +68,4 @@ const ContentContainer = styled.div`
   width: 100%;
   position: relative;
   overflow: hidden;
-`;
-
-const SponsorText = styled.p`
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 5px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
 `;
