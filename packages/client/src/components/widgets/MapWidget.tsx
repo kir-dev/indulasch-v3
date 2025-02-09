@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 
 import polyline from '@mapbox/polyline';
-import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet';
 import styled from 'styled-components';
 
 import { useConfig } from '@/layout/ConfigContext';
@@ -12,7 +12,7 @@ import { useInterval } from '@/utils/useInterval.ts';
 import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
 
 import { RealCity } from '../RealCity';
-import { randomInt } from 'crypto';
+import { StopMarker } from './map/StopMarker';
 
 export function MapWidget() {
   const config = useWidgetConfig<MapConfig>('map');
@@ -45,19 +45,9 @@ export function MapWidget() {
             <Marker
               key={vehicle.vehicleId + (vehicle.location.lat + vehicle.location.lon)}
               position={[vehicle.location.lat, vehicle.location.lon]}
-            >
-              <Popup>
-                <span>{vehicle.vehicleId}</span>
-              </Popup>
-            </Marker>
+            />
           ))}
-          {data?.stops.map((stop) => (
-            <Marker key={stop.id + (stop.lat + stop.lon)} position={[stop.lat, stop.lon]}>
-              <Popup>
-                <span>{stop.id}</span>
-              </Popup>
-            </Marker>
-          ))}
+          {data?.stops.map((stop) => <StopMarker key={stop.id} stop={stop} />)}
 
           {data?.routes.map((route) => {
             return route.variants.map((variant) => {

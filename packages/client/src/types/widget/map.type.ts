@@ -69,6 +69,8 @@ export type Stop = {
   id: string;
   lat: number;
   lon: number;
-  colors: string[];
+  style: {
+    colors: string[];
+  };
   direction: number;
 };
