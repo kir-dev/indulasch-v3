@@ -116,10 +116,8 @@ export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
   ],
   weathercam: [],
   map: [
-    { name: 'radius', type: 'number', label: 'Hatósugár' },
     { name: 'zoom', type: 'number', label: 'Nagyítás' },
-    { name: 'xOffset', type: 'number', label: 'X eltolás' },
-    { name: 'yOffset', type: 'number', label: 'Y eltolás' },
+    { name: 'radius', type: 'number', label: 'Hatósugár' },
   ],
   cmschEvents: [{ name: 'baseUrl', type: 'text', label: 'Szerver Hoszt' }],
 };
@@ -170,10 +168,8 @@ export interface WeatherCamConfig extends WidgetConfigBase {
 }
 export interface MapConfig extends WidgetConfigBase {
   name: 'map';
-  radius: number;
   zoom: number;
-  yOffset: number;
-  xOffset: number;
+  radius: number;
 }
 
 export interface CMSchEventsConfig extends WidgetConfigBase {
