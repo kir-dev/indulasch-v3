@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 
 import polyline from '@mapbox/polyline';
-import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet';
+import { MapContainer, Polyline, TileLayer } from 'react-leaflet';
 import styled from 'styled-components';
 
 import { useConfig } from '@/layout/ConfigContext';
@@ -13,6 +13,7 @@ import { useWidgetConfig } from '@/utils/useWidgetConfig.ts';
 
 import { RealCity } from '../RealCity';
 import { StopMarker } from './map/StopMarker';
+import { VehicleMarker } from './map/VehicleMarker';
 
 export function MapWidget() {
   const config = useWidgetConfig<MapConfig>('map');
@@ -41,12 +42,7 @@ export function MapWidget() {
             url='https://tileserver.realcity.io/styles/kti/{z}/{x}/{y}.png'
           />
 
-          {data?.vehicles.map((vehicle) => (
-            <Marker
-              key={vehicle.vehicleId + (vehicle.location.lat + vehicle.location.lon)}
-              position={[vehicle.location.lat, vehicle.location.lon]}
-            />
-          ))}
+          {data?.vehicles.map((vehicle) => <VehicleMarker key={vehicle.vehicleId} vehicle={vehicle} />)}
           {data?.stops.map((stop) => <StopMarker key={stop.id} stop={stop} />)}
 
           {data?.routes.map((route) => {

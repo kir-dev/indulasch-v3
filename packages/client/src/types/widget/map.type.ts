@@ -1,5 +1,3 @@
-import { Style } from './departures.type';
-
 export type MapDto = {
   vehicles: Vehicle[];
   routes: RouteDetails[];
@@ -13,7 +11,11 @@ export type Vehicle = {
     lat: number;
     lon: number;
   };
-  style: Style;
+  style: {
+    icon: {
+      name: string;
+    };
+  };
   bearing: number;
 };
 

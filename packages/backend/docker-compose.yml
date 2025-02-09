@@ -5,27 +5,19 @@ services:
     command: node dist/main.js
     env_file: ./.env
     ports:
-      - '3002:3002'
+      - '3334:3001'
     depends_on:
       - mongo
-    networks:
-      - indulasch
   mongo:
     image: 'mongo'
-    container_name: 'mongo'
     environment:
       - MONGO_INITDB_DATABASE=indulasch
-      # - MONGO_INITDB_ROOT_USERNAME=root
-      # - MONGO_INITDB_ROOT_PASSWORD=root
-    command: --quiet --noauth
+      - MONGO_INITDB_ROOT_USERNAME=${DB_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASS}
+    command: --quiet
     ports:
-      - '27017:27017'
+      - '3335:27017'
     volumes:
       - ./database_volume:/data/db
-    networks:
-      - indulasch
 volumes:
   database_volume:
-networks:
-  indulasch:
-    driver: bridge
