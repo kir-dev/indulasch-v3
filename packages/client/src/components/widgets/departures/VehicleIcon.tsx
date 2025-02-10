@@ -46,8 +46,18 @@ export function VehicleIcon({ name }: { name: string }) {
   return <FieldIconWrapper>{VehicleIconSelector(name)}</FieldIconWrapper>;
 }
 
+export function VehicleMapIcon({ name }: { name: string }) {
+  return <MapIconWrapper>{VehicleIconSelector(name)}</MapIconWrapper>;
+}
+
 const FieldIconWrapper = styled.div`
   svg {
     height: 60px;
+  }
+`;
+
+const MapIconWrapper = styled.div`
+  svg {
+    height: 24px;
   }
 `;
