@@ -11,16 +11,20 @@ export type ConfigDto = {
 export type ConfigContextType = {
   config: Config;
   fail: boolean;
+  widgets: WidgetConfig[];
 };
 
 export type Config = {
   style: Style;
   meta: Meta;
-  widgets: WidgetConfig[];
+  // Backward compatibility: single-page widgets
+  widgets?: WidgetConfig[];
+  pages?: Page[];
 };
 
 type Meta = {
   coordinates: Coordinates;
+  pageDurationSec?: number;
 };
 
 type Style = {
@@ -42,4 +46,10 @@ export type Colors = {
 type ColorModeColor = {
   light: string;
   dark?: string;
+};
+
+export type Page = {
+  durationSec?: number;
+  title?: string;
+  widgets: WidgetConfig[];
 };

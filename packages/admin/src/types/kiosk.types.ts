@@ -36,7 +36,9 @@ export enum KioskStatus {
 export type KioskConfig = {
   style: Style;
   meta: Meta;
-  widgets: WidgetConfig[];
+  // Backward compatibility: single-page widgets
+  widgets?: WidgetConfig[];
+  pages?: Page[];
 };
 
 export type Coordinates = {
@@ -47,6 +49,7 @@ export type Coordinates = {
 export type Meta = {
   coordinates: Coordinates;
   name: string;
+  pageDurationSec?: number;
 };
 
 export type Style = {
@@ -67,6 +70,13 @@ export type Colors = {
 export type ColorModeColor = {
   light: string;
   dark: string;
+};
+
+export type Page = {
+  // Duration for this page in seconds
+  durationSec?: number;
+  title?: string;
+  widgets: WidgetConfig[];
 };
 
 export type WidgetName =

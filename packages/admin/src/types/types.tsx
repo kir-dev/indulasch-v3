@@ -22,6 +22,7 @@ export type RegistrationForm = {
 export type MetaForm = {
   name: string;
   coordinates: Coordinates;
+  pageDurationSec?: number | string;
 };
 
 export type NotificationForm = Omit<KioskNotification, 'status'>;

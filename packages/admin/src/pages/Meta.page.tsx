@@ -31,6 +31,11 @@ const validationSchema = z.object({
       .string({ required_error: l('form.validation.required') })
       .regex(/^-?\d+(\.\d+)?$/, { message: l('form.validation.number') }),
   }),
+  pageDurationSec: z
+    .string()
+    .optional()
+    .transform((v) => (v ? Number(v) : undefined))
+    .refine((v) => (typeof v === 'undefined' ? true : v >= 1), l('form.validation.number')),
 });
 
 export function MetaPage() {
@@ -72,6 +77,10 @@ export function MetaPage() {
                 <FormLabel>{l('page.meta.label.name')}</FormLabel>
                 <Input {...register('name')} />
                 {Boolean(errors.name) && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
+              </FormControl>
+              <FormControl>
+                <FormLabel>Oldal váltás alapértelmezett ideje (mp)</FormLabel>
+                <Input type='number' min={1} {...register('pageDurationSec')} />
               </FormControl>
             </VStack>
             {isError && <FormErrorMessage>{l('error.save')}</FormErrorMessage>}

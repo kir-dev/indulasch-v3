@@ -103,7 +103,21 @@ export function KioskDashboardPage() {
           </PageSection>
           <PageSection>
             <Heading size='md'>{l('page.dashboard.enabledWidgets')}</Heading>
-            {kiosk?.config.widgets.map((w) => <Text key={w.name}>{WidgetDisplay[w.name].name}</Text>)}
+            {kiosk?.config.pages && kiosk.config.pages.length > 0 ? (
+              <>
+                <Text>Oldalak: {kiosk.config.pages.length}</Text>
+                {kiosk.config.pages.map((p, idx) => (
+                  <Text
+                    key={`page-${p.title || p.widgets?.[0]?.name || 'x'}-${p.durationSec || 10}-${p.widgets.length}`}
+                  >
+                    #{idx + 1}
+                    {p.title ? ` • ${p.title}` : ''} • {p.widgets.length} csempe • {p.durationSec || 10}s
+                  </Text>
+                ))}
+              </>
+            ) : (
+              kiosk?.config.widgets?.map((w) => <Text key={w.name}>{WidgetDisplay[w.name].name}</Text>)
+            )}
           </PageSection>
           {role && role.role >= 2 && (
             <PageSection>

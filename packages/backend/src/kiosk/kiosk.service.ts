@@ -30,25 +30,14 @@ export class KioskService {
     });
   }
 
-  async patchKiosk(kioskId: string, { widgets, style, meta }: KioskPatchDto) {
-    const kiosk = await this.kioskModel.findById(kioskId);
-    if (typeof widgets !== 'undefined') {
-      kiosk.config.widgets = widgets;
-    }
-    if (typeof meta !== 'undefined') {
-      kiosk.config.meta = meta;
-    }
-    if (typeof style !== 'undefined') {
-      kiosk.config.style = style;
-    }
-    return this.kioskModel.updateOne(
-      { _id: kioskId },
-      {
-        $set: {
-          config: kiosk.config,
-        },
-      }
-    );
+  async patchKiosk(kioskId: string, { widgets, style, meta, pages }: KioskPatchDto) {
+    const $set: Record<string, unknown> = {};
+    if (typeof widgets !== 'undefined') $set['config.widgets'] = widgets;
+    if (typeof pages !== 'undefined') $set['config.pages'] = pages;
+    if (typeof meta !== 'undefined') $set['config.meta'] = meta;
+    if (typeof style !== 'undefined') $set['config.style'] = style;
+    if (Object.keys($set).length === 0) return { acknowledged: true, matchedCount: 0, modifiedCount: 0 } as never;
+    return this.kioskModel.updateOne({ _id: kioskId }, { $set });
   }
 
   async patchWidget(kioskId: string, widget: WidgetPatchDto) {

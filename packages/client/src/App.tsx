@@ -8,15 +8,16 @@ import { useColorsOfScheme } from './utils/useColorsOfScheme';
 
 function App() {
   const { background } = useColorsOfScheme();
-  const {
-    config: { widgets },
-  } = useConfig();
+  const { widgets } = useConfig();
   return (
     <Main backgroundColor={background}>
       <Titlebar />
       <WidgetGrid>
         {widgets.map((w) => (
-          <WidgetDistributor key={w.name} config={w} />
+          <WidgetDistributor
+            key={`${w.name}-${w.grid.row.start}-${w.grid.row.end}-${w.grid.column.start}-${w.grid.column.end}`}
+            config={w}
+          />
         ))}
       </WidgetGrid>
       <Footer />

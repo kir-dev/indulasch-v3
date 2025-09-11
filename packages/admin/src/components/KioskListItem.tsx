@@ -1,4 +1,5 @@
 import { Stat, StatNumber, useColorModeValue } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 import { useKioskContext } from '../context/kiosk.context';
 import { KioskRoles } from '../types/types';
@@ -12,10 +13,14 @@ interface KioskGridItemProps {
 
 export function KioskListItem({ name, id, role }: KioskGridItemProps) {
   const { setSelectedKiosk } = useKioskContext();
+  const navigate = useNavigate();
   const color = useColorModeValue('gray.300', 'gray.600');
   return (
     <Stat
-      onClick={() => setSelectedKiosk(id)}
+      onClick={() => {
+        setSelectedKiosk(id);
+        navigate('/dashboard');
+      }}
       borderColor={color}
       cursor='pointer'
       _hover={{ backgroundColor: color }}
