@@ -128,7 +128,10 @@ export function WidgetsPage() {
               type='number'
               min={1}
               value={pages[selected]?.durationSec || 10}
-              onChange={(e) => setDuration(Math.max(1, parseInt(e.target.value || '10', 10)))}
+              onChange={(e) => {
+                const v = Number(e.target.value);
+                setDuration(Number.isNaN(v) ? 10 : Math.max(1, v));
+              }}
               width='6rem'
             />
             <Text>Cím:</Text>
