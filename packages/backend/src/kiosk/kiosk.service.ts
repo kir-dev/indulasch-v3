@@ -36,7 +36,7 @@ export class KioskService {
     if (typeof pages !== 'undefined') $set['config.pages'] = pages;
     if (typeof meta !== 'undefined') $set['config.meta'] = meta;
     if (typeof style !== 'undefined') $set['config.style'] = style;
-    if (Object.keys($set).length === 0) return { acknowledged: true, matchedCount: 0, modifiedCount: 0 } as never;
+    if (Object.keys($set).length === 0) return { acknowledged: true, matchedCount: 0, modifiedCount: 0 };
     return this.kioskModel.updateOne({ _id: kioskId }, { $set });
   }
 
