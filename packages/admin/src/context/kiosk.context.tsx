@@ -50,7 +50,6 @@ export function KioskProvider() {
       .get<Kiosk>(`${ApiPaths.KIOSK}/${kioskId}`)
       .then((res) => {
         setKiosk(res.data);
-        navigate(UIPaths.DASHBOARD);
       })
       .catch((err) => {
         if (isAxiosError(err) && err.response?.status === 401) {

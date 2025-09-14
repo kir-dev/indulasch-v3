@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren } from 'react';
+import React, { createContext, PropsWithChildren, useEffect, useRef, useState } from 'react';
 
 import { ErrorPage, LoadingPage } from '../components/StatusPage';
 import { useConfigQuery } from '../network/config.network';
@@ -36,11 +36,47 @@ const ConfigContext = createContext<ConfigContextType>({
     },
     widgets: [],
   },
+  widgets: [],
 });
+
+const DEFAULT_PAGE_DURATION_SEC = 10;
 
 export const ConfigProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const kioskId = useKioskIdFromPath();
   const { config, fail, notFound } = useConfigQuery(kioskId);
+  const [widgets, setWidgets] = useState(() => config?.widgets || []);
+  const pageIndexRef = useRef(0);
+
+  useEffect(() => {
+    if (!config) return;
+    const pages = config.pages || [];
+    if (!pages.length) {
+      setWidgets(config.widgets || []);
+      return;
+    }
+
+    pageIndexRef.current = 0;
+    setWidgets(pages[0]?.widgets || []);
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const scheduleNext = () => {
+      const current = pageIndexRef.current;
+      const globalDefault = config.meta.pageDurationSec || DEFAULT_PAGE_DURATION_SEC;
+      const durationSec = pages[current]?.durationSec || globalDefault;
+      const ms = Math.max(1, durationSec) * 1000;
+      timer = setTimeout(() => {
+        const next = (pageIndexRef.current + 1) % pages.length;
+        pageIndexRef.current = next;
+        setWidgets(pages[next]?.widgets || []);
+        scheduleNext();
+      }, ms);
+    };
+    scheduleNext();
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [config]);
   if (notFound) return <ErrorPage message='Nem található kioszk ezzel az azonosítóval' />;
   if (fail) {
     if (!config)
@@ -48,7 +84,7 @@ export const ConfigProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }
   if (!config) return <LoadingPage />;
 
-  return <ConfigContext.Provider value={{ fail, config }}>{children}</ConfigContext.Provider>;
+  return <ConfigContext.Provider value={{ fail, config, widgets }}>{children}</ConfigContext.Provider>;
 };
 
 export const useConfig = () => React.useContext(ConfigContext);
