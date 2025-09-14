@@ -109,8 +109,13 @@ export function WidgetsPage() {
               max={pages.length}
               value={selected + 1}
               onChange={(e) => {
-                const v = parseInt(e.target.value, 10);
-                if (!Number.isNaN(v)) setSelected(Math.min(Math.max(0, v - 1), pages.length - 1));
+                const value = e.target.value;
+                if (value === '') {
+                  setSelected(0);
+                } else {
+                  const v = parseInt(value, 10);
+                  if (!Number.isNaN(v)) setSelected(Math.min(Math.max(0, v - 1), pages.length - 1));
+                }
               }}
               width='4rem'
             />
