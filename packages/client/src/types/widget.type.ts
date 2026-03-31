@@ -8,7 +8,8 @@ export type WidgetName =
   | 'bike'
   | 'weathercam'
   | 'map'
-  | 'cmschEvents';
+  | 'cmschEvents'
+  | 'iframe';
 
 export type WidgetConfigBase = {
   name: WidgetName;
@@ -65,6 +66,11 @@ export interface CMSchEventsConfig extends WidgetConfigBase {
   baseUrl: string;
 }
 
+export interface IframeConfig extends WidgetConfigBase {
+  name: 'iframe';
+  url: string;
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -85,4 +91,5 @@ export type WidgetConfig =
   | BikeConfig
   | WeatherCamConfig
   | MapConfig
-  | CMSchEventsConfig;
+  | CMSchEventsConfig
+  | IframeConfig;

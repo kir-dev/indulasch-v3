@@ -1,4 +1,5 @@
 import { CmschEventsWidget } from '@/components/widgets/CmschEventsWidget.tsx';
+import { IframeWidget } from '@/components/widgets/IframeWidget.tsx';
 
 import { BikeWidget } from '../components/widgets/BikeWidget';
 import { Departures } from '../components/widgets/departures/Departures';
@@ -37,6 +38,8 @@ export function WidgetDistributor({ config }: WidgetDistributorProps) {
       return <MapWidget />;
     case 'cmschEvents':
       return <CmschEventsWidget />;
+    case 'iframe':
+      return <IframeWidget />;
     default:
       return null;
   }

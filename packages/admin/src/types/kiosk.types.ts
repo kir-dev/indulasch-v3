@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import {
   TbAlignLeft,
   TbBike,
+  TbBrowserPlus,
   TbBus,
   TbCalendarEvent,
   TbCloudStorm,
@@ -79,7 +80,8 @@ export type WidgetName =
   | 'bike'
   | 'weathercam'
   | 'map'
-  | 'cmschEvents';
+  | 'cmschEvents'
+  | 'iframe';
 
 export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElement }> = {
   weather: { name: 'Időjárás', icon: TbSun({ size: 50 }) },
@@ -92,6 +94,7 @@ export const WidgetDisplay: Record<WidgetName, { name: string; icon: ReactElemen
   weathercam: { name: 'Időjárás kamera', icon: TbCloudStorm({ size: 50 }) },
   map: { name: 'Térkép', icon: TbMap({ size: 50 }) },
   cmschEvents: { name: 'CMSch események', icon: TbCalendarEvent({ size: 50 }) },
+  iframe: { name: 'Iframe', icon: TbBrowserPlus({ size: 50 }) },
 };
 
 type WidgetConfigField = {
@@ -120,6 +123,7 @@ export const WidgetConfigFields: Record<WidgetName, WidgetConfigField[]> = {
     { name: 'radius', type: 'number', label: 'Hatósugár' },
   ],
   cmschEvents: [{ name: 'baseUrl', type: 'text', label: 'Szerver Hoszt' }],
+  iframe: [{ name: 'url', type: 'text', label: 'Iframe URL címe' }],
 };
 
 export type WidgetConfigBase = {
@@ -177,6 +181,11 @@ export interface CMSchEventsConfig extends WidgetConfigBase {
   baseUrl: string;
 }
 
+export interface IframeConfig extends WidgetConfigBase {
+  name: 'iframe';
+  url: string;
+}
+
 export type GridSettings = {
   column: Axis;
   row: Axis;
@@ -199,4 +208,5 @@ export type WidgetConfig =
   | BikeConfig
   | WeatherCamConfig
   | MapConfig
-  | CMSchEventsConfig;
+  | CMSchEventsConfig
+  | IframeConfig;
